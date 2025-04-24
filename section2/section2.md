@@ -1,11 +1,13 @@
 ## Chapter2: Representing and Manipulating Information
 
+### Related resources
 - [Video Lecture 02: Bits, Bytes, and Integers](https://scs.hosted.panopto.com/Panopto/Pages/Viewer.aspx?id=6ca8cdb4-6961-42d9-8fac-299e53759a17)
 - [Section2 Errata (Hardback Edition)](./errata.txt)
-- [Code for many practice problems](./practice-problems/code/)
+- [Hexadecimal to Decimal converter](https://www.rapidtables.com/convert/number/hex-to-decimal.html)
 
 ### Chapter 2 Practice problems
 
+- [My code for practice problems](./practice-problems/code/)
 - [Practice Problems 2.1 | Hexadecimal Notation](./practice-problems/problem2-1.md)
 - [Practice Problems 2.2 | Hexadecimal Notation](./practice-problems/problem2-2.md)
 - [Practice Problems 2.3 | Hexadecimal Notation](./practice-problems/problem2-3.md)
@@ -28,5 +30,5 @@
 - [Practice Problems 2.19 | Conversions between Signed versus Unsigned](./practice-problems/problem2-19-hardback.md)
 - [Practice Problems 2.20 | Conversions between Signed versus Unsigned](./practice-problems/problem2-20.md)
 - [Practice Problems 2.21 | Signed versus Unsigned in C](./practice-problems/problem2-21-hardback.md)
-- [Practice Problems 2.22 | Expanding the Bit Representation of a Number](./practice-problems/problem2-23-hardback.md)
+- [Practice Problems 2.22 | Expanding the Bit Representation of a Number](./practice-problems/problem2-22-hardback.md)
 - [Practice Problems 2.23 | Expanding the Bit Representation of a Number](./practice-problems/problem2-23-hardback.md)

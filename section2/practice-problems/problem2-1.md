@@ -4,7 +4,7 @@ Perform the following number conversions:
 
 - A. 0x25B9D2 to binary
 
-Reverse and convert to hex
+Reverse and convert to binary
 2 = 0010
 D = 1101
 9 = 1001
