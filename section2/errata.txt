@@ -1,0 +1,42 @@
+https://csapp.cs.cmu.edu/3e/errata.html
+
+Chapter 2: Representing and Manipulating Information
+
+p. 45, code for show_bytes. Variable i should be declared to have type size_t.
+Posted 07/11/2015. Randal E. Bryant
+
+p. 47, aside “New to C? Formatted printing with printf,” second paragraph. The referenced data type should be int32_t, not int_32t.
+Posted 05/23/2016. Yili Gong
+
+p. 48, aside “New to C? Pointer creation and dereferencing,” This aside should be titled “New to C? Pointer creation and casting”, since it does not demonstrate dereferencing.
+Posted 07/13/2024. Vadim Flyagin
+
+p. 59, Aside at top of page. The second-to-last sentence should state: “This behavior is not guaranteed for C programs, however, and so shift amounts should be kept less than the number of bits in the value being shifted.”
+Posted 09/28/2015. Ruth Anderson
+
+p. 71, first full paragraph, line 6. The range should be 0 ≤ x ≤ Umaxw.
+Posted 10/25/2015. Shoeb Mohammed
+
+p. 82, second line. ′x should be x′.
+Posted 10/25/2015. Shoeb Mohammed
+
+p. 82, third line. Value x should be computed with function B2Uw(x), not B2Tw(x).
+Posted 11/13/2015. Parinya Suparit
+
+p. 82, first equation in DERIVATION. The left-hand side should be computed with function B2Uw(x), not B2Tw(x).
+Posted 11/13/2015. Parinya Suparit
+
+p. 93, Figure 2.26. In the axis labels, the minus signs are incorrectly printed as the numeral ‘2’. A correct version of the image can be found here.
+Posted 09/23/2016. Matt Toups
+
+p. 111, Practice Problem 2.45. The entry in the third row should be 25/16.
+Posted 11/23/2015. Mathieu Borderé
+
+p. 125, Line before Practice Problem 2.54. The number shown should be -2147483648 rather than -21483648.
+Posted 09/05/2016. JiaSheng Chen
+
+p. 153, Solution to Problem 2.32. The sentence starting on third line should state “In fact, the opposite is true: tsub_ok(x, TMin) should yield 1 when x is negative and 0 when it is nonnegative.”
+Posted 10/25/2015. Shoeb Mohammed
+
+p. 154, Solution to Problem 2.35, second line of part 3. It would be more precise to state |r| < |x| ≤ 2w-1. (Note that the argument only requires |r| < 2w, and so the original statement and proof are valid.)
+Posted 07/12/2018. Wang Lei
