@@ -1,5 +1,14 @@
 ## Chapter2: Representing and Manipulating Information
 
+### Software used:
+- Compiler/debugger
+    - gcc version 11.2.0
+    - gdb version 11.2.0
+
+- Document creation
+    - git version 2.46.3
+    - Visual Studio Code version 1.99.3
+
 ### Related resources
 - [Video Lecture 02: Bits, Bytes, and Integers](https://scs.hosted.panopto.com/Panopto/Pages/Viewer.aspx?id=6ca8cdb4-6961-42d9-8fac-299e53759a17)
 - [Section2 Errata (Hardback Edition)](./errata.txt)
