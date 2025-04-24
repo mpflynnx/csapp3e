@@ -24,8 +24,6 @@ int fun2(unsigned word) {
 
 - Assume program executed on 32bit machine that use's two's-complement
 
-
-
 ### Sign extension on Two's complement numbers
 
 
