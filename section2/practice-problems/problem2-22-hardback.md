@@ -2,6 +2,8 @@
 
 ### Sign extension on Two's complement numbers
 
+- Copy sign bit to the left
+
 ### Positive signed
 ||||||||
 |---|---|---|---|---|---|---|
@@ -9,7 +11,7 @@
 |16|8 |4 |2 |1 | Binary position value |
 ||0 |1 |1 |0 | = 6 | To extend 4bit to 5bit, add leading 0
 |0|0 |1 |1 |0 | = 6 | Value is the same
-
+||0 <- copied to the left
 
 ### Negative signed
 ||||||||
@@ -26,9 +28,6 @@
 ### Hexadecimal negative signed number examples
 
 - 0xFFFF0123, many leading 1's indicates negative number that is not to far away from zero.
-
-- [See slide for examples](../slides/sign%20extension%20examples.jpg)
-
 
 Show that each of the following bit vectors is a two’s-complement representation of −5
 ||||
