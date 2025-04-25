@@ -11,6 +11,7 @@
 
 ### Related resources
 - [Video Lecture 02: Bits, Bytes, and Integers](https://scs.hosted.panopto.com/Panopto/Pages/Viewer.aspx?id=6ca8cdb4-6961-42d9-8fac-299e53759a17)
+- [Video Lecture 03: Bits, Bytes, and Integers (cont.)](https://scs.hosted.panopto.com/Panopto/Pages/Viewer.aspx?id=526e6341-aa53-4107-8fa1-d13c0e92342e)
 - [Section2 Errata (Hardback Edition)](./errata.txt)
 - [Hexadecimal to Decimal converter](https://www.rapidtables.com/convert/number/hex-to-decimal.html)
 
@@ -41,3 +42,4 @@
 - [Practice Problems 2.21 | Signed versus Unsigned in C](./practice-problems/problem2-21-hardback.md)
 - [Practice Problems 2.22 | Expanding the Bit Representation of a Number](./practice-problems/problem2-22-hardback.md)
 - [Practice Problems 2.23 | Expanding the Bit Representation of a Number](./practice-problems/problem2-23-hardback.md)
+- [Practice Problems 2.24 | Truncating Numbers](./practice-problems/problem2-24.md)
