@@ -43,3 +43,4 @@
 - [Practice Problems 2.22 | Expanding the Bit Representation of a Number](./practice-problems/problem2-22-hardback.md)
 - [Practice Problems 2.23 | Expanding the Bit Representation of a Number](./practice-problems/problem2-23-hardback.md)
 - [Practice Problems 2.24 | Truncating Numbers](./practice-problems/problem2-24.md)
+- [Practice Problems 2.25 | Advice on Signed versus Unsigned](./practice-problems/problem2-25.md)
