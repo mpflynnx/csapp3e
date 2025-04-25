@@ -15,8 +15,8 @@ float sum_elements(float a[], unsigned length){
 
 int main(){
 
-    float a[] = {0,1,2,3};
-    sum_elements(a, 0);
+    float a[] = {0.0,1.0,2.0,3.0};
+    sum_elements(a, 2);
 
 	return 0;
 
