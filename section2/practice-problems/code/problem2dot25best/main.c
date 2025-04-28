@@ -17,7 +17,7 @@ float sum_elements(float a[], size_t length){
 int main(){
 
     float a[] = {0.0,1.0,2.0,3.0};
-    sum_elements(a, sizeof(a));
+    sum_elements(a, (sizeof(a) / sizeof(a[0])));
 
 	return 0;
 

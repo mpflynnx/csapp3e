@@ -1,5 +1,7 @@
 ## Practice Problem 2.25 hardback page 83
 
+- [main.c](./code/problem2dot25/main.c)
+
 ### Advice on Signed versus Unsigned
 
 - The following code attempts to sum the elements of an array where the number of elements is given by `length`
@@ -70,13 +72,13 @@ Segmentation fault
 
 - As array indexes start at 0, length will be 4 for array indexes 0,1,2,3
 - To find the last index if given a length of 4, we subtract 1 from 4 to get index 3.
-- length - 1 is used to get the last index of the array.
+- `length - 1` is used to get the last index of the array.
 - If length given is 0 using unsigned arithmetic
 - 0 - 1 is not -1 it is UMax 4294967295
 - The loop will continue until i <= 4294967295.
 - We do not want a loop to stop at 4294967295
-- The end condition i <= length needs to change
-- or the type for length needs to change
+- The end condition `i <= length -1` needs to change to `i < length>`
+- or the type for `length` needs to change to `int`
 
 
 ```c
@@ -90,12 +92,23 @@ for (int i = 0; i <= length-1; i++){
 - If array is of length 0, one less than this is -1 for signed integers
 - We could change the length type to signed
 - We could end when i < length -1
+- We shouldn't be calling a function if the array is 0 anyway.
 
-###  Best practice
+
+###  Best practice for C99
+
+- [main.c](./code/problem2dot25best/main.c)
+
 - Use size_t
 - size_t is an unsigned integer type defined in <stddef.h>
+- calculate the number of elements using the expression `sizeof(array) / sizeof(array[0])`. 
+- sizeof(array) gives the total size of the array in bytes, and sizeof(array[0]) gives the size of a single element. 
+- Dividing the total size by the element size gives the number of elements.
+- ++i: Increments the loop counter. ++i is often marginally preferred over i++ for primitive types like size_t as it can be more efficient by avoiding the creation of a temporary value, although compilers often optimize this difference away. Both are functionally correct here.
+
 
 ```c
+/* This code is best practice */
 float sum_elements(float a[], size_t length){
 
     float result = 0;
@@ -105,6 +118,20 @@ float sum_elements(float a[], size_t length){
     }
 
     return result;
-
 }
+```
+
+- If array was empty during compile time the following warning occurs, but program compiles.
+
+```bash
+$ gcc -std=c99 -g main.c -o  main
+main.c: In function ‘main’:
+main.c:20:5: warning: ‘sum_elements’ accessing 4 bytes in a region of size 0 [-Wstringop-overflow=]
+   20 |     sum_elements(a, (sizeof(a) / sizeof(a[0])));
+      |     ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+main.c:20:5: note: referencing argument 1 of type ‘float[0]’
+main.c:5:7: note: in a call to function ‘sum_elements’
+    5 | float sum_elements(float a[], size_t length){
+      |       ^~~~~~~~~~~~
+
 ```
