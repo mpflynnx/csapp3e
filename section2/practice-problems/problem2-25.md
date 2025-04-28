@@ -91,7 +91,7 @@ for (int i = 0; i <= length-1; i++){
 - We really just want to end on the last index
 - If array is of length 0, one less than this is -1 for signed integers
 - We could change the length type to signed
-- We could end when i < length -1
+- We could end when i < length
 - We shouldn't be calling a function if the array is 0 anyway.
 
 
