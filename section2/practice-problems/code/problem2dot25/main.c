@@ -1,6 +1,6 @@
 #include <stdio.h>
 
-/* WARNING: This code is buggy */
+/* WARNING: This code is buggy if length unsigned type*/
 float sum_elements(float a[], unsigned length){
 
     float result = 0;
@@ -16,7 +16,7 @@ float sum_elements(float a[], unsigned length){
 int main(){
 
     float a[] = {0.0,1.0,2.0,3.0};
-    sum_elements(a, 2);
+    sum_elements(a, 0);
 
 	return 0;
 
