@@ -15,11 +15,13 @@ int main(){
     char t1[] = "This is a shorter string.";
     char u1[] = "This is a short string.";
 
-    if (strlonger(s1, t1)){
-        printf("s1 is longer/n");
+    int length = strlen(u1); // for testing
+
+    if (strlonger(u1, t1)){
+        printf("u1 is longer\n");
     }
     else {
-        printf("t1 is longer/n");
+        printf("t1 is longer\n");
     }
 
 
