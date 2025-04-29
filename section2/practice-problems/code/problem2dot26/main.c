@@ -15,7 +15,9 @@ int main(){
     char t1[] = "This is a shorter string.";
     char u1[] = "This is a short string.";
 
-    int length = strlen(u1); // for testing
+    int l1 = strlen(s1); // for testing
+    int l2 = strlen(t1); // for testing
+    int l3 = strlen(u1); // for testing
 
     if (strlonger(u1, t1)){
         printf("u1 is longer\n");
