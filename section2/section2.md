@@ -45,3 +45,4 @@
 - [Practice Problems 2.24 | Truncating Numbers](./practice-problems/problem2-24.md)
 - [Practice Problems 2.25 | Advice on Signed versus Unsigned](./practice-problems/problem2-25.md)
 - [Practice Problems 2.26 | Advice on Signed versus Unsigned](./practice-problems/problem2-26.md)
+- [Practice Problems 2.27 | Unsigned addition](./practice-problems/problem2-27.md)

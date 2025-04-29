@@ -41,7 +41,7 @@ return strlen(s) - strlen(t) > 0;
     - int s = 23 - int t = 25 = -2
     - Therefore -2 > 0 == false
 
-Also: Why is function returning a int? It is returning a bool?    
+Also: Why is function returning a int? 1 is true 0 is false. Newer versions of C can use bool.    
 
 ### Alternatively:
 The function could be

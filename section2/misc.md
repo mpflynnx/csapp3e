@@ -123,3 +123,30 @@ then you get -1
 1111111
 
 Add 1 to the value -->
+
+### Unsigned addition
+
+- It is easy to understand what happens with smaller bit sizes than say 32bit or 64bit
+- If only four bits are available for fit in a result of unsigned addition
+- And unsigned addition results in a 5bit unsigned bit pattern (overflow)
+- The msb 5th bit is ignored
+- 1101 + 0010 = 10010
+- Unsigned addition result will be 0010
+
+||||||||
+|---|---|---|---|---|---|---|
+||3|2|1|0
+|16|8 |4 |2 |1 | Binary position value |
+||1 |1 |0 |1 | = 13 | unsigned
+|+|0 |1 |0 |1 | = 5 | unsigned
+|**1**|0 |0 |1 |0 | = 18 | 
+|x|0 |0 |1 |0 | = 2 | unsigned
+
+- 18 % 16 = 2
+
+- 13 + 5 = 18
+    - 18 >= 13 is false 
+
+### Two's complement addition
+
+- Same as usually math additions
