@@ -13,6 +13,8 @@ int main(){
 
     char s1[] = "This is my very long long string.";
     char t1[] = "This is a shorter string.";
+    char u1[] = "This is a short string.";
+
     if (strlonger(s1, t1)){
         printf("s1 is longer/n");
     }
