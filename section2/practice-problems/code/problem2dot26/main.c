@@ -14,10 +14,10 @@ int main(){
     char s1[] = "This is my very long long string.";
     char t1[] = "This is a shorter string.";
     if (strlonger(s1, t1)){
-        printf("s1 is longer");
+        printf("s1 is longer/n");
     }
     else {
-        printf("t1 is longer");
+        printf("t1 is longer/n");
     }
 
 
