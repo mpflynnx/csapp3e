@@ -126,27 +126,89 @@ Add 1 to the value -->
 
 ### Unsigned addition
 
-- It is easy to understand what happens with smaller bit sizes than say 32bit or 64bit
-- If only four bits are available for fit in a result of unsigned addition
-- And unsigned addition results in a 5bit unsigned bit pattern (overflow)
+- It is easy to understand what happens using smaller bit sizes than say 32bit or 64bit
+- Assume only four bits (w=4) are available (decimal 0 to 15)
+- If the unsigned addition results in a 5bit unsigned bit pattern we have overflow
 - The msb 5th bit is ignored
-- 1101 + 0010 = 10010
-- Unsigned addition result will be 0010
+- 1101 + 0101 = 10010, ignore msb
+- standard binary addition:
+```
+0 + 0 = 0 (carry 0)
+0 + 1 = 1 (carry 0)
+1 + 0 = 1 (carry 0)
+1 + 1 = 0 (carry 1)
+```
+- In standard binary addition, when the sum of bits in a column is 2 (from 1+1), a '1' is carried over to the next higher bit position, and the current position's sum is 0. If there's also a carry-in from the previous column, the sum of three bits ($1+1+$carry-in) can be 3 (binary 11), resulting in a sum of 1 and a carry of 1 to the next column.
 
 ||||||||
 |---|---|---|---|---|---|---|
 ||3|2|1|0
 |16|8 |4 |2 |1 | Binary position value |
+|1|1 | |1 | |  | carries
 ||1 |1 |0 |1 | = 13 | unsigned
 |+|0 |1 |0 |1 | = 5 | unsigned
 |**1**|0 |0 |1 |0 | = 18 | 
 |x|0 |0 |1 |0 | = 2 | unsigned
 
+- Unsigned addition result will be 0010 (modular sum)
 - 18 % 16 = 2
-
 - 13 + 5 = 18
     - 18 >= 13 is false 
 
 ### Two's complement addition
 
 - Same as usually math additions
+- Assume only four bits (w=4) are available (decimal -8 to +7)
+- The msb 5th bit  (signed bit) is ignored
+- 1101 + 0010 = 10010, ignore signed bit (overflow)
+- Two's complement addition result will be 0010 (2)
+
+||||||||
+|---|---|---|---|---|---|---|
+||3|2|1|0
+||-8 |4 |2 |1 | Binary position value |
+|1|1 ||1 | |  | carries
+||1 |1 |0 |1 | = -3 | Two's complement
+|+|0 |1 |0 |1 | = +5 | Two's complement
+|**1**|0 |0 |1 |0 | = 2 | Ignore 5bit
+|x|0 |0 |1 |0 | = 2 | 
+
+- See also  
+
+||||||||
+|---|---|---|---|---|---|---|
+||3|2|1|0
+||-8 |4 |2 |1 | Binary position value |
+|| |1|1 | |  | carries
+||1 |0 |1 |1 | = -5 | Two's complement
+|+|0 |0 |1 |1 | = +3 | Two's complement
+||1 |1 |1 |0 | = -2 | 
+
+- Negative overflow examples
+- Adding two negative numbers results in a positive number.
+
+||||||||
+|---|---|---|---|---|---|---|
+||3|2|1|0
+||-8 |4 |2 |1 | Binary position value |
+|1| || | |  | carries
+||1 |1 |0 |1 | = -3 | Two's complement
+|+|1 |0 |1 |0 | = -6 | Two's complement
+|**1**| 0| 1| 1| 1| = 7 | Ignored msb
+
+- `10111` is -9, but we ignore msb so `0111` is 7.
+- **Note:** +7 differs from -9 by 16
+-
+- Adding two large positive numbers results in positive overflow
+
+||||||||
+|---|---|---|---|---|---|---|
+||3|2|1|0
+||-8 |4 |2 |1 | Binary position value |
+|| 1|1| 1| |  | carries
+||0 |1 |1 |1 | = 7 | Two's complement
+|+|0 |1 |0 |1 | = 5 | Two's complement
+|**0**| 1| 1| 0|0 | = -4 | Ignored msb
+
+- `01100` is 12, but we ignore msb signed bit msb so `1100` is -4.
+- **Note:** -4 differs from +12 by 16

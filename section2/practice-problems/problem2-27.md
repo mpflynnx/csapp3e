@@ -4,6 +4,8 @@
 
 ### Unsigned addition
 
+- [Notes](../misc.md#unsigned-addition)
+
 - Write a function with the following prototype:
 ```c
 /* Determine whether arguments can be added without overflow */
