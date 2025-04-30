@@ -4,7 +4,7 @@
 
 - The unsigned additive inverse is not a negative number in the traditional sense but rather a number that, when added using modular arithmetic, results in zero.
 
-- [Notes](../misc.md#twos-complement-addition)
+- [Notes](../misc.md#unsigned-addition)
 
 - We can represent a bit pattern of length w = 4 with a single hex digit. 
 - For an unsigned interpretation of these digits, fill in the following table giving the values and the bit representations (in hex) of the **unsigned additive inverses** of the digits shown.
@@ -20,7 +20,7 @@
 |[e.](#e)|0xF|15|1|0x1|
 
 
-### solution
+### Solution
 - modulo 16 arithmetic
 - length w = 4, 2^4 = 16
 ### a.

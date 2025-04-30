@@ -47,3 +47,4 @@
 - [Practice Problems 2.26 | Advice on Signed versus Unsigned](./practice-problems/problem2-26.md)
 - [Practice Problems 2.27 | Unsigned addition](./practice-problems/problem2-27.md)
 - [Practice Problems 2.28 | Unsigned additive inverse](./practice-problems/problem2-28.md)
+- [Practice Problems 2.29 | Two's Complement Addition](./practice-problems/problem2-29.md)
