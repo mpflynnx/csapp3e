@@ -18,6 +18,9 @@ int tadd_ok(int x, int y);
 
 ### Solution
 
+- See main.c for solution
 - Function takes in integer by default this is two's complement.
-- Integer TMax is 
-- Integer TMin is
+- Adding two positive numbers should not give a negative number.
+- Adding two negative numbers should not give a positive number.
+- Adding a positive number and a negative number should not give INT_MAX 
+- Adding a negative number and a positive number should not give INT_MIN.
