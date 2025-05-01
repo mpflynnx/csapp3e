@@ -43,7 +43,9 @@ the bit-level representation of the two’s-complement sum, and the case from th
 |1|0| 0| 1| 0| 1| = -27 | x + y
 |**x**|0| 0| 1| 0| 1| = 5 | Ignored msb
 
-**Note:** -27 is less than TMin of -16, this is Case 1 or Negative overflow
+**Note:** 
+- Adding two negative numbers should not give a positive number.
+- -27 is less than TMin of -16, this is Case 1 or Negative overflow
 
 ### b. `11000 + 11000`
 |||||||||
@@ -97,4 +99,6 @@ the bit-level representation of the two’s-complement sum, and the case from th
 |0|1|0|0|0|0| = 16 | x + y
 |**x**|1|0|0|0|0| = -16 | Ignored msb
 
-**Note:** 16 exceeds TMax of 15, this is Case 4 or Positive overflow
+**Note:** 
+- Adding two positive numbers should not give a negative number.
+- 16 exceeds TMax of 15, this is Case 4 or Positive overflow
