@@ -5,6 +5,9 @@
 * Returns 1 if arguments x and y can be added without causing overflow.
 * Adding two positive numbers should not give a negative number.
 * Adding two negative numbers should not give a positive number.
+* Adding a positive number and a negative number should not give INT_MAX 
+* Adding a negative number and a positive number should not give INT_MIN.
+
 */
 // int tadd_ok(int x, int y){
 
@@ -27,7 +30,6 @@ int main(){
     
     int sum = x + y;
 
-    // negative overflow
     if (x < 0 && y < 0 && sum <= 0) {
         printf("No negative overflow\n");
     } else if (x > 0 && y > 0 && sum >= 0){
