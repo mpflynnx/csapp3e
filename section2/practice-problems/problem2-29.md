@@ -5,7 +5,7 @@
 - [Notes](../misc.md#twos-complement-addition)
 
 - Fill in the following table in the style of Figure 2.25. 
-- Give the integer values of the 5-bit arguments, the values of both their integer and two’s-complement sums,
+- Give the integer values of the 5-bit arguments, the values of both their integer sum (x + y) and two’s-complement sums (x+t/w*y),
 the bit-level representation of the two’s-complement sum, and the case from the derivation of Equation 2.13.
 
 - w = 5
@@ -41,7 +41,7 @@ the bit-level representation of the two’s-complement sum, and the case from th
 | |1|0|1|0|0| = -12 | Two's complement
 ||1|0|0|0|1| = -15 | Two's complement
 |1|0| 0| 1| 0| 1| = -27 | x + y
-|**1**|0| 0| 1| 0| 1| = 5 | Ignored msb
+|**x**|0| 0| 1| 0| 1| = 5 | Ignored msb
 
 **Note:** -27 is less than TMin of -16, this is Case 1 or Negative overflow
 
@@ -54,9 +54,9 @@ the bit-level representation of the two’s-complement sum, and the case from th
 | |1|1|0|0|0| = -8 | Two's complement
 ||1|1|0|0|0| = -8 | Two's complement
 |1|1| 0| 0| 0| 0| = -16 | x + y
-|x|1| 0| 0| 0| 0| = -16 | Ignored msb
+|**x**|1| 0| 0| 0| 0| = -16 | Ignored msb
 
-**Note:** Case 2
+**Note:** Case 2 two's complement sum matches integer sum (x + y)
 
 ### c. `10111 + 01000`
 |||||||||
@@ -69,7 +69,7 @@ the bit-level representation of the two’s-complement sum, and the case from th
 ||1| 1| 1| 1| 1| = -1 | x + y
 ||x| 1| 1| 1| 1| = -1 | Ignored msb
 
-**Note:** Case 2
+**Note:** Case 2 two's complement sum matches integer sum (x + y)
 
 ### d. `00010 + 00101`
 
@@ -81,9 +81,9 @@ the bit-level representation of the two’s-complement sum, and the case from th
 | |0|0|0|1|0| = 2  | Two's complement
 ||0|0|1|0|1| = 5 | Two's complement
 |0|0| 0| 1| 1| 1| = 7 | x + y
-|x|0| 0| 1| 1| 1| = 7 | Ignored msb
+|**x**|0| 0| 1| 1| 1| = 7 | Ignored msb
 
-**Note:** Case 3
+**Note:** Case 3 two's complement sum matches integer sum (x + y)
 
 ### e. `01100 + 00100`
 
@@ -95,6 +95,6 @@ the bit-level representation of the two’s-complement sum, and the case from th
 | |0|1|1|0|0| = 12  | Two's complement
 | |0|0|1|0|0| = 4 | Two's complement
 |0|1|0|0|0|0| = 16 | x + y
-|x|1|0|0|0|0| = -16 | Ignored msb
+|**x**|1|0|0|0|0| = -16 | Ignored msb
 
 **Note:** 16 exceeds TMax of 15, this is Case 4 or Positive overflow
