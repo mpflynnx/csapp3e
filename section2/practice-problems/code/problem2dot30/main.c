@@ -9,16 +9,18 @@
 * Adding a negative number and a positive number should not give INT_MIN.
 
 */
-// int tadd_ok(int x, int y){
+int tadd_ok(const int x, const int y){
 
-//     int sum = x + y;
-//     return !(sum <= 0);
-//     // return sum >= x;
+    int sum = x + y;
+    
+    int neg_overflow_check_ok = 0;
+    int pos_overflow_check_ok = 0;
+    neg_overflow_check_ok = x < 0 && y < 0 && sum <= 0;
+    pos_overflow_check_ok = x > 0 && y > 0 && sum >= 0;
 
-//     // Alternative
-//     // return !((UINT_MAX - x) < y);
+    return neg_overflow_check_ok || pos_overflow_check_ok;
 
-// }
+}
 
 int main(){
 
@@ -28,19 +30,7 @@ int main(){
     int x = 2147483640;
     int y = 48;
     
-    int sum = x + y;
-
-    if (sum >= INT_MAX || sum <= INT_MIN){
-        printf("Overflow\n");
-    }
-
-    // if (x < 0 && y < 0 && sum <= 0) {
-    //     printf("No negative overflow\n");
-    // } else if (x > 0 && y > 0 && sum >= 0){
-    //     printf("No positive overflow\n");
-    // } else {
-    //     printf("Overflow\n");
-    // }
+    tadd_ok(x,y);
 
 	return 0;
 
