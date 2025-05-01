@@ -30,13 +30,17 @@ int main(){
     
     int sum = x + y;
 
-    if (x < 0 && y < 0 && sum <= 0) {
-        printf("No negative overflow\n");
-    } else if (x > 0 && y > 0 && sum >= 0){
-        printf("No positive overflow\n");
-    } else {
+    if (sum >= INT_MAX || sum <= INT_MIN){
         printf("Overflow\n");
     }
+
+    // if (x < 0 && y < 0 && sum <= 0) {
+    //     printf("No negative overflow\n");
+    // } else if (x > 0 && y > 0 && sum >= 0){
+    //     printf("No positive overflow\n");
+    // } else {
+    //     printf("Overflow\n");
+    // }
 
 	return 0;
 
