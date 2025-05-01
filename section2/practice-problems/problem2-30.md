@@ -13,7 +13,7 @@
 int tadd_ok(int x, int y);
 ```
 
-- This function should return 1 if arguments x and y can be added without causing. overflow.
+- This function should return 1 if arguments x and y can be added without causing overflow.
 
 
 ### Solution
