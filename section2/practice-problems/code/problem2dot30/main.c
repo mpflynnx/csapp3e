@@ -20,6 +20,7 @@ int main(){
     int y = 4294967289;
     
     printf("INT_MAX = %u\n", INT_MAX);
+    printf("INT_MIN = %u\n", INT_MIN);
 
     // if (uadd_ok(x, y)) {
     //     printf("No overflow\n");
