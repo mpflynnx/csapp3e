@@ -50,3 +50,4 @@
 - [Practice Problems 2.28 | Unsigned additive inverse](./practice-problems/problem2-28.md)
 - [Practice Problems 2.29 | Two's Complement Addition](./practice-problems/problem2-29.md)
 - [Practice Problems 2.30 | Two's Complement Addition](./practice-problems/problem2-30.md)
+- [Practice Problems 2.33 | Two's Complement Negation](./practice-problems/problem2-33.md)
