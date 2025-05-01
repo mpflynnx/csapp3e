@@ -22,16 +22,19 @@ int main(){
     printf("INT_MAX = %d\n", INT_MAX);
     printf("INT_MIN = %d\n", INT_MIN);
 
-    int x = -2147483640;
-    int y = -48;
+    int x = 2147483640;
+    int y = 48;
     
+    int sum = x + y;
 
-
-    // if (uadd_ok(x, y)) {
-    //     printf("No overflow\n");
-    // } else {
-    //     printf("Overflow\n");
-    // }
+    // negative overflow
+    if (x < 0 && y < 0 && sum <= 0) {
+        printf("No negative overflow\n");
+    } else if (x > 0 && y > 0 && sum >= 0){
+        printf("No positive overflow\n");
+    } else {
+        printf("Overflow\n");
+    }
 
 	return 0;
 
