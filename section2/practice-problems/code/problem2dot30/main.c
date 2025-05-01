@@ -13,12 +13,10 @@ int tadd_ok(const int x, const int y){
 
     int sum = x + y;
     
-    int neg_overflow_check_ok = 0;
-    int pos_overflow_check_ok = 0;
-    neg_overflow_check_ok = x < 0 && y < 0 && sum <= 0;
-    pos_overflow_check_ok = x > 0 && y > 0 && sum >= 0;
+    int neg_overflow_check_fail = x < 0 && y < 0 && sum >= 0;
+    int pos_overflow_check_fail = x >= 0 && y >= 0 && sum < 0;
 
-    return neg_overflow_check_ok || pos_overflow_check_ok;
+    return !neg_overflow_check_fail && !pos_overflow_check_fail;
 
 }
 
@@ -30,7 +28,11 @@ int main(){
     int x = 2147483640;
     int y = 48;
     
-    tadd_ok(x,y);
+    if (tadd_ok(x,y)){
+        printf("No overflow\n");
+    } else {
+        printf("Overflow\n");
+    }
 
 	return 0;
 
