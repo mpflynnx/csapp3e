@@ -13,6 +13,7 @@ int main(){
 
 	/*b. the above would only work when a int is 32bits*/
 	/*to make it work regardless of word size see below*/
+	/*masking lsb from being complemented */
 	int y = x ^ ~0xFF; //expected result 0x789abc21
 
 	/*c. set lsb to 1's leave other unchanged [0x876543FF]*/
