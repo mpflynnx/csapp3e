@@ -1,5 +1,4 @@
 #include <stdio.h>
-#include <limits.h>
 
 /*
 * Generate mask indicating rightmost 1 in x.
@@ -7,16 +6,14 @@
 * If x == 0, then return 0.
 */
 int rightmost_one(unsigned x){
-    return;
+    return (x & -x);
 }
 
 int main(){
 
-    printf("UINT_MAX = %d\n", UINT_MAX);
+    int x = 0x6600;
 
-    unsigned x = 0xFF00;
-
-    rightmost_one(x);
+    int result = rightmost_one(x);
 
     return 0;
 

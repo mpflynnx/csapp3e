@@ -1,6 +1,7 @@
 ## CS:APP Web Aside DATA:TNEG
 
 - [Bit-level representation of two's complement negation](http://csapp.cs.cmu.edu/3e/waside/waside-tneg.pdf)
+- [Bitwise Operators in C](https://www.geeksforgeeks.org/bitwise-operators-in-c-cpp/)
 
 ### Practice Problem 1
 
@@ -85,3 +86,80 @@ int rightmost_one(unsigned x);
 the same position as the least significant bit with value 1 in x.
 - Having just learned how to negate a number based on its bit-level representation, you realize this function can be written as a very simple expression having just two operations. 
 - Show the code.
+
+
+
+### Bit pattern representation analysis
+
+**Two's complement numbers**
+|Decimal|Hex|
+|---|---|
+|26112|0x6600 |
+|-26112|0xffff9a00|
+
+**Bit pattern representation**
+```bash      
+00000000 00000000 01100110 00000000 - 0x6600
+11111111 11111111 10011010 00000000 - 0xffff9a00
+                        ^---------^ Matching pattern from lsb to right most 1
+```
+
+|Decimal|Hex|
+|---|---|
+|65280|0xff00 |
+|-65280|0xffff0100|
+
+**Bit pattern representation**
+```bash      
+00000000 00000000 11111111 00000000 - 0xff00
+11111111 11111111 00000001 00000000 - 0xffff0100
+                         ^--------^ Matching pattern from lsb to right most 1
+```
+
+- The & (bitwise AND) in C takes two numbers as operands and does AND on every bit of two numbers. The result of AND is 1 only if both bits are 1.
+- We can see the only place where both bits are 1 is also the right most 1 
+- Therefore to find the right most 1 we perform AND with the positive and negative bit patterns of the same number.
+
+```c
+int x = 0x6600;
+int y = -x; /* 0xffff9a00 */
+result = x & y; /* 0x0200 */
+```
+
+### Solution 
+
+```c
+/*
+* Generate mask indicating rightmost 1 in x.
+* For example 0xFF00 -> 0x0100, and 0x6600 --> 0x0200.
+* If x == 0, then return 0.
+*/
+int rightmost_one(unsigned x);
+    return (x & -x);
+```
+**gdb testing 0x6600**
+```bash
+Breakpoint 1, main () at main.c:15
+15	    int x = 0x6600;
+(gdb) n
+17	    int result = rightmost_one(x);
+(gdb) n
+19	    return 0;
+(gdb) x /t &result
+0xbffff400:	00000000000000000000001000000000
+(gdb) x /x &result
+0xbffff400:	0x00000200
+```
+**gdb testing 0xFF00**
+```bash
+Breakpoint 1, main () at main.c:15
+15	    int x = 0xFF00;
+(gdb) n
+17	    int result = rightmost_one(x);
+(gdb) n
+19	    return 0;
+(gdb) p /x result
+$28 = 0x100
+(gdb) x /t &result
+0xbffff400:	00000000000000000000000100000000
+```
