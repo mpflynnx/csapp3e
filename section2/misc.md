@@ -221,3 +221,8 @@ Add 1 to the value -->
 - `01100` is 12, but we ignore msb signed bit msb so `1100` is -4.
 - **Note:** -4 differs from +12 by 16 (2^w)
 - 12 - 2^4(16) = -4
+
+
+### Two's complement negation
+
+- In two's complement, subtraction can be performed using the same addition circuitry. To calculate A−B, a computer simply calculates A+(−B). The two's complement of B effectively represents −B, allowing the standard addition logic to handle both addition and subtraction of signed numbers without needing separate and more complex circuits for each operation.

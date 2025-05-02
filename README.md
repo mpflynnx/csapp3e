@@ -16,4 +16,4 @@
 
 ### Table of Contents
 - [Chapter2: Representing and Manipulating Information](./section2/section2.md)
-- [Chapter2: Web Asides | Bit-level representation of two's complement negation](./section2/webasides/data_tneg.md)
+

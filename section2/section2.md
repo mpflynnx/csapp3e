@@ -16,7 +16,11 @@
 - [Hexadecimal to Decimal converter](https://www.rapidtables.com/convert/number/hex-to-decimal.html)
 - [Learning to Bit Twiddle and Optimize](https://wiredream.com/learning-to-bit-twiddle/)
 
-### Chapter 2 Practice problems
+## Table of Contents
+- [Chapter 2 Practice problems TOC](#chapter-2-practice-problems-toc)
+- [Chapter 2 Web Asides TOC](#chapter-2-web-asides-toc)
+
+### Chapter 2 Practice problems TOC
 
 - [My code for practice problems](./practice-problems/code/)
 - [Practice Problems 2.1 | Hexadecimal Notation](./practice-problems/problem2-1.md)
@@ -51,3 +55,6 @@
 - [Practice Problems 2.29 | Two's Complement Addition](./practice-problems/problem2-29.md)
 - [Practice Problems 2.30 | Two's Complement Addition](./practice-problems/problem2-30.md)
 - [Practice Problems 2.33 | Two's Complement Negation (additive inverse)](./practice-problems/problem2-33.md)
+
+### Chapter 2 Web Asides TOC
+- [Chapter2: Web Asides | Bit-level representation of two's complement negation](./webasides/data_tneg.md)

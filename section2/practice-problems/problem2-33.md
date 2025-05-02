@@ -2,6 +2,7 @@
 
 ### Two's-Complement Negation
 
+- [Notes](../misc.md#twos-complement-negation)
 - [Bit-level representation of two's complement negation | CS:APP3e Web Asides](http://csapp.cs.cmu.edu/3e/waside/waside-tneg.pdf)
 
 - We can represent a bit pattern of length w = 4 with a single hex digit.
