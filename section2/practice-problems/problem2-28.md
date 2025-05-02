@@ -1,6 +1,6 @@
 ## Practice Problem 2.28 hardback page 89
 
-### Unsigned additive inverse
+### Unsigned additive inverse (unsigned negation)
 
 - The unsigned additive inverse is not a negative number in the traditional sense but rather a number that, when added using modular arithmetic, results in zero.
 
