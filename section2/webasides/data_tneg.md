@@ -1,7 +1,16 @@
 ## CS:APP Web Aside DATA:TNEG
 
 - [Bit-level representation of two's complement negation](http://csapp.cs.cmu.edu/3e/waside/waside-tneg.pdf)
+- [Writing TMin in C](http://csapp.cs.cmu.edu/3e/waside/waside-tmin.pdf)
 - [Bitwise Operators in C](https://www.geeksforgeeks.org/bitwise-operators-in-c-cpp/)
+
+### Practice problems TOC
+
+- [Practice problem 1 | Complementing and incrementing](#practice-problem-1)
+- [Practice Problem 2](#practice-problem-2)
+- [Practice Problem 3 | Two's complement negation (alternative method)](#practice-problem-3)
+- [Practice Problem 4](#practice-problem-4)
+
 
 ### Practice Problem 1
 
@@ -19,19 +28,36 @@
 |[d.](#d)|11111|-1|00000|0|00001|1|
 |[e.](#e)|10000|-16|01111|15|10000|-16|
 
+### Practice Problem 2
+
+- Show that first decrementing and then complementing is equivalent to complementing and then incrementing.
+
+|||x||dec(-x)||~x|||
+|---|---|---|---|---|---|---|---|---|
+||Binary|Decimal|Binary|Decimal|Binary|Decimal|
+|[a.](#a)|01101|13|01100|12|10011|-13|
+|[b.](#b)|01110|14|01101|13|10010|-14|
+|[c.](#c)|11000|-8|10111|-7|01000|8|
+|[d.](#d)|11111|-1|11110|-15|00001|1|
+|[e.](#e)|10000|-16|01111|15|10000|-16|
+
+
+- That is, for any signed value x, the C expressions -x,  ̃x+1, and  ̃(x-1) yield identical results. 
+- What mathematical properties of two’s-complement addition does your derivation rely on?
+
 ### Two's complement negation (alternative method)
 
 - An alternative technique for performing two's complement negation exists that offers a different perspective on the bitwise manipulation involved.
 - Based on bit-level representation.
-- We complement each bit to the left of rightmost **1** bit, a.k.a position _k_ (in bold)
+- We complement each bit to the left of rightmost _1_ bit, a.k.a position _k_ (in bold italics)
 - All bits to the right of position _k_ remain the same.
 - Invert all the bits to the left of position _k_.
 
-### Practice Problem 2
+### Practice Problem 3
 
 - Show how the bit-level negation procedure applies to the examples of Practice Problem 1. 
-1) determine the bit position **k** of the rightmost 1,
-2) apply the rule of complementing the bits to the left of position **k**.
+1) Determine the bit position **_k_** of the rightmost 1,
+2) Apply the rule of complementing the bits to the left of position **_k_**.
 
 |||x||~x|||
 |---|---|---|---|---|---|---|
@@ -68,7 +94,7 @@
 - Then complement only bits to the left of **k**
 - There are no bits to the left so the bits are unchanged 10000
 
-### Practice Problem 3
+### Practice Problem 4
 
 - [main.c]()
 - You are given the task of writing a function with the following prototype:
@@ -94,18 +120,6 @@ the same position as the least significant bit with value 1 in x.
 **Two's complement numbers**
 |Decimal|Hex|
 |---|---|
-|26112|0x6600 |
-|-26112|0xffff9a00|
-
-**Bit pattern representation**
-```bash      
-00000000 00000000 01100110 00000000 - 0x6600
-11111111 11111111 10011010 00000000 - 0xffff9a00
-                        ^---------^ Matching pattern from lsb to right most 1
-```
-
-|Decimal|Hex|
-|---|---|
 |65280|0xff00 |
 |-65280|0xffff0100|
 
@@ -116,14 +130,32 @@ the same position as the least significant bit with value 1 in x.
                          ^--------^ Matching pattern from lsb to right most 1
 ```
 
+|Decimal|Hex|
+|---|---|
+|26112|0x6600 |
+|-26112|0xffff9a00|
+
+**Bit pattern representation**
+```bash      
+00000000 00000000 01100110 00000000 - 0x6600
+11111111 11111111 10011010 00000000 - 0xffff9a00
+                        ^---------^ Matching pattern from lsb to right most 1
+```
+
 - The & (bitwise AND) in C takes two numbers as operands and does AND on every bit of two numbers. The result of AND is 1 only if both bits are 1.
 - We can see the only place where both bits are 1 is also the right most 1 
 - Therefore to find the right most 1 we perform AND with the positive and negative bit patterns of the same number.
 
+```bash      
+00000000 00000000 01100110 00000000 - 0x6600
+11111111 11111111 10011010 00000000 - 0xffff9a00
+                        ^ Right most 1 value 0x0200
+```
+
 ```c
 int x = 0x6600;
 int y = -x; /* 0xffff9a00 */
-result = x & y; /* 0x0200 */
+result = x & y; /* 0x0200 or 10 Decimal*/
 ```
 
 ### Solution 
@@ -163,3 +195,52 @@ $28 = 0x100
 (gdb) x /t &result
 0xbffff400:	00000000000000000000000100000000
 ```
+
+### Practice Problem 5
+
+- [Writing TMin in C](http://csapp.cs.cmu.edu/3e/waside/waside-tmin.pdf)
+
+- Suppose that we compile the code on a machine that uses a 32-bit, two’s complement representation of
+data type int, and that the compiler implements ISO-C99. For each of these, determine:
+
+|||
+|---|---|
+|[A.](#5a)|2147483647 + 1
+|[B.](#5b)|0x7FFFFFFF + 1
+|[C.](#5c)|2147483649 - 1
+|[D.](#5d)|0x80000001 - 1
+|[E.](#5e)|-(2147483649 - 1)
+|[F.](#5f)|-(0x80000001 - 1)
+
+
+- What would be the resulting data type of the expression?
+- What would be the resulting numeric value?
+- Would we get TMin 32 if we cast the value to type int?
+
+#### 5.A
+
+-  When the compiler encounters a number of the form X, it first determines the data type and value for X and then increments it. 
+
+- The value 2,147,483,648 is too large to represent as an int, since this value is one larger than TMax 32 
+
+- For the case of ISO C99, the compiler proceeds from int to long to long long, finally finding a data type
+that can represent the number 2,147,483,648.
+
+#### 5.B
+-  When the compiler encounters a number of the form -X, it first determines the data type and value for X and then negates it. 
+
+TMin 32 as -2147483648
+The value 2,147,483,648 is too large to represent as an int, since this value is one larger than TMax 32 
+
+
+- values 2,147,483,648 and −2,147,483,648 have the same bit representations
+as 32-bit numbers
+
+- For the case of ISO C99, the compiler proceeds from int to long to long long, finally finding a data type
+that can represent the number 2,147,483,648.
+
+- TMin 32 as -2147483647-1
+- Since 2147483647 is the value
+of TMax 32, it can be represented as an int, and hence there is no need to invoke the conversion rules 
+
+
