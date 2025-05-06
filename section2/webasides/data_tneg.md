@@ -209,8 +209,8 @@ $28 = 0x100
 
 - [Writing TMin in C](http://csapp.cs.cmu.edu/3e/waside/waside-tmin.pdf)
 
-- Suppose that we compile the code on a machine that uses a 32-bit, two’s complement representation of
-data type int, and that the compiler implements ISO-C99. For each of these, determine:
+- [main.c](../webasides/code/problem5/main.c)
+- Suppose that we compile the code on a machine that uses a 32-bit, two’s complement representation of data type int, and that the compiler implements ISO-C99. For each of these, determine:
 
 |||
 |---|---|
@@ -287,21 +287,38 @@ main.c:11:24: warning: integer overflow in expression of type ‘int’ results 
 
 No compile warnings are given.
 
--  When the compiler encounters a number of the form -X, it first determines the data type and value for X and then negates it. 
+- For the case of ISO C99, the compiler proceeds from int to long to long long, finally finding a data type that can represent the number 2,147,483,649.
+- Then the expression -1 is preformed.
+- For example, to represent what is happening, force the value to fit using `long long` type.
+- Regardless of whether you are on a 32-bit or 64-bit system, the size of `long long` is typically 64 bits (8 bytes).
 
-```bash
-(gdb) p x
-$1 = -2147483648
+```
+long long x = 2,147,483,649L;
+0x00 00 00 00 80 00 00 01 // 8 bytes wide
+
+long long y = x - 1;
+0x00 00 00 00 80 00 00 00 // 8 bytes wide
+```
+- Casting `long long` to an `int` strips the leading 0's to leave what is a representation of a negative signed integer of value -2147483648 aka TMIN 32.
+
+```
+int z = y;
+
+0x80 00 00 00 // 4 bytes wide 
 ```
 
-(gdb) p x
-$4 = -2147483647
-(gdb) set x = x - 1
-(gdb) p x
-$5 = -2147483648
+#### 5.D
 
-<!-- #### 5.D
--  When the compiler encounters a number of the form -X, it first determines the data type and value for X and then negates it. 
+- Try to compile a main.c with this line of code.
+
+```c
+    int x = 0x80000001 - 1; /* D */
+```
+
+No compile warnings are given.
+
+
+<!-- -  When the compiler encounters a number of the form -X, it first determines the data type and value for X and then negates it. 
 
 TMin 32 as -2147483648
 The value 2,147,483,648 is too large to represent as an int, since this value is one larger than TMax 32 
@@ -315,6 +332,6 @@ that can represent the number 2,147,483,648.
 
 - TMin 32 as -2147483647-1
 - Since 2147483647 is the value
-of TMax 32, it can be represented as an int, and hence there is no need to invoke the conversion rules  -->
+of TMax 32, it can be represented as an int, and hence there is no need to invoke the conversion rules -->
 
 

@@ -8,8 +8,17 @@ int main(){
     printf("UINT_MAX = %u\n", UINT_MAX);
 
     // int x = 2147483647 + 1; /* A */
+    
     // int x = 0x7FFFFFFF + 1; /* B */
-    int x = 2147483649 - 1; /* C */
+    
+    // int x = 2147483649 - 1; /* C */
+    
+    // long long x = 2147483649L; /* C understanding*/
+    // long long y = x - 1; /* C understanding */
+    // int z = y; /* C understanding */
+
+    int x = 0x80000001 - 1; /* D */
+
     return 0;
 
 }
