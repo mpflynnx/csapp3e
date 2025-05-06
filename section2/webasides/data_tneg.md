@@ -287,7 +287,7 @@ main.c:11:24: warning: integer overflow in expression of type ‘int’ results 
 
 No compile warnings are given.
 
-- For the case of ISO C99, the compiler proceeds from int to long to long long, finally finding a data type that can represent the number 2,147,483,649.
+- For the case of ISO C99, for decimal value of x, the compiler proceeds from int to long to long long, finally finding a data type that can represent the number 2,147,483,649.
 - Then the expression -1 is preformed.
 - For example, to represent what is happening, force the value to fit using `long long` type.
 - Regardless of whether you are on a 32-bit or 64-bit system, the size of `long long` is typically 64 bits (8 bytes).
@@ -317,6 +317,32 @@ int z = y;
 
 No compile warnings are given.
 
+This is the hexadecimal equivalent of problem 5.C 
+
+```c
+int x = 2147483649 - 1; /* C */
+```
+
+- For the case of ISO C99, for hexadecimal value of x, the compiler proceeds from int to unsigned, finally finding a data type that can represent the number 2,147,483,649.
+- Then the expression -1 is preformed.
+- For example, to represent what is happening, force the value to fit using `unsigned` type.
+
+```
+unsigned x = 0x80000001;
+0x80 00 00 01 // 4 bytes wide
+
+unsigned y = x - 1;
+0x80 00 00 00 // 4 bytes wide
+```
+- Casting `unsigned` to an `int` leaves what is a representation of a negative signed integer of value -2147483648 aka TMIN 32.
+
+```
+int z = y;
+
+0x80 00 00 00 // 4 bytes wide 
+```
+
+#### 5.E
 
 <!-- -  When the compiler encounters a number of the form -X, it first determines the data type and value for X and then negates it. 
 
