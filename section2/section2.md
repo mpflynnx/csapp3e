@@ -1,9 +1,11 @@
 ## Chapter2: Representing and Manipulating Information
 
-### Software used:
+### Software used for code:
+- OS
+    - Slackware Live Xfce (15+) 23/04/25 - 32bit version
 - Compiler/debugger
-    - gcc version 11.2.0
-    - gdb version 11.2.0
+    - gcc (GCC) 14.2.0
+    - GNU gdb (GDB) 16.3
 
 - Document creation
     - git version 2.46.3

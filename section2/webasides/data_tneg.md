@@ -4,12 +4,21 @@
 - [Writing TMin in C](http://csapp.cs.cmu.edu/3e/waside/waside-tmin.pdf)
 - [Bitwise Operators in C](https://www.geeksforgeeks.org/bitwise-operators-in-c-cpp/)
 
+### Software used for code:
+- OS
+    - Slackware Live Xfce (15+) 23/04/25 - 32bit version
+- Compiler/debugger
+    - gcc (GCC) 14.2.0
+    - GNU gdb (GDB) 16.3
+    - GNU Make 4.4.1
+
 ### Practice problems TOC
 
 - [Practice problem 1 | Complementing and incrementing](#practice-problem-1)
 - [Practice Problem 2](#practice-problem-2)
 - [Practice Problem 3 | Two's complement negation (alternative method)](#practice-problem-3)
 - [Practice Problem 4](#practice-problem-4)
+- [Practice Problem 5](#practice-problem-5)
 
 
 ### Practice Problem 1
@@ -219,14 +228,79 @@ data type int, and that the compiler implements ISO-C99. For each of these, dete
 
 #### 5.A
 
+- Try to compile a main.c with this line of code.
+
+```c
+    int x = 2147483647 + 1; /* A */
+```
+- Results in a compiler warning
+```bash
+$ make
+gcc -std=c99 -g main.c -o main
+main.c: In function ‘main’:
+main.c:10:24: warning: integer overflow in expression of type ‘int’ results in ‘-2147483648’ [-Woverflow]
+   10 |     int x = 2147483647 + 1; /* A */
+      |                        ^
+
+```
+
 -  When the compiler encounters a number of the form X, it first determines the data type and value for X and then increments it. 
 
-- The value 2,147,483,648 is too large to represent as an int, since this value is one larger than TMax 32 
+- The value 2,147,483,648 is too large to represent as an int, since this value is one larger than TMax 32. 
 
-- For the case of ISO C99, the compiler proceeds from int to long to long long, finally finding a data type
-that can represent the number 2,147,483,648.
+- The value overflows to become INT_MIN i.e -2147483648.
+
+- Casting to an int would have no effect
 
 #### 5.B
+
+- Try to compile a main.c with this line of code.
+
+```c
+    int x = 0x7FFFFFFF + 1; /* A */
+```
+- Results in a compiler warning
+```bash
+$ make
+gcc -std=c99 -g main.c -o main
+main.c: In function ‘main’:
+main.c:11:24: warning: integer overflow in expression of type ‘int’ results in ‘-2147483648’ [-Woverflow]
+   11 |     int x = 0x7FFFFFFF + 1; /* B */
+      |                        ^
+```
+
+-  When the compiler encounters a number of the form X, it first determines the data type and value for X and then increments it. 
+
+- The value 0x7FFFFFFF is hexadecimal for 2,147,483,647. Adding 1, it would then be too large to represent as an int, since this value is one larger than TMax 32. 
+
+- The value overflows to become INT_MIN i.e -2147483648.
+
+- Casting to an int would have no effect
+
+#### 5.C
+
+- Try to compile a main.c with this line of code.
+
+```c
+    int x = 2147483649 - 1; /* C */
+```
+
+No compile warnings are given.
+
+-  When the compiler encounters a number of the form -X, it first determines the data type and value for X and then negates it. 
+
+```bash
+(gdb) p x
+$1 = -2147483648
+```
+
+(gdb) p x
+$4 = -2147483647
+(gdb) set x = x - 1
+(gdb) p x
+$5 = -2147483648
+
+<!-- #### 5.D
 -  When the compiler encounters a number of the form -X, it first determines the data type and value for X and then negates it. 
 
 TMin 32 as -2147483648
@@ -241,6 +315,6 @@ that can represent the number 2,147,483,648.
 
 - TMin 32 as -2147483647-1
 - Since 2147483647 is the value
-of TMax 32, it can be represented as an int, and hence there is no need to invoke the conversion rules 
+of TMax 32, it can be represented as an int, and hence there is no need to invoke the conversion rules  -->
 
 
