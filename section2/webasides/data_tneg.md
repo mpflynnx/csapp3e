@@ -344,6 +344,14 @@ int z = y;
 
 #### 5.E
 
+- Try to compile a main.c with this line of code.
+
+```c
+    int x = -(2147483649 - 1); /* E */
+```
+
+No compile warnings are given.
+
 <!-- -  When the compiler encounters a number of the form -X, it first determines the data type and value for X and then negates it. 
 
 TMin 32 as -2147483648

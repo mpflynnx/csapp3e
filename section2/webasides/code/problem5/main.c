@@ -17,9 +17,11 @@ int main(){
     // long long y = x - 1; /* C understanding */
     // int z = y; /* C understanding */
 
-    unsigned x = 0x80000001; /* D Understanding*/
-    unsigned y = x - 1; /* D Understanding*/
-    int z = y; /* D Understanding*/
+    // unsigned x = 0x80000001; /* D Understanding*/
+    // unsigned y = x - 1; /* D Understanding*/
+    // int z = y; /* D Understanding*/
+
+    int x = -(2147483649 - 1); /* E */
 
     return 0;
 
