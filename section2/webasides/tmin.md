@@ -79,6 +79,19 @@ $2 = 1
 
 ### Practice Problem 1
 
+- [main.c](../webasides/code/data_tmin/problem1/C90/main.c)
+
+```c
+    int dtmin32 = -2147483648;
+    int dpos32a = (dtmin32 > 0);
+    int htmin32 = 0x80000000;
+    int hpos32a = (htmin32 > 0);
+```
+
+- -2147483648 is the decimal value for TMIN and fits into signed integer 4bytes
+- 0x80000000 is the hexadecimal TMIN fits into signed integer 4bytes
+- The machine architecture or C version is not relevant here.
+
 ### Practice Problem 2
 
 

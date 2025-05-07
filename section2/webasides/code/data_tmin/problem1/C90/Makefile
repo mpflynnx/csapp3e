@@ -10,7 +10,7 @@ CC = gcc
 # Define compiler flags
 # -std=c99: Compile according to the C99 standard
 # -g: Include debugging information
-CFLAGS = -std=c99 -g
+CFLAGS = -std=c90 -g
 
 # Default target: build the executable
 all: $(TARGET)
