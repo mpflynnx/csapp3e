@@ -22,10 +22,12 @@ int main(){
     // int z = y; /* D Understanding*/
 
     // int x = -(2147483649 - 1); /* E */
-    long long x = 2147483649L;
-    long long y = x - 1;
-    long long z = -y;
-    int z1 = z;
+    // long long x = 2147483649L;
+    // long long y = x - 1;
+    // long long z = -y;
+    // int z1 = z;
+
+    int x = -(0x80000001 - 1); /* E */
 
     return 0;
 
