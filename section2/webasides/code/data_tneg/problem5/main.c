@@ -21,9 +21,12 @@ int main(){
     // unsigned y = x - 1; /* D Understanding*/
     // int z = y; /* D Understanding*/
 
-    int x = -(2147483649 - 1); /* E */
+    // int x = -(2147483649 - 1); /* E */
+    long long x = 2147483649L;
+    long long y = x - 1;
+    long long z = -y;
+    int z1 = z;
 
     return 0;
 
 }
-

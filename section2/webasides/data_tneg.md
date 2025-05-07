@@ -352,6 +352,31 @@ int z = y;
 
 No compile warnings are given.
 
+- For the case of ISO C99, for decimal value of x, the compiler proceeds from int to long to long long, finally finding a data type that can represent the number 2,147,483,649.
+- Then the expression -1 is preformed.
+- Then the everything in brackets is negated.
+- Then the long long is cast to an int.
+- For example, to represent what is happening, force the value to fit using `long long` type.
+- Regardless of whether you are on a 32-bit or 64-bit system, the size of `long long` is typically 64 bits (8 bytes).
+
+```
+long long x = 2,147,483,649L;
+0x00 00 00 00 80 00 00 01 // 8 bytes wide
+
+long long y = x - 1; // 2,147,483,648
+0x00 00 00 00 80 00 00 00 // 8 bytes wide
+
+long long z = -y; // -2,147,483,648
+0xFF FF FF FF 80 00 00 00 // 8 bytes wide
+
+```
+- Casting `long long` to an `int` strips the leading F's to leave what is a representation of a negative signed integer of value -2147483648 aka TMIN 32.
+
+```
+int z1 = z; // -2,147,483,648
+0x80 00 00 00 // 4 bytes wide
+```
+
 <!-- -  When the compiler encounters a number of the form -X, it first determines the data type and value for X and then negates it. 
 
 TMin 32 as -2147483648
@@ -368,4 +393,12 @@ that can represent the number 2,147,483,648.
 - Since 2147483647 is the value
 of TMax 32, it can be represented as an int, and hence there is no need to invoke the conversion rules -->
 
+#### 5.F
 
+- Try to compile a main.c with this line of code.
+
+```c
+    int x = -(0x80000001 - 1); /* E */
+```
+
+No compile warnings are given.
