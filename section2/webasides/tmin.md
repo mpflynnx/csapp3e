@@ -11,6 +11,63 @@
     - GNU gdb (GDB) 16.3
     - GNU Make 4.4.1
 
+
+### Page 3 example code
+- [main.c](./code/data_tmin/example/C90/main.c)
+
+- 32bit C90 compile warning
+
+```bash
+$ make
+gcc -std=c90 -g main.c -o main
+main.c: In function ‘main’:
+main.c:15:5: warning: this decimal constant is unsigned only in ISO C90
+   15 |     int dpos32 = (-2147483648 > 0);
+      |     ^~~
+
+```
+- 32bit C90 result
+
+```bash
+(gdb) p dpos32
+$1 = 1
+(gdb) p hpos32
+$2 = 1
+```
+- 64bit C90 no compile warning
+- 64bit C90 result
+```
+(gdb) p dpos32
+$1 = 0
+(gdb) p hpos32
+$2 = 1
+```
+
+
+- 32bit C99 no compile warning
+
+```bash
+$ make
+gcc -std=c99 -g main.c -o main
+```
+
+- 32bit C99 result
+
+```bash
+(gdb) p dpos32
+$1 = 0
+(gdb) p hpos32
+$2 = 1
+```
+- 64bit C99 no compile warning
+- 64bit C99 result
+```bash
+(gdb) p dpos32
+$1 = 0
+(gdb) p hpos32
+$2 = 1
+```
+
 ### Practice problems TOC
 
 - [Practice problem 1](#practice-problem-1)
