@@ -288,7 +288,7 @@ main.c:11:24: warning: integer overflow in expression of type ‘int’ results 
 No compile warnings are given.
 
 - For the case of ISO C99, for decimal value of x, the compiler proceeds from int to long to long long, finally finding a data type that can represent the number 2,147,483,649.
-- Then the expression -1 is preformed.
+- Then the expression -1 is performed.
 - For example, to represent what is happening, force the value to fit using `long long` type.
 - Regardless of whether you are on a 32-bit or 64-bit system, the size of `long long` is typically 64 bits (8 bytes).
 
@@ -324,7 +324,7 @@ int x = 2147483649 - 1; /* C */
 ```
 
 - For the case of ISO C99, for hexadecimal value of x, the compiler proceeds from int to unsigned, finally finding a data type that can represent the number 2,147,483,649.
-- Then the expression -1 is preformed.
+- Then the expression -1 is performed.
 - For example, to represent what is happening, force the value to fit using `unsigned` type.
 
 ```
@@ -353,7 +353,7 @@ int z = y;
 No compile warnings are given.
 
 - For the case of ISO C99, for decimal value of x, the compiler proceeds from int to long to long long, finally finding a data type that can represent the number 2,147,483,649.
-- Then the expression -1 is preformed.
+- Then the expression -1 is performed.
 - Then the everything in brackets is negated.
 - Then the long long is cast to an int.
 - For example, to represent what is happening, force the value to fit using `long long` type.
@@ -377,21 +377,6 @@ int z1 = z; // -2,147,483,648
 0x80 00 00 00 // 4 bytes wide
 ```
 
-<!-- -  When the compiler encounters a number of the form -X, it first determines the data type and value for X and then negates it. 
-
-TMin 32 as -2147483648
-The value 2,147,483,648 is too large to represent as an int, since this value is one larger than TMax 32 
-
-
-- values 2,147,483,648 and −2,147,483,648 have the same bit representations
-as 32-bit numbers
-
-- For the case of ISO C99, the compiler proceeds from int to long to long long, finally finding a data type
-that can represent the number 2,147,483,648.
-
-- TMin 32 as -2147483647-1
-- Since 2147483647 is the value
-of TMax 32, it can be represented as an int, and hence there is no need to invoke the conversion rules -->
 
 #### 5.F
 
@@ -402,3 +387,28 @@ of TMax 32, it can be represented as an int, and hence there is no need to invok
 ```
 
 No compile warnings are given.
+
+- This is the hexadecimal equivalent of E
+```c
+    int x = -(2147483649 - 1); /* E */
+```
+
+- For the case of ISO C99, for hexadecimal value of x, the compiler proceeds from int to a unsigned data type that can represent the number 0x80000001.
+- Then the expression -1 is performed.
+- Then the everything in brackets is negated.
+- Then the unsigned is cast to an int.
+- For example, to represent what is happening, force the value to fit using `unsigned` type.
+
+```
+unsigned x = 0x80000001;
+
+unsigned y = x - 1; // 0x80000000
+```
+
+- Casting `unsigned` to an `int` leaves what is a representation of a negative signed integer of value -2147483648 aka TMIN 32.
+```
+int z = -y; // -2,147,483,648
+0x80 00 00 00 // 4 bytes wide
+```
+
+10000000 00000000 00000000 00000000

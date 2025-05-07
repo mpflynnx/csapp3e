@@ -27,7 +27,10 @@ int main(){
     // long long z = -y;
     // int z1 = z;
 
-    int x = -(0x80000001 - 1); /* E */
+    //int x = -(0x80000001 - 1); /* E */
+    unsigned x = 0X80000001;
+    unsigned y = x - 1;
+    int z = -y;
 
     return 0;
 
