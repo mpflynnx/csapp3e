@@ -94,12 +94,19 @@ $2 = 1
 
 ### Practice Problem 2
 
+- [main.c](./code/data_tmin/problem2/main.c)
+
 - Suppose we try to write TMin 32 as -0x7FFFFFFF-1. 
 - Would the C compiler generate a constant of type int for both 32- and 64-bit programs and for both versions of the C language standard? Explain.
 
+- The int data type that can represent the number 0x7FFFFFFF.
 
+- The value -0x7FFFFFFF is hexadecimal for -2,147,483,647. 
+- Subtracting 1, it would then be still be an int of TMIN -2,147,483,648 
 
 ### Practice Problem 3
+
+- [main.c](./code/data_tmin/problem3/main.c)
 
 
 
