@@ -94,6 +94,10 @@ $2 = 1
 
 ### Practice Problem 2
 
+- Suppose we try to write TMin 32 as -0x7FFFFFFF-1. 
+- Would the C compiler generate a constant of type int for both 32- and 64-bit programs and for both versions of the C language standard? Explain.
+
+
 
 ### Practice Problem 3
 
