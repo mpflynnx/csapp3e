@@ -60,3 +60,4 @@
 
 ### Chapter 2 Web Asides TOC
 - [Chapter2: Web Asides | Bit-level representation of two's complement negation](./webasides/data_tneg.md)
+- [Chapter2: Web Asides | Writing TMin in C](./webasides/data_tmin.md)
