@@ -4,7 +4,7 @@
 
 - [main.c](./code/problem2dot30/)
 
-- [Notes](../misc.md#twos-complement-addition)
+- [Notes](../misc.md#twos-complement-arithmetic)
 
 - Write a function with the following prototype:
 

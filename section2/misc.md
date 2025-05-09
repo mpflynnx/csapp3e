@@ -155,15 +155,15 @@ Add 1 to the value -->
 - 13 + 5 = 18
     - 18 >= 13 is false 
 
-### Two's complement addition
+### Two's complement arithmetic
 
-- Same as usually math additions
+- Same as usually math additions/subtraction
 - Assume only four bits (w=4) are available (decimal -8 to +7)
 - The msb 5th bit  (signed bit) is ignored
 - 1101 + 0010 = 10010, ignore signed bit (overflow)
 - Two's complement addition result will be 0010 (2)
 
-#### Positive overflow examples
+#### Two's complement addition examples
 ||||||||
 |---|---|---|---|---|---|---|
 ||3|2|1|0
@@ -171,10 +171,10 @@ Add 1 to the value -->
 |1|1 ||1 | |  | carries
 ||1 |1 |0 |1 | = -3 | Two's complement
 |+|0 |1 |0 |1 | = +5 | Two's complement
-|**1**|0 |0 |1 |0 | = 2 | Ignore 5bit
+|**1**|0 |0 |1 |0 | = -14 | Ignore 5bit
 |x|0 |0 |1 |0 | = 2 | 
 
-- `10010` is -14, but we ignore msb so `0010` is 2.
+- True sum `10010` is -14, but we ignore msb so `0010` is 2.
 - Same result as `-14 + 2^4(16) = 2`
 
 - See also  
@@ -188,11 +188,11 @@ Add 1 to the value -->
 |+|0 |0 |1 |1 | = +3 | Two's complement
 ||1 |1 |1 |0 | = -2 | 
 
-- `1110` is -2
+- True sum `1110` is -2
 - -14 + 2^4 = 2
 
 #### Negative overflow examples
-- Adding two negative numbers results in a positive number.
+- Adding two negative numbers results in a positive number, this is referred to a negative overflow.
 
 ||||||||
 |---|---|---|---|---|---|---|
@@ -203,11 +203,13 @@ Add 1 to the value -->
 |+|1 |0 |1 |0 | = -6 | Two's complement
 |**1**| 0| 1| 1| 1| = 7 | Ignored msb
 
-- `10111` is -9, but we ignore msb so `0111` is 7.
+- True sum `10111` is -9, but we ignore msb so `0111` is 7.
 - **Note:** +7 differs from -9 by 16 (2^w)
 - -9 + 2^4(16) = 7
 
-- Adding two large positive numbers results in positive overflow
+
+#### Positive overflow examples
+- Adding two large positive numbers results in a negative number, this is referred to as positive overflow
 
 ||||||||
 |---|---|---|---|---|---|---|
@@ -218,7 +220,7 @@ Add 1 to the value -->
 |+|0 |1 |0 |1 | = 5 | Two's complement
 |**0**| 1| 1| 0|0 | = -4 | Ignored msb
 
-- `01100` is 12, but we ignore msb signed bit msb so `1100` is -4.
+- True sum `01100` is 12, but we ignore msb signed bit msb so `1100` is -4.
 - **Note:** -4 differs from +12 by 16 (2^w)
 - 12 - 2^4(16) = -4
 

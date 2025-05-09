@@ -2,7 +2,7 @@
 
 ### Two's-Complement Addition
 
-- [Notes](../misc.md#twos-complement-addition)
+- [Notes](../misc.md#twos-complement-arithmetic)
 
 - Fill in the following table in the style of Figure 2.25. 
 - Give the integer values of the 5-bit arguments, the values of both their integer sum (x + y) and two’s-complement sums (x+t/w*y),
