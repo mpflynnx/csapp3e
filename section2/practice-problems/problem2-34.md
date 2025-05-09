@@ -1,12 +1,30 @@
 ## Practice Problem 2.34 hardback page 98
 
-### Two's-Complement Multiplication
+### Multiplication
 
 - [Notes](../misc.md#multiplication)
 
-- Fill in the following table showing the results of multiplying different 3-bit numbers, in the style of Figure 2.27 on page 98.
 - Assume only three bits (w=3) are available (two's complement decimal -4 to +3)
 - Assume only three bits (w=3) are available (unsigned decimal 7 to 0)
+
+**Two complement w=3 table**
+|||||||||
+|---|---|---|---|---|---|---|---|
+||4|3|2|1|0
+||| |-4 |2 |1 | Binary position value |
+| |||1|1|1| = -1 | Two's complement
+
+**Unsigned w=3 table**
+|||||||||
+|---|---|---|---|---|---|---|---|
+||4|3|2|1|0
+||| |4 |2 |1 | Binary position value |
+| |||1|1|1| = 7 | Unsigned
+
+### Problem
+
+- Fill in the following table showing the results of multiplying different 3-bit numbers, in the style of Figure 2.27 on page 98.
+
 
 ||Mode|____x||____y||_____x * y||Truncated x * y||
 |---|---|---|---|---|---|---|---|---|---|
@@ -21,30 +39,29 @@
 ### Solutions
 
 ### a.
-- Unsigned `100` = 4
-- Unsigned `101` = 5
+- Unsigned x `100` = 4
+- Unsigned y `101` = 5
 - unsigned multiplication of 4*5 = 20
 - Unsigned `20` in binary is `10100`
-- Truncated, ignore higher order bits `10` the unsigned result is `100` or 4
+- Truncate, ignore higher order bits `10` the unsigned result is `100` or 4
 - Same result as 20 % 16 = 4
 - Two's complement `100` = -4
 - Two's complement `101` = -3
+- Two's complement multiplication of `-4 * -3` = 12
+- Two's complement `12` in binary is `1100`
+- Truncate, ignore higher order bits `1` the unsigned result is `100` or -4.
+
+### b.
+- Unsigned x `010` = 2
+- Unsigned y `111` = 7
+- unsigned multiplication of 2*7 = 14
+- Unsigned `14` in binary is `01110`
+- Truncate, ignore higher order bits `01` the unsigned result is `110` or 4
+- Two's complement `010` = -4
+- Two's complement `111` = -3
 - Two's complement multiplication of `-4 * -3` = 12
 - Two's complement `12` in binary is `1100`
 - Truncated, ignore higher order bits `1` the unsigned result is `100` or -4.
-
-### b.
-<!-- - Unsigned `010` = ?
-- Unsigned `111` = ?
-- unsigned multiplication of ?*? = ?
-- Unsigned `20` in binary is `10100`
-- Truncated, ignore higher order bits `10` the unsigned result is `100` or 4
-- Same result as 20 % 16 = 4
-- Two's complement `100` = -4
-- Two's complement `101` = -3
-- Two's complement multiplication of `-4 * -3` = 12
-- Two's complement `12` in binary is `1100`
-- Truncated, ignore higher order bits `1` the unsigned result is `100` or -4. -->
 
 ### c.
 
