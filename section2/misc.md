@@ -158,6 +158,7 @@ Add 1 to the value -->
 ### Two's complement arithmetic
 
 - Same as usually math additions/subtraction
+- Adding two Wbit numbers may equal a result that requires as much as Wbit + 1 to represent it.
 - Assume only four bits (w=4) are available (decimal -8 to +7)
 - The msb 5th bit  (signed bit) is ignored
 - 1101 + 0010 = 10010, ignore signed bit (overflow)
@@ -228,3 +229,64 @@ Add 1 to the value -->
 ### Two's complement negation
 
 - In two's complement, subtraction can be performed using the same addition circuitry. To calculate A−B, a computer simply calculates A+(−B). The two's complement of B effectively represents −B, allowing the standard addition logic to handle both addition and subtraction of signed numbers without needing separate and more complex circuits for each operation.
+
+### Multiplication
+
+- We saw that, adding two Wbit numbers may equal a result that requires as much as Wbit + 1 to represent it.
+- For  multiplication, Wbit number x Wbit number may equal a result that requires as much as 2xWbit to represent it.
+- We are potentially squaring the largest number.
+- If you cannot represent the true sum in the bits available the low order bits are used as the result i.e ignore msb (signed bit).
+
+#### Unsigned multiplication
+- Modulo arithmetic
+- Multiplying in binary like multiplying in decimal
+
+#### Unsigned multiplication example 1
+
+- Assume only four bits (w=4) are available (decimal 0 to 15)
+- In decimal 3 * 5 = 15
+- True sum in binary `1111` is 15 (no overflow)
+
+#### Unsigned multiplication example 2
+- In decimal 5 * 5 = 25
+- True sum in binary `00011001` is 25, but we ignore high order bits so `1001` is 9.
+- Same result as 25 % 16 = 9
+
+#### Two's complement multiplication
+- We ignore high order bits but now must also use the remaining msb (signed bit) to determine the polarity of the result.
+- This can lead to a result that completely disregards the polarity of the the two operands.
+
+#### Two's complement multiplication example 1
+
+- In decimal 5 * 4 = 20
+- True sum in binary `00010100` is 20, but we ignore high order bits so `0100` is +4.
+- msb (signed bit) is `0` so positive
+- Same result as 20 % 16 = +4
+
+#### Two's complement multiplication example 2
+- Multiply two positive numbers and get a negative result
+- True sum in decimal 5 * 5 = 25
+- True sum in binary `00011001` is 25.
+- Ignore high order bits so `1001`
+- msb (signed bit) is `1` so result is negative `-7`.
+
+#### Two's complement multiplication example 3
+- Multiply two negative numbers and get a positive result
+- Two's complement binary `1101` is -3 or unsigned 13.
+- Two's complement binary `1110` is -2 or unsigned 14.
+- True sum unsigned is 13 * 14 = 182 = `0xB6`
+- Ignore higher or `0xB` to leave `0x6` or `0110`
+- `-3 * -2` is 6.
+- 99% of the time the same algorithm and hardware can be used for unsigned and two's complement.
+
+
+
+<!-- - Multiple a number by power of 2
+- Shift left by 2
+
+||||||||||
+|---|---|---|---|---|---|---|---|---|
+|6|5|4|3|2|1|0
+|64|32|16|8 |4 |2 |1 | Binary position value |
+||||0 |1 |0 |1 | = 5 | 
+|**1**|0|1|0 |1 |0 |0 | = 25 |  -->
