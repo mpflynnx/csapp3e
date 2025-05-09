@@ -58,6 +58,7 @@
 - [Practice Problems 2.30 | Two's Complement Addition](./practice-problems/problem2-30.md)
 - [Practice Problems 2.33 | Two's Complement Negation (additive inverse)](./practice-problems/problem2-33.md)
 - [Practice Problems 2.34 | Unsigned and Two's Complement Multiplication](./practice-problems/problem2-34.md)
+- [Practice Problems 2.35 | Unsigned and Two's Complement Multiplication](./practice-problems/problem2-35.md)
 
 ### Chapter 2 Web Asides TOC
 - [Chapter2: Web Asides | Bit-level representation of two's complement negation](./webasides/data_tneg.md)

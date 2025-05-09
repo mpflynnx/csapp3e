@@ -6,6 +6,7 @@
 
 - Assume only three bits (w=3) are available (two's complement decimal -4 to +3)
 - Assume only three bits (w=3) are available (unsigned decimal 7 to 0)
+- 2^w=3 (8) means, 2 to the power of width = 3, which is 8.
 - As multiplication of two numbers can require a width double that of w=3, represent binary result in a w=6 format
 
 **Two complement w=6 table**
@@ -45,7 +46,7 @@
 - unsigned multiplication of 4*5 = 20
 - Unsigned `20` in w=6 binary is `010100`
 - Truncate, ignore higher order bits `010` the unsigned result is `100` or 4
-- Same result as 20 % 16 = 4
+- Same result as 20 % 2^w=3 (8) = 4
 - Two's complement `100` = -4
 - Two's complement `101` = -3
 - Two's complement multiplication of `-4 * -3` = 12
@@ -58,6 +59,7 @@
 - unsigned multiplication of 2*7 = 14
 - Unsigned `14` in w=6 binary is `001110`
 - Truncate, ignore higher order bits `01` the unsigned result is `110` or 6
+- Same result as 14 % 2^w=3 (8) = 6
 - Two's complement `010` = 2
 - Two's complement `111` = -1
 - Two's complement multiplication of `2 * -1` = -2
@@ -70,9 +72,18 @@
 - unsigned multiplication of `6*6 = 36`
 - Unsigned `36` in w=6 binary is `100100`
 - Truncate, ignore higher order bits `100` the unsigned result is `100` or 4
+- Same result as 36 % 2^w=3 (8) = 4
 - Two's complement `110` = -2
 - Two's complement `110` = -2
 - Two's complement multiplication of `-2 * -2 = 4`
 - Two's complement `4` in w=6 binary is `000100`
 - Truncate, ignore higher order bits `000` the two's complement result is `100` or -4.
+
+
+#### Conclusions
+
+- I see the product result could need double the width (w=6) of two w=3 operands
+- I see the bit pattern representation of the product result for both unsigned and two's complement is the same.
+- I see we could just use the decimal equivalent of the product result and mod 2^w=3 to obtain the w=3 result, then interpret the w=3 result bit pattern as unsigned or two's complement.
+
 
