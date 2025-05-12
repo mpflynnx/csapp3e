@@ -290,3 +290,35 @@ Add 1 to the value -->
 |64|32|16|8 |4 |2 |1 | Binary position value |
 ||||0 |1 |0 |1 | = 5 | 
 |**1**|0|1|0 |1 |0 |0 | = 25 |  -->
+
+
+### Multiplication by power of 2 using left shift
+
+- Book Section 2.3.6
+- Most machines shift and add faster than multiply
+- compilers generate shift code automatically based on a series of conditions
+- u << k gives the same as u * 2^k
+- both signed and unsigned
+- overflow follows the same as described early
+
+#### Example
+- Use left shift to get equivalent to `2 * 14 = 28`
+- if `x` is `2`
+- if `y` is 14
+- 14 in binary is 00001110 
+- 14 also is 2^3(8) + 2^2(4) + 2^1(2)
+- `x * y` result is equivalent in C to (x<<3) + (x<<2) + (x<<1)
+- After 1st shift (x<<3) result is `x * 8 = 16`
+- After 2nd shift (x<<2) result is `x * 4 = 8`
+- After 3rd shift (x<<1) result is `x * 2 = 4`
+- Total is 16 + 8 + 4 = 28
+- A better solution requiring fewer shifts
+- `x * y` result is equivalent in C to (x<<4) - (x << 1)
+- After 1st shift (x<<4) result is `x * 16 = 32`
+- After 2nd shift (x<<1) result is `x * 2 = 4`
+- Total is 32 - 4 = 28
+
+#### Example 2
+- u << 3 == u * 8 because 2^3 is 8
+- (u << 5) - (u << 3) == u * 24
+- 2^5 = 32 - (2^3 = 8) = 24
