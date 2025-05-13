@@ -328,8 +328,8 @@ Add 1 to the value -->
 ```
 76543210 Bit position
 00001110 14 Decimal
-    ^  ^
-    n  m n=3, m=1
+    ^ ^
+    n m  n=3, m=1
 ```
 - Form A:
 - (x<<n) + (x<<(n-1)) + (x<<m)
