@@ -10,15 +10,22 @@ int tmult_ok(char x, char y) {
 int main(){
 
     unsigned char x, k, p;
-    x = 11;
-    k = 4;
+    x = 2;
+    k = 31;
 
     printf("%d\n", x);
     printf("%d\n", k);
 
     if (tmult_ok(x,k)){
-        // p = (k<<3)+(k<<1)+(k<<0); // Form A
-        p = (k<<(3+1));  // Form B
+        unsigned char p1, p2, p;
+        //p = (x<<2) + (x<<1);  // a. 
+        //p1 = (x<<5); // b. 64
+        //p2 = (x<<0); // b. 2
+        //p = p1 - p2; // b. 64 - 2 = 62 
+        //p = (k<<1);  // b. 
+        //p = (x<<5) - x; // b.
+        //p = (x
+        //p = (x<<2) + (x<<1);  // d. 
         printf("result: %d \n", p);
     } else {
         printf("Overflow!\n");
