@@ -295,16 +295,16 @@ Add 1 to the value -->
 ### Multiplication by power of 2 using left shift
 
 - Book Section 2.3.6
+- Unsigned, two's complement multiplication
 - Most machines shift and add faster than multiply
 - compilers generate shift code automatically based on a series of conditions
-- u << k gives the same as u * 2^k
-- both signed and unsigned
+- u << k gives the same result as u * 2^k
 - overflow follows the same as described early
 
-#### Example
+#### Example 1a
 - Use left shift to get equivalent to `2 * 14 = 28`
 - if `x` is `2`
-- if `y` is 14
+- if `y` is `14`
 - 14 in binary is 00001110 
 - 14 also is 2^3(8) + 2^2(4) + 2^1(2)
 - `x * y` result is equivalent in C to (x<<3) + (x<<2) + (x<<1)
@@ -317,6 +317,28 @@ Add 1 to the value -->
 - After 1st shift (x<<4) result is `x * 16 = 32`
 - After 2nd shift (x<<1) result is `x * 2 = 4`
 - Total is 32 - 4 = 28
+
+
+#### Example 1b
+
+- if `x` is `2`
+- if `y` is `14`
+- 14 in binary is 00001110 
+
+```
+76543210 Bit position
+00001110 14 Decimal
+    ^  ^
+    n  m n=3, m=1
+```
+- Form A:
+- (x<<n) + (x<<(n-1)) + (x<<m)
+- (2<<3) + (2<<(3-1)) + (2<<1)
+
+- Form B:
+- (x<<(n+1)) - (x<<m)
+- (2<<(3+1)) - (2<<1)
+
 
 #### Example 2
 - u << 3 == u * 8 because 2^3 is 8

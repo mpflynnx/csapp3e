@@ -9,15 +9,16 @@ int tmult_ok(char x, char y) {
 
 int main(){
 
-    char x, y, p;
-    x = 2;
-    y = 14;
+    unsigned char x, y, p;
+    x = 1;
+    y = 0b10001110; // 142
 
     printf("%d\n", x);
     printf("%d\n", y);
 
     if (tmult_ok(x,y)){
-        p = (x<<4) - (x<<1);
+        p = -(x<<1);
+        // p = (x<<8-1) - (x<<1);
         printf("result: %d \n", p);
     } else {
         printf("Overflow!\n");
