@@ -108,21 +108,54 @@
 #### c.
 
 - x * -6 in 2 shifts
-- K = -6 or 10000110
+
+- One approach is to think in positive numbers, then negate the answer then add 1 to obtain the negative result.
+- This is preferred for predictable results
+
+- x * 6 in 2 shifts
+- K = 6 or 00000110
+```
+76543210  Bit position
+00000110  6 in Decimal
+     ^^
+     nm   n=2, m=1
+```
+
+- Lets say x is 3
+- for 3 * 6 = 18
+
+- x << n or 3<<2 = 3 * 2^2 = 3 * 4 = 12.
+- x << m or 3<<1 = 3 * 2^1 = 3 * 2 = 6.
+- 12 + 6 = 18  
+- We could use the bitwise NOT then add 1 to get -18
+- ~((x<<2) + (x<<1)) + 1
+- ~(12 + 6) + 1
+- Therefore, the solution is: ~((x<<2) + (x<<1)) + 1
+
+- Thinking negative numbers
+- x * -6 in 2 shifts
 
 ```
 76543210  Bit position
-10000110  -6 in Decimal
-^     ^
-n     m  n=7, m=1
+11111010  -6 in Decimal (two's complement)
+    ^ ^
+    n m  n=3, m=1 (ignore higher order bits)
 ```
 
-- Lets say x is 2
-- for 2 * -6 = -12
+- Lets say x is 3
+- for 3 * -6 = -18
 
 ```
 76543210  Bit position
-10001100  -12 in Decimal
-^    ^
-n    m  n=7, m=2
+11101110  -18 in Decimal
 ```
+
+- x << n or 3<<3 = 3 * 2^3 = 3 * 8 = 24.
+- x << m or 3<<1 = 3 * 2^1 = 3 * 2 = 6.
+- if we subtract `n` result from `m` result we get a negative number.
+- 6 - 24 = -18  
+
+- Therefore, the solution is: (x<<1) - (x<<3)
+-  It's a valid alternative to calculating the positive product and then negating it.
+
+#### d.

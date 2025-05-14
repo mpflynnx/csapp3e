@@ -11,13 +11,13 @@ int main(){
 
     unsigned char x, k, p;
     x = 2;
-    k = 31;
+    k = -6;
 
     printf("%d\n", x);
     printf("%d\n", k);
 
     if (tmult_ok(x,k)){
-        unsigned char p1, p2, p;
+        signed char p1, p2, p;
         //p = (x<<2) + (x<<1);  // a. 
         //p1 = (x<<5); // b. 64
         //p2 = (x<<0); // b. 2
@@ -25,7 +25,10 @@ int main(){
         //p = (k<<1);  // b. 
         //p = (x<<5) - x; // b.
         //p = (x
-        //p = (x<<2) + (x<<1);  // d. 
+        p1 = (x<<3); // c.
+        p2 = (x<<1); // c.
+        p = ~(p1+p2) + 1;
+        //p = p2 - p1;
         printf("result: %d \n", p);
     } else {
         printf("Overflow!\n");
