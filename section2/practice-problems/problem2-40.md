@@ -159,3 +159,21 @@
 -  It's a valid alternative to calculating the positive product and then negating it.
 
 #### d.
+
+- x * 55 use 2 shifts and 2 additions/subtractions
+
+```
+76543210  Bit position
+00110111  55 Decimal
+  ^    ^
+  n    m  n=5, m=1
+```
+2^5 = 32
+2^6 = 64
+
+- Lets say x is 3
+- for 3 * 55 = -18
+
+```
+10100101
+```

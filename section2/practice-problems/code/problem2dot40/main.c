@@ -9,7 +9,7 @@ int tmult_ok(char x, char y) {
 
 int main(){
 
-    unsigned char x, k, p;
+    signed char x, k, p;
     x = 2;
     k = -6;
 
