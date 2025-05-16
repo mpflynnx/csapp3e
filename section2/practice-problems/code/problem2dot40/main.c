@@ -12,7 +12,7 @@ int tmult_ok(char x, char y) {
 int main(){
 
     signed char x, k, p;
-    x = 1;
+    x = 2;
     k = 55;
 
     printf("%d\n", x);
@@ -41,10 +41,10 @@ int main(){
         //
         p1 = (x<<6);
         p2 = (x<<3);
-        p = (p1 - p2); // d. for k = 55
+        p = (p1 - p2) - (x<<0); // d. for k = 55
         
 
-        printf("result: %d \n", p);
+        printf("Left shift result: %d \n", p);
     } else {
         printf("Overflow!\n");
     }

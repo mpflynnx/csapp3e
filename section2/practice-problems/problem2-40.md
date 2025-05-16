@@ -177,67 +177,50 @@
 
 - x * 55 use 2 shifts and 2 additions/subtractions
 
-```
-76543210  Bit position
-00110111  55 Decimal
-  ^    ^
-  n    m  n=5, m=1
-```
-
-- Could be done with `form A` in 5 shifts and 5 additions but that's too many.
-- `Form B` may be a better option, but there is a 0 at the 2^3 position?
-- Look at the last three bits
-```
-00000111  = 7 Decimal
-```
-- Form B can be used on these
-
 
 |7|6|5|4|3|2|1|0|Position|
 |---|---|---|---|---|---|---|---|---|
 |128 |64 |32 |16 |8 |4 |2 |1 | Binary value
 |2^7|2^6|2^5|2^4|2^3|2^2|2^1|2^0 |2^n
-|0|0|0|0|0|1|1|1
-|-|-|-|-|1|-|-|-| Form B
-|||||^|||^|
-|||||n|||m|n=3
+|0|0|1|1|0|1|1|1| 55
+|-|-|1|-|-|-|-|1| Form A
+|||^n+|^n+||^n+|^n+|^m|
 
-- 7 can be achieved by 2^3(8) - 2^0(1) or 8 subtract 1 equals 7
-- Look at the higher order bits
-```
-00110000  = 48 Decimal
-```
-- Form B can be used on these
+
+- This could be done with `Form A` in 5 shifts and 4 additions but that's too many.
+- `Form B` may be a better option, but there is a 0 at the 2^3 position? We need to think differently.
+
+- Look at the higher order bit at 2^5
+- Form B trick to move up to the next 2^n can be used
 
 |7|6|5|4|3|2|1|0|Position|
 |---|---|---|---|---|---|---|---|---|
 |128 |64 |32 |16 |8 |4 |2 |1 | Binary value
 |2^7|2^6|2^5|2^4|2^3|2^2|2^1|2^0 |2^n
-|0|0|1|1|0|0|0|0|
+|0|0|1|1|0|1|1|1| 55
 |-|1|-|-|-|-|-|-| Form B
-||^|||
-||n|||||||n=6
+||^n|||||||n=6, 2^6 = 64
 
-- 2^6(64)
-- x<<6 is x * 64;
+
+- Making n now 2^6 = 64
+- Look at the last three bits after the o at 2^3
+- Form B trick to move up to the next 2^n can be used
 
 |7|6|5|4|3|2|1|0|Position|
 |---|---|---|---|---|---|---|---|---|
 |128 |64 |32 |16 |8 |4 |2 |1 | Binary value
 |2^7|2^6|2^5|2^4|2^3|2^2|2^1|2^0 |2^n
-|0|0|1|1|0|0|0|0|
-|-|1|1|0|1|-|-|-| Form B
-||^|||^|
-||n|||m|||||n=6, m=3
+|0|0|1|1|0|1|1|1
+|-|-|-|-|1|0|0|0| Form B
+|||||^n|||^m|n=3, m=0
 
 
-((x * 64) - (x * 8))
-
-```
-01000000 = 64
-00001000 = 8
-00111000 = 56
-```
-64 - 8 = 56 
-
-((x * 64) - (x * 8) - x)
+- making n for the low order bit now 2^3 = 8
+- As seen with the high order bit 2^6 = 64
+- 64 - 8 = 56
+- Form B requires a 2^m which is still 2^0 = 1
+- (x<<6 - x<<3) - x<<0
+- This equates to.
+- ((x * 64) - (x * 8)) - (x * 1)
+- As (x * 1) is always x, we can use the code
+- (x<<6 - x<<3) - x
