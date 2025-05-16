@@ -13,25 +13,27 @@
 
 ### Example
 
-- if `x` is `11`
-- if `k` is `4`
-- x * k = 44
-- W=8
-- 11 in binary is 00001011 
+- if `x` is `3`
+- if `k` is `14`
+- x * k = 42
+- w=8
+- `k` 14 in binary is 00001110
 
 ```
 76543210  Bit position
-00001011  11 Decimal
-    ^  ^
-    n  m  n=3, m=0
+00001110  11 Decimal
+    ^ ^
+    n m  n=3, m=1
 ```
 
+- 14 also is 2^3(8) + 2^2(4) + 2^1(2)
+- `x * y` result is equivalent in C to (x<<3) + (x<<2) + (x<<1)
+
 - Form A:
-- (k<<n) + (k<<(n-1)) + (k<<m)
-- (4<<3) + (4<<(3-2)) + (4<<3-3)
+- (x<<3) + (x<<2) + (x<<1)
 
 - Form B:
-- Not possible with these numbers
+- (x<<4) - (x<<1)
 
 
 
@@ -62,7 +64,7 @@
 ```
 - Shifts = 2
 - Form A:
-- (x<<n) + (x<<m)
+- (x<<2^n) + (x<<2^m)
 - (x<<2^2) + (x<<2^1)
 - (x<<2) + (x<<1)
 
@@ -79,6 +81,19 @@
 ```
 - Form A: Maximum shifts with addition is 5.
 - Form B: Minimum shifts with subtraction is 2.
+
+|7|6|5|4|3|2|1|0|Position|
+|---|---|---|---|---|---|---|---|---|
+|128 |64 |32 |16 |8 |4 |2 |1 | Binary value
+|2^7|2^6|2^5|2^4|2^3|2^2|2^1|2^0 |2^n
+|0|0|0|1|1|1|1|1|
+|-|-|1|-|-|-|-|1| Form B
+|||^|||||^|
+|||n|||||m|n=5, m=0
+
+
+
+
 - 31 is close to 2^5 of 32
 - 31 can be achieved by 2^5(32) - 2^0(1) or 32 subtract 1 equals 31
 
@@ -168,12 +183,61 @@
   ^    ^
   n    m  n=5, m=1
 ```
-2^5 = 32
-2^6 = 64
 
-- Lets say x is 3
-- for 3 * 55 = -18
+- Could be done with `form A` in 5 shifts and 5 additions but that's too many.
+- `Form B` may be a better option, but there is a 0 at the 2^3 position?
+- Look at the last three bits
+```
+00000111  = 7 Decimal
+```
+- Form B can be used on these
+
+
+|7|6|5|4|3|2|1|0|Position|
+|---|---|---|---|---|---|---|---|---|
+|128 |64 |32 |16 |8 |4 |2 |1 | Binary value
+|2^7|2^6|2^5|2^4|2^3|2^2|2^1|2^0 |2^n
+|0|0|0|0|0|1|1|1
+|-|-|-|-|1|-|-|-| Form B
+|||||^|||^|
+|||||n|||m|n=3
+
+- 7 can be achieved by 2^3(8) - 2^0(1) or 8 subtract 1 equals 7
+- Look at the higher order bits
+```
+00110000  = 48 Decimal
+```
+- Form B can be used on these
+
+|7|6|5|4|3|2|1|0|Position|
+|---|---|---|---|---|---|---|---|---|
+|128 |64 |32 |16 |8 |4 |2 |1 | Binary value
+|2^7|2^6|2^5|2^4|2^3|2^2|2^1|2^0 |2^n
+|0|0|1|1|0|0|0|0|
+|-|1|-|-|-|-|-|-| Form B
+||^|||
+||n|||||||n=6
+
+- 2^6(64)
+- x<<6 is x * 64;
+
+|7|6|5|4|3|2|1|0|Position|
+|---|---|---|---|---|---|---|---|---|
+|128 |64 |32 |16 |8 |4 |2 |1 | Binary value
+|2^7|2^6|2^5|2^4|2^3|2^2|2^1|2^0 |2^n
+|0|0|1|1|0|0|0|0|
+|-|1|1|0|1|-|-|-| Form B
+||^|||^|
+||n|||m|||||n=6, m=3
+
+
+((x * 64) - (x * 8))
 
 ```
-10100101
+01000000 = 64
+00001000 = 8
+00111000 = 56
 ```
+64 - 8 = 56 
+
+((x * 64) - (x * 8) - x)

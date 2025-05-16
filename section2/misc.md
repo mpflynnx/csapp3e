@@ -298,22 +298,24 @@ Add 1 to the value -->
 - Unsigned, two's complement multiplication
 - Most machines shift and add faster than multiply
 - compilers generate shift code automatically based on a series of conditions
-- u << k gives the same result as u * 2^k
+- x << n gives the same result as x * 2^n
+- n must be a 2^n number i.e 0,1,2,4,8,16,32 etc
 - overflow follows the same as described early
+
 
 #### Example 1a
 - Use left shift to get equivalent to `2 * 14 = 28`
 - if `x` is `2`
-- if `y` is `14`
+- if `k` is `14`
 - 14 in binary is 00001110 
 - 14 also is 2^3(8) + 2^2(4) + 2^1(2)
-- `x * y` result is equivalent in C to (x<<3) + (x<<2) + (x<<1)
+- `x * k` result is equivalent in C to (x<<3) + (x<<2) + (x<<1)
 - After 1st shift (x<<3) result is `x * 8 = 16`
 - After 2nd shift (x<<2) result is `x * 4 = 8`
 - After 3rd shift (x<<1) result is `x * 2 = 4`
 - Total is 16 + 8 + 4 = 28
 - A better solution requiring fewer shifts
-- `x * y` result is equivalent in C to (x<<4) - (x << 1)
+- `x * k` result is equivalent in C to (x<<4) - (x << 1)
 - After 1st shift (x<<4) result is `x * 16 = 32`
 - After 2nd shift (x<<1) result is `x * 2 = 4`
 - Total is 32 - 4 = 28
@@ -322,7 +324,7 @@ Add 1 to the value -->
 #### Example 1b
 
 - if `x` is `2`
-- if `y` is `14`
+- if `k` is `14`
 - 14 in binary is 00001110 
 
 ```
@@ -344,3 +346,14 @@ Add 1 to the value -->
 - u << 3 == u * 8 because 2^3 is 8
 - (u << 5) - (u << 3) == u * 24
 - 2^5 = 32 - (2^3 = 8) = 24
+
+
+
+3 * 3 ??
+
+
+00000011
+
+2^1 + 2^0
+
+3<<2 + 3<<1
