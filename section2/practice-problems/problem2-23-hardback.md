@@ -2,7 +2,7 @@
 
 - [main.c](./code/problem2dot23/main.c)
 
-- Here are two functions that are used for extracting values from a `word` in which multiple but fields have been packed.
+- Here are two functions that are used for extracting values from a `word` in which multiple bit fields have been packed.
 - Note carefully the ordering of the cast and shift operations.
 ```c
 int fun1(unsigned word) {
