@@ -12,4 +12,6 @@
 
 ### Solution
 
-WIP
+- Logical shifting
+- 16 is 2^4
+- x>>4 is x/16 
