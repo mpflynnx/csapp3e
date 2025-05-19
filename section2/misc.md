@@ -359,7 +359,7 @@ Add 1 to the value -->
 3<<2 + 3<<1
 
 ### Unsigned Power-of-2 Divide with shift
-- Unsigned is as logical shift
+- Unsigned division is a logical shift
 - Division is slow even on modern computers (30+ clock cycles)
 ```
 0110 is 6

@@ -61,6 +61,8 @@
 - [Practice Problems 2.35 | Unsigned and Two's Complement Multiplication](./practice-problems/problem2-35.md)
 - [Practice Problems 2.39 | Multiplication by Constants](./practice-problems/problem2-39.md)
 - [Practice Problems 2.40 | Multiplication by Constants](./practice-problems/problem2-40.md)
+- [Practice Problems 2.42 | Dividing by Powers of 2](./practice-problems/problem2-42.md)
+
 
 ### Chapter 2 Web Asides TOC
 - [Chapter2: Web Asides | Bit-level representation of two's complement negation](./webasides/data_tneg.md)
