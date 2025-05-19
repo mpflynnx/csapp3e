@@ -32,14 +32,16 @@ $ gdb -q ./main
 ```
 
 - With the second word shifted two positions to the right relative to the first, we find a sequence with 21 matching bits.
-
+```
 00000000001001111100100011111000
 >>01001010000111110010001111100000
              ^--------------^
 111110010001111100000
-
+```
+```
 00000000001001111100100011111000
 >>01001010000111110010001111100000
+```
 
 We find all bits of the integer embedded in the floating-point number, except
 for the most significant bit having value 0. Such is the case for the example
@@ -49,7 +51,7 @@ high-order bits that do not match those of the integer.
 page76
 
 ival = 12345;
-
+```
 0x7fffffffdf38:	0x4640e400
 >>> x /x &ival
 0x7fffffffdf3c:	0x00003039
@@ -57,13 +59,15 @@ ival = 12345;
 0x7fffffffdf3c:	00000000000000000011000000111001
 >>> x /t &fval
 0x7fffffffdf38:	01000110010000001110010000000000
+```
 
 - With the second word shifted 10 positions to the right relative to the first, we find a sequence with 21 matching bits.
 
 1000000111001
-                  
+```                 
 00000000000000000011000000111001
 >>>>>>>>>>01000110010000001110010000000000
                   ^^-----------^
                   |
                   msb
+```

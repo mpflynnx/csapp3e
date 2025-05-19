@@ -138,7 +138,7 @@ Add 1 to the value -->
 1 + 0 = 1 (carry 0)
 1 + 1 = 0 (carry 1)
 ```
-- In standard binary addition, when the sum of bits in a column is 2 (from 1+1), a '1' is carried over to the next higher bit position, and the current position's sum is 0. If there's also a carry-in from the previous column, the sum of three bits ($1+1+$carry-in) can be 3 (binary 11), resulting in a sum of 1 and a carry of 1 to the next column.
+- In standard binary addition, when the sum of bits in a column is 2 (from 1+1), a '1' is carried over to the next higher bit position, and the current position's sum is 0. If there's also a carry-in from the previous column, the sum of three bits (1+1+carry-in) can be 3 (binary 11), resulting in a sum of 1 and a carry of 1 to the next column.
 
 ||||||||
 |---|---|---|---|---|---|---|
@@ -357,3 +357,80 @@ Add 1 to the value -->
 2^1 + 2^0
 
 3<<2 + 3<<1
+
+### Unsigned Power-of-2 Divide with shift
+- Unsigned is as logical shift
+- Division is slow even on modern computers (30+ clock cycles)
+```
+0110 is 6
+>>1 equivalent to divide by 2, 6/2 = 3
+0011 is 3
+>>1 equivalent to divide by 2, 3/2 = 1.5
+0001 is 1 here 1.5 is rounded down to 1 
+```
+### Signed (Twos' complement) Power-of-2 Divide with shift
+
+- Positive numbers are treated the same as unsigned i.e logical shift
+- Negative numbers need the use of arithmetic shifting
+- The msb of 1 needs to be maintained and duplicated during division
+
+```
+1010 is -6
+
+>>1 equivalent to divide by 2, -6/2 is -3
+1101 is -3
+
+1   1       01            1
+^   ^
+new copied  ^shifted      ^lost
+msb msb      bit pattern    bit
+```
+
+```
+1101 is -3
+
+>>1 equivalent to divide by 2, but -3/2 is -1.5 we get
+1110 is -2
+
+1   1       10            1
+^   ^
+new copied  ^shifted      ^lost
+msb msb      bit pattern    bit
+```
+- We require -1
+- There is a trick the compiler uses to fix this
+- We must first add a `bias` to the bit pattern to be divided
+```
+1101 is -3
+0001 is a bias to add
+1110 is new number to divide
+
+>>1 equivalent to divide by 2, we get 1111 is -1 which is rounded down from 1.5
+
+1   1       11            0
+^   ^
+new copied  ^shifted      ^lost
+msb msb      bit pattern    bit
+```
+
+### Negating a number tips
+- Complement and increment trick
+- Works with a negative to positive or positive to negative negations
+- How to get x to -x
+```
+1010 is -6
+~ complement(flip) the bits gives 0101, then +1
+
+0101
+0001
+0110 = 6
+```
+
+```
+0110 = 6
+~ complement(flip) the bits gives 1010, then +1
+
+1010
+0001
+1010 = -6
+```
