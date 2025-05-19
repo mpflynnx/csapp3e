@@ -1,7 +1,7 @@
 ## Practice Problem 2.40 hardback page 103
 
 - [main.c](../practice-problems/code/problem2dot40/main.c)
-- [notes | multiplication using left shift](../misc.md#multiplication-by-power-of-2-using-left-shift)
+- [notes | multiplication of power of 2 using left shift](../misc.md#multiplication-by-power-of-2-using-left-shift)
 
 ### Binary to Decimal Table 
 
@@ -53,7 +53,8 @@
 
 #### a.
 
-- x * 6
+- x * 6 use 2 shifts and 1 additions/subtractions
+
 - K = 6 or 00000110
 
 ```
@@ -67,6 +68,9 @@
 - (x<<2^n) + (x<<2^m)
 - (x<<2^2) + (x<<2^1)
 - (x<<2) + (x<<1)
+- Form B:
+- (x<<2^(n+1)) - (x<<2^m)
+- (x<<3) - (x<<1)
 
 #### b.
 
@@ -80,7 +84,9 @@
    n   m  n=4, m=0
 ```
 - Form A: Maximum shifts with addition is 5.
-- Form B: Minimum shifts with subtraction is 2.
+- Form B: Minimum shifts with subtraction is 1
+- because no shift is needed when m=0
+- 2^0 which is 1*x = x.
 
 |7|6|5|4|3|2|1|0|Position|
 |---|---|---|---|---|---|---|---|---|
@@ -91,9 +97,7 @@
 |||^|||||^|
 |||n|||||m|n=5, m=0
 
-
-
-
+- To achieve one shift
 - 31 is close to 2^5 of 32
 - 31 can be achieved by 2^5(32) - 2^0(1) or 32 subtract 1 equals 31
 
@@ -153,8 +157,7 @@
 ```
 76543210  Bit position
 11111010  -6 in Decimal (two's complement)
-    ^ ^
-    n m  n=3, m=1 (ignore higher order bits)
+    ^n ^m n=3, m=1 (ignore higher order bits)
 ```
 
 - Lets say x is 3
@@ -167,7 +170,7 @@
 
 - x << n or 3<<3 = 3 * 2^3 = 3 * 8 = 24.
 - x << m or 3<<1 = 3 * 2^1 = 3 * 2 = 6.
-- if we subtract `n` result from `m` result we get a negative number.
+- if we subtract `m` result from `n` result we get a negative number.
 - 6 - 24 = -18  
 
 - Therefore, the solution is: (x<<1) - (x<<3)
@@ -203,7 +206,7 @@
 
 
 - Making n now 2^6 = 64
-- Look at the last three bits after the o at 2^3
+- Look at the last three bits after the 0 at 2^3
 - Form B trick to move up to the next 2^n can be used
 
 |7|6|5|4|3|2|1|0|Position|
@@ -220,7 +223,10 @@
 - 64 - 8 = 56
 - Form B requires a 2^m which is still 2^0 = 1
 - (x<<6 - x<<3) - x<<0
+- But no shift is needed when m=0
+- 2^0 which is 1*x = x.
 - This equates to.
 - ((x * 64) - (x * 8)) - (x * 1)
+- 2^0 which is 1*x = x.
 - As (x * 1) is always x, we can use the code
 - (x<<6 - x<<3) - x

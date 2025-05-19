@@ -13,7 +13,7 @@ int main(){
 
     signed char x, k, p;
     x = 2;
-    k = 55;
+    k = 6;
 
     printf("%d\n", x);
     printf("%d\n", k);
@@ -27,7 +27,8 @@ int main(){
         //p = (x<<(3+1)) - (x<<1);
         //p = (x<<3) + (x<<2) + (x<<1); // for k = 14
         //p = (x<<4) - (x<<1);
-        //p = (x<<2) + (x<<1);  // a. 
+        //p = (x<<2) + (x<<1);  // a. Form A for K =6 
+        p = (x<<3) - (x<<1); // a. Form b for K = 6
         //p1 = (x<<5); // b. 64
         //p2 = (x<<0); // b. 2
         //p = p1 - p2; // b. 64 - 2 = 62 
@@ -39,9 +40,9 @@ int main(){
         //p = ~(p1+p2) + 1;
         //p = p2 - p1;
         //
-        p1 = (x<<6);
-        p2 = (x<<3);
-        p = (p1 - p2) - (x<<0); // d. for k = 55
+        //p1 = (x<<6);
+        //p2 = (x<<3);
+        //p = (p1 - p2) - (x<<0); // d. for k = 55
         
 
         printf("Left shift result: %d \n", p);
