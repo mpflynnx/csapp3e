@@ -425,6 +425,19 @@ msb msb     bit pattern   bit
 
 ```
 
+### Signed (Two's complement) Power of 2 Divide with shift (alternative)
+
+- We saw previously this expression, to divide integer x by k
+```c
+(x<0 ? x+(1<<k)-1 : x) >> k;
+```
+- We check if x is less than 0 i.e a negative number
+- If x is negative, calculate a bias then add it to x
+- else do not add a bias
+- then right shift by k
+- There is another way to do this without using the <, ?, + or : operators
+- WIP
+
 
 ### Tips for negating a binary representation of a integer
 - Complement and increment trick

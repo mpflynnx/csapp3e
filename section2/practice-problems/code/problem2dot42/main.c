@@ -1,13 +1,14 @@
 #include <stdio.h>
 
-int div16(const int x){
-    return (int) x >>4;
+/* Divides x by 16 or 2^4*/
+int div16(const int x) {
+    return 0;
 }
 
 
 int main() {
 
-    int x = 80; // 80/16 = 5
+    int x = -12340;
     int result = div16(x);
 
     return 0;
