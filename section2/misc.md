@@ -358,26 +358,28 @@ Add 1 to the value -->
 
 3<<2 + 3<<1
 
-### Unsigned Power-of-2 Divide with shift
+### Unsigned Power of 2 Divide with shift
 - Unsigned division is a logical shift
 - Division is slow even on modern computers (30+ clock cycles)
 ```
-0110 is 6
->>1 equivalent to divide by 2^1 = 2, 6/2 = 3
+x 0110 is 6
+k = 1
+>>k equivalent to divide by 2^k = 2^1 = 2, 6/2 = 3
 0011 is 3
->>1 equivalent to divide by 2^1 = 2, 3/2 = 1.5
+>>k equivalent to divide by 2^k = 2^1 = 2, 3/2 = 1.5
 0001 is 1 here 1.5 is rounded down towards zero to 1 
 ```
-### Signed (Two's complement) Power-of-2 Divide with shift
+### Signed (Two's complement) Power of 2 Divide with shift
 
 - Positive numbers are treated the same as unsigned i.e logical shift
 - Negative numbers need the use of arithmetic shifting
 - The msb (signed bit) of 1 needs to be maintained and duplicated during division
 
 ```
-1010 is -6
+x 1010 is -6
+k = 1
 
->>1 equivalent to divide by 2^1 = 2, -6/2 is -3
+>>k equivalent to divide by 2^k = 2^1 = 2, -6/2 is -3
 1101 is -3
 
 1   1       01            1
@@ -387,9 +389,10 @@ msb msb     bit pattern   bit
 ```
 
 ```
-1101 is -3
+x 1101 is -3
+k = 1
 
->>1 equivalent to divide by 2^1 = 2, but -3/2 is -1.5 we get
+>>k equivalent to divide by 2^k = 2^1 = 2, but -3/2 is -1.5 we get
 1110 is -2 which is rounded away from zero and -1.5
 
 1   1       10            1
@@ -401,19 +404,29 @@ msb msb     bit pattern   bit
 - There is a trick the compiler uses to fix this
 - We must first add a `bias` to the bit pattern to be divided
 ```
-1101 is -3
-0001 is a bias to add
+x 1101 is -3
+k = 1
+bias = (2^k) - 1 or (1<<k) -1, (2) - 1 = 1 or 0001
+0001 is the bias to add
 1110 is new number to divide
 
->>1 equivalent to divide by 2, we get 1111 is -1 which is rounded towards zero from -1.5
+>>k equivalent to divide by 2, we get 1111 is -1 which is rounded towards zero from -1.5
 
 1   1       11            0
 ^   ^       ^             ^
 new copied  shifted       lost
 msb msb     bit pattern   bit
 ```
+- C expression for negative integers
+```c
+    int x = -12340;
+    int k = 8; // 2^8 = 256
+    divideBy256 = (x<0 ? x+(1<<k)-1 : x) >> k;
 
-### Negating a number tips
+```
+
+
+### Tips for negating a binary representation of a integer
 - Complement and increment trick
 - Works with a negative to positive or positive to negative negations
 - How to get x to -x
@@ -433,4 +446,20 @@ msb msb     bit pattern   bit
 1010
 0001
 1010 = -6
+```
+
+### Power of 2 using left shift operator
+- 2 to the Power 8 or 2^8 is 256.
+
+- In C you can use a library math.h with pow() function
+
+```c
+#include<math.h> // use -lm in compilation to link math.h
+x = pow(2,8) // 256
+```
+
+- Alternatively you can use the left shift operator <<
+
+```c
+x = 1<<8; // 256
 ```

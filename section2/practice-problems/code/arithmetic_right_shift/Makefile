@@ -17,7 +17,7 @@ all: $(TARGET)
 
 # Rule to build the executable from the source file
 $(TARGET): $(SRC)
-	$(CC) $(CFLAGS) $(SRC) -o $(TARGET)
+	$(CC) $(CFLAGS) $(SRC) -o $(TARGET) -lm
 
 # Clean up build artifacts
 clean:
