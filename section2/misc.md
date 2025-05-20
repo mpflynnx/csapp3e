@@ -363,39 +363,39 @@ Add 1 to the value -->
 - Division is slow even on modern computers (30+ clock cycles)
 ```
 0110 is 6
->>1 equivalent to divide by 2, 6/2 = 3
+>>1 equivalent to divide by 2^1 = 2, 6/2 = 3
 0011 is 3
->>1 equivalent to divide by 2, 3/2 = 1.5
-0001 is 1 here 1.5 is rounded down to 1 
+>>1 equivalent to divide by 2^1 = 2, 3/2 = 1.5
+0001 is 1 here 1.5 is rounded down towards zero to 1 
 ```
-### Signed (Twos' complement) Power-of-2 Divide with shift
+### Signed (Two's complement) Power-of-2 Divide with shift
 
 - Positive numbers are treated the same as unsigned i.e logical shift
 - Negative numbers need the use of arithmetic shifting
-- The msb of 1 needs to be maintained and duplicated during division
+- The msb (signed bit) of 1 needs to be maintained and duplicated during division
 
 ```
 1010 is -6
 
->>1 equivalent to divide by 2, -6/2 is -3
+>>1 equivalent to divide by 2^1 = 2, -6/2 is -3
 1101 is -3
 
 1   1       01            1
-^   ^
-new copied  ^shifted      ^lost
-msb msb      bit pattern    bit
+^   ^       ^             ^
+new copied  shifted       lost
+msb msb     bit pattern   bit
 ```
 
 ```
 1101 is -3
 
->>1 equivalent to divide by 2, but -3/2 is -1.5 we get
-1110 is -2
+>>1 equivalent to divide by 2^1 = 2, but -3/2 is -1.5 we get
+1110 is -2 which is rounded away from zero and -1.5
 
 1   1       10            1
-^   ^
-new copied  ^shifted      ^lost
-msb msb      bit pattern    bit
+^   ^       ^             ^
+new copied  shifted       lost
+msb msb     bit pattern   bit
 ```
 - We require -1
 - There is a trick the compiler uses to fix this
@@ -405,12 +405,12 @@ msb msb      bit pattern    bit
 0001 is a bias to add
 1110 is new number to divide
 
->>1 equivalent to divide by 2, we get 1111 is -1 which is rounded down from 1.5
+>>1 equivalent to divide by 2, we get 1111 is -1 which is rounded towards zero from -1.5
 
 1   1       11            0
-^   ^
-new copied  ^shifted      ^lost
-msb msb      bit pattern    bit
+^   ^       ^             ^
+new copied  shifted       lost
+msb msb     bit pattern   bit
 ```
 
 ### Negating a number tips
