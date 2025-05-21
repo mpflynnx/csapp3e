@@ -427,17 +427,23 @@ msb msb     bit pattern   bit
 
 ### Signed (Two's complement) Power of 2 Divide with shift (alternative)
 
-- We saw previously this expression, to divide integer x by k
+- We saw previously this expression, to divide signed integer x by k
 ```c
 (x<0 ? x+(1<<k)-1 : x) >> k;
 ```
 - We check if x is less than 0 i.e a negative number
 - If x is negative, calculate a bias then add it to x
-- else do not add a bias
-- then right shift by k
-- There is another way to do this without using the <, ?, + or : operators
-- WIP
+- else do not add a bias to x
+- then right shift x by k
 
+**Alternative**
+- There is another way to do this without using the <, ? or : operators
+- Integer types have width w=32 by default
+- Using right shift on x >> w-1, x>>32-1, x>>31. Will result in all 1's if x is negative, all 0's if positive
+- We then create mask using k, mask = 2^k - 1 or mask = (1<<k) - 1
+- Produce bias using, bias = (x>>31) & mask
+- bias will be 0 if x is positive
+- The result of the division is obtained using, (x + bias) >> k
 
 ### Tips for negating a binary representation of a integer
 - Complement and increment trick
