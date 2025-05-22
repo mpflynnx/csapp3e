@@ -14,11 +14,11 @@
 #### a.
 
 - Masking OxFF will return low order byte of word
-- bit level `x & 0xFF` yields a value consisting the least significant bit
+- bit level `x & 0xFF` yields a value consisting the least significant byte
 
 #### b.
 
 - Masking lsb from being complemented `x ^ ~ 0xFF`
 
 #### c.
-- `x | 0xFF` sets lsb to 1's leaving remaing bits unchanged
+- `x | 0xFF` sets least significant byte to all 1's leaving remaining bits unchanged

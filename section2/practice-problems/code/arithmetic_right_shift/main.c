@@ -1,6 +1,13 @@
 #include <stdio.h>
 #include <math.h> // for pow
 
+int divideByK(const int x, const int k){
+    int mask = (1<<k) - 1;
+    int bias = (x>>31) & mask;
+    int result = (x + bias) >> k;
+    return result;
+}
+
 int main() {
     // Integer division
     // Arithmetic right shift no bias, rounds away from zero
@@ -33,6 +40,10 @@ int main() {
     divideBy256 = (x + bias) >> k; // Real -48.203125, actual -48
 
     int check = (x<0 ? x+(1<<k)-1 : x) >> k; // C expression for negative numbers
+   
+    x =  -12340;
+    k = 4; // x>>k divides x by 2^k, x/16
+    check = divideByK(x,k);  // -771  
 
     return 0;
 }

@@ -14,10 +14,11 @@
 ### Solution
 
 - Integer types have width w=32 by default
-- Using right shift on x >> w-1, x>>32-1, x>>31. Will result in all 1's if x is negative, all 0's if positive
-- Logarithm base 2 of 16 is 4
-- We then create mask using k=4, mask = 2^k - 1 or mask = (1<<k) - 1
-- Produce bias using, bias = (x>>31) & mask
+- logarithm base 2 of 16 is 4, k=4
+- We then create mask using k, mask = 2^k - 1 or mask = (1<<4) - 1
+- mask is 15 decimal or 0xF hexadecimal
+- right shift on x >> w-1, x>>32-1, x>>31. Will result in all 1's if x is negative, all 0's if positive
+- produce bias using, (x>>31) & mask
 - bias will be 0 if x is positive
 - The result of the division is obtained using, (x + bias) >> k
 
