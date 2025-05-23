@@ -482,3 +482,107 @@ x = pow(2,8) // 256
 ```c
 x = 1<<8; // 256
 ```
+
+### Integer C Puzzles
+- Puzzles taken from [Video Lecture 03: Bits, Bytes, and Integers (cont.)](https://scs.hosted.panopto.com/Panopto/Pages/Viewer.aspx?id=526e6341-aa53-4107-8fa1-d13c0e92342e) section named `Integer C Puzzles`
+
+```c
+    int x = foo(); /* Arbitrary value */
+    int y = bar(); /* Arbitrary value */
+
+    unsigned ux = x;
+    unsigned uy = y;
+```
+
+#### a.
+- is x < 0 equivalent to ((x*2) < 0)
+- x < 0, checking for a negative
+- If x was negative then x*2 will always be negative? true or false?
+- false, try x as Tmin
+- Tmin = -2147483647-1
+- if x = Tmin then x is negative
+- 2*Tmin is -4294967296
+- This number to too big to fit in a 32bit signed integer
+- 2*Tmin is 0xFFFFFFFF00000000
+- x it will become zero as only the lower level bytes will fit.
+
+
+
+#### b.
+- ux >=0, true or false
+- true, ux is x casted to unsigned, will be 0 or greater
+
+#### c.
+- x & 7 == 7 equivalent to (x<<30) < 0
+- 7 is lower order bits as 111, i.e this bits set 2^2, 2^1, 2^0
+- x & 7 masks off 7 from x, so we just look at these 3 lower order bits
+- these bits all set to 1 is 7 decimal
+- x & 7 == 7 is true if these bits are all set to 1
+- (x<<30) shifts the last bits 2^1 and 2^0 to the msb and msb-1, means msb is 1 which represents negative in twos-complement, the 2^2 bit falls off the front.
+- (x<<30) < 0 is true if x's 2^1 bit set
+
+
+#### d.
+- ux > -1
+- Never true always false usigned int never negative
+#### e.
+- is x > y equivalent to -x < -y
+- false
+- what is the negative of Tmin?
+- Use complement and increment trick
+- You still get Tmin
+
+#### f.
+- x * x >= 0
+- false
+
+#### g.
+- x > 0 && y > 0 equivalent to x + y > 0
+- false
+
+#### h.
+- x >= 0 equivalent to -x <= 0
+- true
+
+#### h.
+- x <= 0 equivalent to -x >= 0
+- Asymmetry with signed numbers edge case
+- The answer is false, Tmin
+- The one negative number that cannot be represented as positive is Tmin
+
+#### j.
+- (x|-x)>>31 == -1
+- ORing two zero numbers is 0
+- Any nonzero number is true
+- subtract -1 from all 0's = -1
+- then OR them together
+
+#### k.
+- ux >> 3 == ux/8
+- unsigned division example
+- 2^3 = 8
+- true ux >> 3 == ux/8
+
+#### m.
+- x >> 3 == x/8
+- Two's-complement division
+- 2^3 = 8
+- True if x positive
+- False if x negative, need bias for negative, see below
+- logarithm base 2 of 8 is 3, k=3
+ We then create mask using k, mask = 2^k - 1 or mask = (1<<3) - 1
+- mask is 7 decimal
+- produce bias using, (x>>31) & mask
+- The result of the division is obtained using, (x + bias) >> k
+
+
+#### n.
+- x & (x-1) != 0
+- Tmin = -2147483647-1
+- TMax = 2147483647
+- if x = Tmin, msb will be 1 
+- x-1 will be TMax due to overflow
+- x & (x-1) masks off the value of x-1 from x
+- false if x = Tmin, as the result will be 0
+- true if x = Tmax
+
