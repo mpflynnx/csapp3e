@@ -1,12 +1,10 @@
 ## Miscellaneous notes
 
-lecture 2 video time 1:05:26
+## Table of Contents
+- [Number representation](#number-representation)
+- [Floating point numbers](#floating-point-numbers)
 
-- [gemini](https://gemini.google.com/app/9832d3245255217c)
-
-Book page 65
-
-### Figure 2.2
+### Number representation
 
 | Hex | Decimal | Binary |Power of 2 | Hints |
 |---|---|---|---|---|
@@ -66,10 +64,67 @@ equivalent to 2^15 -1
 
 ### Floating point numbers
 
-A sign bit is the most significant bit i.e 2^7, 2^15 or 2^31 it represents positive or negative 
-the remaining bits represent magnitude
+#### Prime numbers 0 to 255
+
+2, 3, 5, 7, 11, 13, 17, 19, 23, 29, 31, 37, 41, 43, 47, 53, 59, 61, 67, 71, 73, 79, 83, 89, 97, 101, 103, 107, 109, 113, 127, 131, 137, 139, 149, 151, 157, 163, 167, 173, 179, 181, 191, 193, 197, 199, 211, 223, 227, 229, 233, 239, 241, 251
+
+#### Fraction recap
+
+In fractions 1/4 + 1/8 + 1/16 = 7/16
+
+To solve this we first need to find a common denominator for all the fractions.
+
+The denominators are 4,8 and 16. 
+
+1. Find the prime factorization of each number. (Break each number down into a product of prime numbers).
+
+- 4 = 2 x 2 = 2^2
+- 8 = 2 x 2 x 2 = 2^3
+- 16 = 2 x 2 x 2 x 2 = 2^4
+
+2. For each prime factor, identify the highest power (the most times it appears) in any of the factorizations.
+
+- For prime factor 2. The highest power is 2^4 from 16
+
+3. Multiply these highest powers together to get the LCM.
+- LCM(4,8,16) = 2^4 = 16
+4. Now, we convert each fraction to an equivalent fraction with a denominator of 16:
+5. For 1/4: To change the denominator from 4 to 16, we multiply both the numerator and the denominator by 4:
+- 1/4 = 1 x 4 / 4 x 4 = 4 / 16
+6. For 1/8: To change the denominator from 8 to 16, we multiply both the numerator and the denominator by 2:
+- 1/8 = 1 x 2 / 8 x 2 = 2 / 16
+7. For 1/16: This fraction already has a denominator of 16, so it remains the same:
+- 1 / 16
+8. Now that all fractions have the same denominator, we can add their numerators:
+- 4/16 + 2/16 + 1/16 = 7/16 
+#### Fractional Binary Numbers examples
+
+
+|||||||||||||
+|---|---|---|---|---|---|---|---|---|---|---|---|
+|4|3|2|1|0|.|-1|-2|-3|-4| binary position
+|16|8 |4 |2 |1 |.|1/2|1/4|1/8|1/16|binary value
+|| |1 |0 |1 |.  | 1|1|||5 3/4|
+|| | >>|1 |0 |.  | 1|1|1||2 7/8| >> right shift divides by 2
+|| | ||1 |.  | 0|1|1|1|1 7/16|
+||||||^|
+|<|-|-|-|^2|binary point|-^2|-|-|>
+
+- shifting right (unsigned) divides by 2 - hence how 101.11 shifted right by 1 is 10.111
+- `5 3/4` divided by 2 is `2 7/8` 
+- Shifting left multiplies by 2
+- hence how 10.111 shift left by 1 is 101.11
+- `2 7/8` multiplied by 2 is `5 3/4`
+
+#### Limitations
+- Can only exactly represent numbers of the form x/2^k
+- Other values are only approximated with increasing accuracy by lengthening the binary representation
+- Can have very large number with less accuracy or very small number with more accuracy, by moving the binary point as required
 
 ### Two's complement (Section 2.2.3)
+
+A sign bit is the most significant bit i.e 2^7, 2^15 or 2^31 it represents positive or negative 
+the remaining bits represent magnitude
 
 Take the +15 number bit pattern 
 

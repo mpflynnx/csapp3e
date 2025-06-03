@@ -12,8 +12,12 @@
     - Visual Studio Code version 1.99.3
 
 ### Related resources
+- [My Miscellaneous notes](misc.md#miscellaneous-notes)
+- [Video Lectures: 2015 Fall 15-213 Introduction to Computer Systems](https://scs.hosted.panopto.com/Panopto/Pages/Sessions/List.aspx#folderID=%22b96d90ae-9871-4fae-91e2-b1627b43e25e%22)
 - [Video Lecture 02: Bits, Bytes, and Integers](https://scs.hosted.panopto.com/Panopto/Pages/Viewer.aspx?id=6ca8cdb4-6961-42d9-8fac-299e53759a17)
 - [Video Lecture 03: Bits, Bytes, and Integers (cont.)](https://scs.hosted.panopto.com/Panopto/Pages/Viewer.aspx?id=526e6341-aa53-4107-8fa1-d13c0e92342e)
+- [Video Lecture 04: Floating Point](https://scs.hosted.panopto.com/Panopto/Pages/Viewer.aspx?id=8dd08ed5-7688-4b34-937f-201b909f61c7)
+
 - [Section2 Errata (Hardback Edition)](./errata.txt)
 - [Hexadecimal to Decimal converter](https://www.rapidtables.com/convert/number/hex-to-decimal.html)
 - [Learning to Bit Twiddle and Optimize](https://wiredream.com/learning-to-bit-twiddle/)
