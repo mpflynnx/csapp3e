@@ -33,39 +33,58 @@ Good edge cases to test for
 - TMax = 2147483647
 
 #### a.
-- (x > 0) || (x-1 < 0)
+- `(x > 0) || (x-1 < 0)`
 -  OR ( || ) operator, if the first operand is true , then the second operator is not evaluated
-- x > 0, i.e is x positive
-- x-1 < 0, i.e is x-1 negative
+- `x > 0`, i.e is x positive
+- `x-1 < 0`, i.e is x-1 negative
 - if x = Tmin, neither case is ever true
-- (x > 0) is false
+- `(x > 0)` is false
 - Tmin-1 = 2147483647 
-- (x-1 < 0) is false
+- `(x-1 < 0)` is false
 
 #### b.
-- (x & 7) != 7 || (x<<29 < 0)
+- `(x & 7) != 7 || (x<<29 < 0)`
 - 7 is lower order bits as 111, i.e this bits set 2^2, 2^1, 2^0
-- x & 7 masks off 7 from x, so we just look at these 3 lower order bits
+- `x & 7` masks off 7 from x, so we just look at these 3 lower order bits
 - these bits all set to 1 is 7 decimal
-- (x & 7) != 7  is false if all these bits are set to 1
+- `(x & 7) != 7`  is false if all these bits are set to 1
 -  OR ( || ) operator, if the first operand is true , then the second operator is not evaluated
-- (x<<29) shifts the last three bits 2^2, 2^1 and 2^0 to the msb, msb-1, msb-2, means msb is 1 which represents negative in twos-complement
-- (x<<29) < 0 is true if x's 2^2 bit is set
+- `(x<<29)` shifts the last three bits 2^2, 2^1 and 2^0 to the msb, msb-1, msb-2, means msb is 1 which represents negative in twos-complement
+- `(x<<29)` < 0 is true if x's 2^2 bit is set
 
 #### c.
-- (x * x) >= 0
+- `(x * x) >= 0`
 - Does doubling a number always result in 0 or a positive number?
 - True, If the number is positive and the result doesn't set the signed bit (msb) to 1.
-- if x = 65535, False as x*x will result in a number with the signed bit set as this is a negative number.
+- if x = 65535, False as `x*x` will result in a number with the signed bit set as this is a negative number.
 
 #### d.
 
-- x < 0 || -x <= 0
-- x < 0, is true if x negative
-- -x <= 0, is true is -x negative or 0
+- `x < 0 || -x <= 0`
+- `x < 0`, is true if x negative
+- `-x <= 0`, is true is -x negative or 0
 - True, tested with x as Tmin and x as TMax
 
 #### e.
-- x > 0 || -x >= 0
+- `x > 0 || -x >= 0`
+- OR ( || ) operator, if the first operand is true , then the second operator is not evaluated
+- set x to TMax = 2147483647
+- `x > 0` is true if x is not 0 and positive
+- `-x >= 0` is false if -x is negative
+- set x to TMin = -2147483647-1
+- `-x >= 0` is false if x is TMin due to overflow 2147483648 is greater than TMax 2147483647
+- -TMin is still Tmin due to overflow
+- `-x >= 0` is true if x is 0 or anything but TMin
+
 #### f.
+- `x+y == uy+ux`
+- At bit level true the bits are the same for either signed or unsigned integers
+
 #### g.
+- `x*~y + uy*ux == -x`
+- At bit level true the bits are the same for either signed or unsigned integers
+- True, due to overflow, multiplication of large unsigned integers `uy*ux` can result in a large number close to UMax
+- say, x set to -4 and is cast to ux and becomes 4294967292
+- y would have to be 0 or 1 to prevent overflow of `uy*ux`
+- At bit level `~y` is the same as `-y - 1`
+- At bit level `uy * ux` is the same as `x * y`
