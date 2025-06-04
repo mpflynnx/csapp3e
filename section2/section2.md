@@ -67,6 +67,7 @@
 - [Practice Problems 2.40 | Multiplication by Constants](./practice-problems/problem2-40.md)
 - [Practice Problems 2.42 | Dividing by Powers of 2](./practice-problems/problem2-42.md)
 - [Practice Problems 2.44 | Integer Arithmetic summary | "C puzzle" problems](./practice-problems/problem2-44.md)
+- [Practice Problems 2.45 | Floating Point | Fractional Binary Numbers](./practice-problems/problem2-45.md)
 
 ### Chapter 2 Web Asides TOC
 - [Chapter2: Web Asides | Bit-level representation of two's complement negation](./webasides/data_tneg.md)
