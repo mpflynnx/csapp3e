@@ -78,35 +78,35 @@ The denominators are 4,8 and 16.
 
 1. Find the prime factorization of each number. (Break each number down into a product of prime numbers).
 
-- 4 = 2 x 2 = 2^2
-- 8 = 2 x 2 x 2 = 2^3
-- 16 = 2 x 2 x 2 x 2 = 2^4
+    - 4 = 2 x 2 = 2^2
+    - 8 = 2 x 2 x 2 = 2^3
+    - 16 = 2 x 2 x 2 x 2 = 2^4
 
 2. For each prime factor, identify the highest power (the most times it appears) in any of the factorizations.
 
-- For prime factor 2. The highest power is 2^4 from 16
+    - For prime factor 2. The highest power is 2^4 from 16
 
 3. Multiply these highest powers together to get the LCM.
-- LCM(4,8,16) = 2^4 = 16
+    - LCM(4,8,16) = 2^4 = 16
 4. Now, we convert each fraction to an equivalent fraction with a denominator of 16:
 5. For 1/4: To change the denominator from 4 to 16, we multiply both the numerator and the denominator by 4:
-- 1/4 = 1 x 4 / 4 x 4 = 4 / 16
+    - 1/4 = 1 x 4 / 4 x 4 = 4 / 16
 6. For 1/8: To change the denominator from 8 to 16, we multiply both the numerator and the denominator by 2:
-- 1/8 = 1 x 2 / 8 x 2 = 2 / 16
+    - 1/8 = 1 x 2 / 8 x 2 = 2 / 16
 7. For 1/16: This fraction already has a denominator of 16, so it remains the same:
-- 1 / 16
+    - 1 / 16
 8. Now that all fractions have the same denominator, we can add their numerators:
-- 4/16 + 2/16 + 1/16 = 7/16 
+    - 4/16 + 2/16 + 1/16 = 7/16 
 #### Fractional Binary Numbers examples
 
 
 |||||||||||||
 |---|---|---|---|---|---|---|---|---|---|---|---|
 |4|3|2|1|0|.|-1|-2|-3|-4| binary position
-|16|8 |4 |2 |1 |.|1/2|1/4|1/8|1/16|binary value
+|2^4 (16)|2^3 (8) |2^2 (4) |2^1 (2) |2^0 (1) |.|2^-1 (1/2)|2^-2 (1/4)|2^-3 (1/8)|2^-4 (1/16)|binary value
 || |1 |0 |1 |.  | 1|1|||5 3/4|
 || | >>|1 |0 |.  | 1|1|1||2 7/8| >> right shift divides by 2
-|| | ||1 |.  | 0|1|1|1|1 7/16|
+|| | |>>|1 |.  | 0|1|1|1|1 7/16| >> right shift divides by 2
 ||||||^|
 |<|-|-|-|^2|binary point|-^2|-|-|>
 
@@ -115,11 +115,130 @@ The denominators are 4,8 and 16.
 - Shifting left multiplies by 2
 - hence how 10.111 shift left by 1 is 101.11
 - `2 7/8` multiplied by 2 is `5 3/4`
+- Notation of numbers to the right of binary point is: 1.0-epsilon
 
 #### Limitations
 - Can only exactly represent numbers of the form x/2^k
 - Other values are only approximated with increasing accuracy by lengthening the binary representation
 - Can have very large number with less accuracy or very small number with more accuracy, by moving the binary point as required
+
+
+
+
+#### Floating point representation
+- Numerical Form: (-1)^s * M * 2^E
+    - Sign bit `s` determines positive or negative
+    - Significand `M` (mantissa) normally fractional value in range [1.0 - 2.0]
+    - Exponent `E` weights value by power of 2
+- Encoding 32bit or 64bit
+    - MSB S is sign bit `s`
+    - exp field encodes E (but is not equal to E)
+    - frac field encodes `M` (but is not equal to M)
+
+    |s|exp|frac
+    |--|--|--|
+    |-|-------|----------------|
+
+#### IEEE Floating Point
+- Single precision: 32 bits
+
+    |s|exp|frac
+    |--|--|--|
+    |1-bit|--8-bits|------23-bits----------|
+
+- Double precision: 64 bits
+
+    |s|exp|frac
+    |--|--|--|
+    |1-bit|--11-bits|------52-bits----------|
+
+- Non standard Extended precision: 80 bits (Intel only)
+
+    |s|exp|frac
+    |--|--|--|
+    |1-bit|--15-bits|------63 or 64-bits----------|
+
+
+#### Normalized Values (most common)
+- Occurs when: exp field not equal to all `0's` and not equal to all `1's` (these are special)
+- Exponent value coded as a biased value: Exp = e - Bias
+    - e: unsigned value of exp field ek-1 to e0 or 7 to 0
+    - Bias: 2^(k-1) - 1, where k is number of exponent bits
+    - Single precision k=8 bias: 127 (Exp: 1..254, e: -126..127)
+    - Double precision k=11 bias: 1023 (Exp: 1..2046, e: -1022..1023)
+
+- Significand always Normalize M with leading 1: M = 1.xxx binary representation (not encoded)
+    - xxx...x: bits of frac field
+    - Minimum when frac all `0's` = 000...0 (M = 1.0)
+    - Maximum when frac all `1's` = 111...1 (M = 2.0 - epsilon)
+    - Leading M not encoded and we get an extra leading bit for "free"
+
+#### Normalized Values Encoding example
+```c
+1	#include <stdio.h>
+2	
+3	int main() {
+4	
+        int i = 15213;
+5	    float f = 15213.0;
+
+6	    return 0;
+7	}
+
+```
+- Value: float f = 15213.0; // Single precision
+- s field: 
+    - 15213.0 is positive so signed bit is `0`
+    - s field is `0`
+- exp field:
+    - 15213 in binary is 11101101101101
+    - Normalize number, express the binary number in the form of 1.xxxxxx * 2^exponent.
+    - shift the binary point until it is immediately after the leading '1'. 
+    - The number of positions the binary point is shifted determines the exponent.
+    - 13 shifts were needed here
+    - 1.1101101101101 x 2^13
+    - The exponent is 13.
+
+- frac field:
+    - The mantissa is the fractional part after the leading 1.
+    - 1.1101101101101
+    - Mantissa M = 1101101101101
+    - Since the mantissa needs to be 23 bits, we pad it with trailing zeros:
+    - frac field = 11011011011010000000000 // 23 bits
+
+- Exponent
+    - The exponent 13 needs to be biased by 127 (for single precision).
+    - Biased exponent = 13 + 127 = 140
+    - Now, convert 140 to an 8-bit binary number:
+    - Exp (value of exp field bits) = 10001100 is 140
+    - check formula, E = Exp - bias = 140 - 127 = 13
+
+
+- Result
+    - Assemble the s, exp and frac fields
+
+    |s|exp|frac
+    |--|--|--|
+    |0|10001100|11011011011010000000000|
+
+```bash
+(gdb) x /t &f
+0x7fffffffdebc:	01000110011011011011010000000000
+```
+
+##### Recap
+
+Exponent can be confusing.
+- Exp ranges, Exp is encoding not a interpreted value
+- Exp is e - bias
+- 0 is the smallest Exp 00000000
+- 2^8-1 is the largest Exp 255 or 01111111
+
+e is the value to encode
+- Range of value for e is
+    - e min = Exp min - e = 0 - 127 = -127 or 2^e-127
+    - e max Exp max - e = 255 - 127 = 128 or 2^128
+    - E middle is 0
 
 ### Two's complement (Section 2.2.3)
 
