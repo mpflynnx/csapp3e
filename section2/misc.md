@@ -173,6 +173,8 @@ The denominators are 4,8 and 16.
     - Maximum when frac all `1's` = 111...1 (M = 2.0 - epsilon)
     - Leading M not encoded and we get an extra leading bit for "free"
 
+- Limitations: When the number is closer to 0 the implied leading 1 used, limits us. Then we use `Denormalized Values`
+
 #### Normalized Values Encoding example
 ```c
 1	#include <stdio.h>
@@ -240,6 +242,48 @@ e is the value to encode
     - e max Exp max - e = 255 - 127 = 128 or 2^128
     - E middle is 0
 
+#### Denormalized Values (when number 0 or closer to 0)
+- Condition: exp = 000...0
+- No implied 1, but implied 0
+
+- Exponent value coded as a biased value: Exp = 1 - Bias
+ 
+- Significand M with implied leading 0: M = 0.xxx binary representation (not encoded)
+    - xxx...x: bits of frac field
+    - Minimum when frac all `0's` = 000...0
+
+- As signed bit may be 1 or 0 then values could be +0 and -0
+
+- Condition: exp = 111...1
+    - Case: exp = 111...1, frac = 000...0
+        - Represents value infinity
+        - Operation that overflows
+        - Both positive and negative
+        - E.g. 1.0/0.0 = -1.0/-0.0 = +infinity, 1.0/-0.0 = -infinity
+
+    - Case: exp = 111...1, frac not equal to 000...0
+        - Not-a-NUmber (NaN)
+        - Represents case when noo numeric value can be determined
+        - E.g. sqrt(-1), infinity - infinity, infinity x 0
+
+#### 8-bit Floating Point Representation example
+- As with Two's complement use small bit pattern widths to see what happens at extremes.
+
+    |s|exp|frac
+    |--|--|--|
+    |0|4bits|3bits|
+
+- 8-bit Floating Point Representation
+    - sign bit is in most significant bit
+    - the next 4 bits are the exponent, - bias is 2^(4-1) - 1 = 7
+    - the last 3 bits are the frac
+    - Same general form as IEEE Format
+    - normalized, denormalized
+    - representation of 0, NaN, infinity
+
+
+
+ 
 ### Two's complement (Section 2.2.3)
 
 A sign bit is the most significant bit i.e 2^7, 2^15 or 2^31 it represents positive or negative 
