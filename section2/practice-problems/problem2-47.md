@@ -60,24 +60,47 @@ b.|0 |0 |0 |.  | 0|1|d: 1 - Bias
 ||Sign Bit|2^1 (2) |2^0 (1) |.|2^-1 (1/2)|2^-2 (1/4)|binary value
 [d.](#d)|0 |0 |0 |.  | 1|1|d: 1 - Bias
 
-- Find f : The value of the fraction
+If exponent all zeros. Use denormalized form d: 1 - Bias
 
-- Fraction recap
-
-- 1/2 + 1/4 = 3/4
-
-1. Find the prime factorization of each number. (Break each number down into a product of prime numbers).
+1. e = 2^0 = 1
+2. Calculate E for denormalized values:
+    - k = 2
+    - Bias = 2^(k-1) - 1 
+    - 2^(2-1) = 2^1 = 2
+    - 2 - 1 = 1
+    - bias is 1.
+    - E = 1 - bias = 1 - 1 = 0
+3. Calculate 2^E:
+    - E = 0
+    - 2^0 = 1
+    - 2^E = 1
+4. Calculate f:
+    - Find the prime factorization of each number. (Break each number down into a product of prime numbers).
     - 2 = 2^1
     - 4 = 2 x 2 = 2^2
     - The only prime factor is 2
-
-2. For each prime factor, identify the highest power (the most times it appears) in any of the factorizations.
+    - For each prime factor, identify the highest power (the most times it appears) in any of the factorizations.
     - The highest is 2^2 = 4 this is the common denominator
-3. For 1/2: To change the denominator from 2 to 4, we multiply both the numerator and the denominator by 2:
+    - For 1/2: To change the denominator from 2 to 4, we multiply both the numerator and the denominator by 2:
     - 1/2 = 1 x 2 / 2 x 2 = 2 / 4
-4. Now that all fractions have the same denominator, we can add their numerators:
+    - Now that all fractions have the same denominator, we can add their numerators:
     - 2/4 + 1/4  = 3/4
     - Therefore: 1/2 + 1/4 = 3/4
+5. Calculate M for denormalized Values:
+    - M = f
+    - fractional part f is 3/4
+    - M = 3/4
+6. Calculate 2^E x M:
+    - 2^E x M = 2^0 x 3/4
+    - E = 0
+    - M = 3/4
+    - 2^0 = 1
+    - 1 x 3/4 = 3/4
+    - 2^E x M = 3/4
+7. Calculate V
+    - V = 3/4
+8. Calculate Decimal
+    - 3/4 to floating point number is 0.75
 
 ##### e.
 
@@ -92,10 +115,12 @@ b.|0 |0 |0 |.  | 0|1|d: 1 - Bias
 ||Sign Bit|2^1 (2) |2^0 (1) |.|2^-1 (1/2)|2^-2 (1/4)|binary value
 [e.](#d)|0 |0 |1 |.  | 0|0|n: e - Bias
 
+If exponent not all 0's or all 1's. Use normalized form n: e - Bias
+
 1. e = 2^0 = 1
-2. Calculate E:
+2. Calculate E normalized values:
     - k = 2
-    - Normalized bias = 2^(k-1) - 1 
+    - Bias = 2^(k-1) - 1 
     - 2^(2-1) = 2^1 = 2
     - 2 - 1 = 1
     - bias is 1.
@@ -134,11 +159,18 @@ b.|0 |0 |0 |.  | 0|1|d: 1 - Bias
 |---     |---    |-|---  |---   |---|---|---      |---|---
 |[f.](#f)|0 01 01|-|-|-|-|-|-|-|-
 
+**Binary bit pattern**
+||||||||||||
+|-|---|---|---|---|---|---|---|---|---|---|
+||2|1|0|.|-1|-2|binary position
+||Sign Bit|2^1 (2) |2^0 (1) |.|2^-1 (1/2)|2^-2 (1/4)|binary value
+[f.](#f)|0 |0 |1 |.  | 0|1|n: e - Bias
 
+If exponent not all 0's or all 1's. Use normalized form n: e - Bias
 1. e = 2^0 = 1
 2. Calculate E:
     - k = 2
-    - Normalized bias = 2^(k-1) - 1 
+    - Bias = 2^(k-1) - 1 
     - 2^(2-1) = 2^1 = 2
     - 2 - 1 = 1
     - bias is 1.
@@ -182,11 +214,20 @@ b.|0 |0 |0 |.  | 0|1|d: 1 - Bias
 |---     |---    |-|---  |---   |---|---|---      |---|---
 |[g.](#g)|0 01 10|-|-|-|-|-|-|-|-
 
+**Binary bit pattern**
+||||||||||||
+|-|---|---|---|---|---|---|---|---|---|---|
+||2|1|0|.|-1|-2|binary position
+||Sign Bit|2^1 (2) |2^0 (1) |.|2^-1 (1/2)|2^-2 (1/4)|binary value
+[g.](#g)|0 |0 |1 |.  | 1|0|n: e - Bias
+
+If exponent not all 0's or all 1's. Use normalized form n: e - Bias
+
 1. Calculate e:
     - e = 2^0 = 1
 2. Calculate E:
     - k = 2
-    - Normalized bias = 2^(k-1) - 1 
+    - Bias = 2^(k-1) - 1 
     - 2^(2-1) = 2^1 = 2
     - 2 - 1 = 1
     - bias is 1.
@@ -244,12 +285,12 @@ b.|0 |0 |0 |.  | 0|1|d: 1 - Bias
 ||Sign Bit|2^1 (2) |2^0 (1) |.|2^-1 (1/2)|2^-2 (1/4)|binary value
 [h.](#h)|0 |0 |1 |.  | 1|1|n: e - Bias
 
-
+If exponent not all 0's or all 1's. Use normalized form n: e - Bias
 1. Calculate e:
     - e = 2^0 = 1
 2. Calculate E:
     - k = 2
-    - Normalized bias = 2^(k-1) - 1 
+    - Bias = 2^(k-1) - 1 
     - 2^(2-1) = 2^1 = 2
     - 2 - 1 = 1
     - bias is 1.
@@ -307,12 +348,12 @@ b.|0 |0 |0 |.  | 0|1|d: 1 - Bias
 ||Sign Bit|2^1 (2) |2^0 (1) |.|2^-1 (1/2)|2^-2 (1/4)|binary value
 [j.](#j)|0 |1 |0 |.  | 0|0|n: e - Bias
 
-
+If exponent not all 0's or all 1's. Use normalized form n: e - Bias
 1. Calculate e:
     - e = 2^1 = 2
 2. Calculate E:
     - k = 2
-    - Normalized bias = 2^(k-1) - 1 
+    - Bias = 2^(k-1) - 1 
     - 2^(2-1) = 2^1 = 2
     - 2 - 1 = 1
     - bias is 1.
@@ -358,11 +399,13 @@ b.|0 |0 |0 |.  | 0|1|d: 1 - Bias
 ||Sign Bit|2^1 (2) |2^0 (1) |.|2^-1 (1/2)|2^-2 (1/4)|binary value
 [k.](#k)|0 |1 |0 |.  | 0|1|n: e - Bias
 
+If exponent not all 0's or all 1's. Use normalized form n: e - Bias
+
 1. Calculate e:
     - e = 2^1 = 2
 2. Calculate E:
     - k = 2
-    - Normalized bias = 2^(k-1) - 1 
+    - Bias = 2^(k-1) - 1 
     - 2^(2-1) = 2^1 = 2
     - 2 - 1 = 1
     - bias is 1.
@@ -414,11 +457,13 @@ b.|0 |0 |0 |.  | 0|1|d: 1 - Bias
 ||Sign Bit|2^1 (2) |2^0 (1) |.|2^-1 (1/2)|2^-2 (1/4)|binary value
 [l.](#l)|0 |1 |0 |.  | 1|0|n: e - Bias
 
+If exponent not all 0's or all 1's. Use normalized form n: e - Bias
+
 1. Calculate e:
     - e = 2^1 = 2
 2. Calculate E:
     - k = 2
-    - Normalized bias = 2^(k-1) - 1 
+    - Bias = 2^(k-1) - 1 
     - 2^(2-1) = 2^1 = 2
     - 2 - 1 = 1
     - bias is 1.
@@ -472,11 +517,13 @@ b.|0 |0 |0 |.  | 0|1|d: 1 - Bias
 ||Sign Bit|2^1 (2) |2^0 (1) |.|2^-1 (1/2)|2^-2 (1/4)|binary value
 [m.](#m)|0 |1 |0 |.  | 1|1|n: e - Bias
 
+If exponent not all 0's or all 1's. Use normalized form n: e - Bias
+
 1. Calculate e:
     - e = 2^1 = 2
 2. Calculate E:
     - k = 2
-    - Normalized bias = 2^(k-1) - 1 
+    - Bias = 2^(k-1) - 1 
     - 2^(2-1) = 2^1 = 2
     - 2 - 1 = 1
     - bias is 1.
@@ -533,7 +580,7 @@ b.|0 |0 |0 |.  | 0|1|d: 1 - Bias
 ||2|1|0|.|-1|-2|binary position||||
 |-|---|---|---|---|---|---|---|---|---|---|
 ||Sign Bit|2^1 (2) |2^0 (1) |.|2^-1 (1/2)|2^-2 (1/4)|binary value
-[n.](#n)|0 |1 |1 |.  | 0|0| Exponent field all 1's (special Value)
+[n.](#n)|0 |1 |1 |.  | 0|0| +Infinity
 
 - The sign bit is 0, exponent field all 1's and fraction field is all 0's this results in positive infinity. Infinity represents overflow.
 - If sign bit is 1, exponent field all 1's and fraction field is all 0's this results in negative infinity. Infinity represents overflow.
@@ -550,8 +597,8 @@ b.|0 |0 |0 |.  | 0|1|d: 1 - Bias
 ||2|1|0|.|-1|-2|binary position||||
 |-|---|---|---|---|---|---|---|---|---|---|
 ||Sign Bit|2^1 (2) |2^0 (1) |.|2^-1 (1/2)|2^-2 (1/4)|binary value
-[p.](#p)|0 |1 |1 |.  | 0|1| Exponent field all 1's (special Value)
-||0 |1 |1 |.  | 1|0| Exponent field all 1's (special Value)
-||0 |1 |1 |.  | 1|1| Exponent field all 1's (special Value)
+[p.](#p)|0 |1 |1 |.  | 0|1| NaN
+||0 |1 |1 |.  | 1|0| NaN
+||0 |1 |1 |.  | 1|1| NaN
 
 - When exponent field all 1's and fraction field is non zero, this results in NaN or Not a Number.
