@@ -3,6 +3,7 @@
 ## Table of Contents
 - [Number representation](#number-representation)
 - [Floating point numbers](#floating-point-numbers)
+- [Floating Point Rounding](#rounding)
 
 ### Number representation
 
@@ -124,9 +125,6 @@ The denominators are 4,8 and 16.
 - Can only exactly represent numbers of the form x/2^k
 - Other values are only approximated with increasing accuracy by lengthening the binary representation
 - Can have very large number with less accuracy or very small number with more accuracy, by moving the binary point as required
-
-
-
 
 #### Floating point representation
 - Numerical Form: (-1)^s * M * 2^E
@@ -285,7 +283,7 @@ e is the value to encode
     - representation of 0, NaN, infinity
 
 
-#### Rounding
+### Rounding
 
 - With floating point arithmetic we can only approximate the real arithmetic
 - We need to have a method of finding the closest matching value to the real result
@@ -297,7 +295,7 @@ e is the value to encode
 - The least significant bit (lsb) is considered to be even or odd.
 
 
-##### Round-to-even decimal examples
+#### Round-to-even decimal examples
 -  Rounding to the nearest hundredth
 - 1.2349999 to 1.23: Same for all modes
 - 1.2350001 to 1.24: Same for all modes
@@ -306,14 +304,11 @@ e is the value to encode
 - 7.8950000 to 7.90 (lsb is 0 even)
 - 7.8850000 to 7.88 (lsb is 8 even)
 
-##### Round-to-even binary numbers example
+#### Round-to-even binary numbers example
 - Even when when lsb is 0
 - Half way is when bits to the right of rounding position is 1 followed by all 0's
 - Assume we can only use 4-bits to represent a 7-bit real number
 - Round to nearest 1/4 (2bit right of binary point)
-
-
-
 
 ##### a.
 
@@ -366,7 +361,7 @@ e is the value to encode
 |---|---|---|---|---|---|
 |[c.](#c)|2 7/8|10.11**100**|11.00| see below| 3
 
-- 100 is exactly half way but it is preceded by a 1 which is odd. So round to nearest even number by adding 1 to 10 which is 11.
+- 100 is exactly half way but it is preceded by a 1 which is odd. So round up to nearest even number by adding 1 to exponent bit pattern 10 which results in bit pattern 11 or 3 decimal.
 
 ##### d.
 
