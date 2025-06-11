@@ -395,6 +395,11 @@ b.|0 |1 |0 |.  | 0|1|
 c.|0 |1 |0 |.  | 1|1|
 d.|0|1|0|.|1|0
 
+- It is important to recognise the half way marker, and then determine whether there is a need to round up or round down.
+- Round down by truncating
+- Round up by adding a 1 and propagate it 
+
+
 ### Two's complement (Section 2.2.3)
 
 A sign bit is the most significant bit i.e 2^7, 2^15 or 2^31 it represents positive or negative 
