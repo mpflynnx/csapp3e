@@ -17,7 +17,7 @@
 - [Video Lecture 02: Bits, Bytes, and Integers](https://scs.hosted.panopto.com/Panopto/Pages/Viewer.aspx?id=6ca8cdb4-6961-42d9-8fac-299e53759a17)
 - [Video Lecture 03: Bits, Bytes, and Integers (cont.)](https://scs.hosted.panopto.com/Panopto/Pages/Viewer.aspx?id=526e6341-aa53-4107-8fa1-d13c0e92342e)
 - [Video Lecture 04: Floating Point](https://scs.hosted.panopto.com/Panopto/Pages/Viewer.aspx?id=8dd08ed5-7688-4b34-937f-201b909f61c7)
-
+- [website | float.exposed](https://float.exposed/0x44bf9400)
 - [Section2 Errata (Hardback Edition)](./errata.txt)
 - [Hexadecimal to Decimal converter](https://www.rapidtables.com/convert/number/hex-to-decimal.html)
 - [Learning to Bit Twiddle and Optimize](https://wiredream.com/learning-to-bit-twiddle/)
@@ -68,6 +68,8 @@
 - [Practice Problems 2.42 | Dividing by Powers of 2](./practice-problems/problem2-42.md)
 - [Practice Problems 2.44 | Integer Arithmetic summary | "C puzzle" problems](./practice-problems/problem2-44.md)
 - [Practice Problems 2.45 | Floating Point | Fractional Binary Numbers](./practice-problems/problem2-45.md)
+- [Practice Problems 2.47 | Floating Point | Fractional Binary Numbers](./practice-problems/problem2-47.md)
+- [Practice Problems 2.48 | Floating Point | Fractional Binary Numbers](./practice-problems/problem2-48.md)
 
 ### Chapter 2 Web Asides TOC
 - [Chapter2: Web Asides | Bit-level representation of two's complement negation](./webasides/data_tneg.md)

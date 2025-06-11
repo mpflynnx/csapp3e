@@ -64,6 +64,9 @@ equivalent to 2^15 -1
 
 ### Floating point numbers
 
+Resources
+- [float.exposed](https://float.exposed/0x44bf9400)
+
 #### Prime numbers 0 to 255
 
 2, 3, 5, 7, 11, 13, 17, 19, 23, 29, 31, 37, 41, 43, 47, 53, 59, 61, 67, 71, 73, 79, 83, 89, 97, 101, 103, 107, 109, 113, 127, 131, 137, 139, 149, 151, 157, 163, 167, 173, 179, 181, 191, 193, 197, 199, 211, 223, 227, 229, 233, 239, 241, 251
@@ -282,8 +285,48 @@ e is the value to encode
     - representation of 0, NaN, infinity
 
 
+#### Rounding
 
- 
+- With floating point arithmetic we can only approximate the real arithmetic
+- We need to have a method of finding the closest matching value to the real result
+- IEEE defines four rounding modes
+- Round-to-even (a.k.a round to nearest) is the default mode
+- Other modes available by using assembly language instructions only.
+- Round-to-even avoids statistical bias in most real-life situations
+- It will round upward 50% of the time and round downward about 50% of the time
+- The least significant bit (lsb) is considered to be even or odd.
+
+##### Round-to-even decimal example
+-  Rounding to the nearest hundredth
+- 1.2349999 to 1.23: Same for all modes
+- 1.2350001 to 1.24: Same for all modes
+- 1.2350000 to 1.24: Round odd 5 lsb down to a even lsb of 4
+- 1.2450000 to 1.24: Round odd 5 lsb down to even lsb of 4
+- 7.8950000 to 7.90 (lsb is 0 even)
+- 7.8850000 to 7.88 (lsb is 8 even)
+
+##### Round-to-even binary numbers example
+- Even when lsb is 0
+- Half way is when bits to the right of rounding position is 1 followed by all 0's
+- Assume we can only use 4-bits to represent a 7-bit real number
+
+||Fractional value|Binary representation|Rounded| Action | Rounded Value 
+|---|---|---|---|---|---|
+|[a.](#a)|2 3/32|10.00011|10.00|(<1/2-down>)|2
+|[b.](#b)|3/4|?|?
+|[c.](#c)|25/16|?|?
+|[d.](#d)|?|10.1011|?
+
+**Binary bit pattern**
+||||||||||||
+|-|---|---|---|---|---|---|---|---|---|---|
+||2|1|0|.|-1|-2|binary position
+||Sign Bit|2^1 (2) |2^0 (1) |.|2^-1 (1/2)|2^-2 (1/4)|binary value
+a.|0 |1 |0 |.  | 0|0|
+b.|0 |0 |0 |.  | 0|1|
+[c.](#c)|0 |0 |0 |.  | 1|0|
+
+
 ### Two's complement (Section 2.2.3)
 
 A sign bit is the most significant bit i.e 2^7, 2^15 or 2^31 it represents positive or negative 
