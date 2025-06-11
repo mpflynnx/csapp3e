@@ -296,7 +296,8 @@ e is the value to encode
 - It will round upward 50% of the time and round downward about 50% of the time
 - The least significant bit (lsb) is considered to be even or odd.
 
-##### Round-to-even decimal example
+
+##### Round-to-even decimal examples
 -  Rounding to the nearest hundredth
 - 1.2349999 to 1.23: Same for all modes
 - 1.2350001 to 1.24: Same for all modes
@@ -306,16 +307,83 @@ e is the value to encode
 - 7.8850000 to 7.88 (lsb is 8 even)
 
 ##### Round-to-even binary numbers example
-- Even when lsb is 0
+- Even when when lsb is 0
 - Half way is when bits to the right of rounding position is 1 followed by all 0's
 - Assume we can only use 4-bits to represent a 7-bit real number
+- Round to nearest 1/4 (2bit right of binary point)
+
+
+
+
+##### a.
+
+**Binary bit pattern**
+||||||||||||
+|---|---|---|---|---|---|---|---|---|---|---|
+|s|1|0|.|-1|-2|-3|-4|-5|binary position
+||2^1 (2) |2^0 (1) |.|2^-1 (1/2)|2^-2 (1/4)|2^-3 (1/8)|2^-4 (1/16)|2^-5 (1/32)|binary value
+|0|1 |0 |.  | 0|0|0|1|1||
+||^ |^ |.  | ^|^|Round to 4bits
+||  |  |   | |^ lsb rounding position
 
 ||Fractional value|Binary representation|Rounded| Action | Rounded Value 
 |---|---|---|---|---|---|
-|[a.](#a)|2 3/32|10.00011|10.00|(<1/2-down>)|2
-|[b.](#b)|3/4|?|?
-|[c.](#c)|25/16|?|?
-|[d.](#d)|?|10.1011|?
+|[a.](#a)|2 3/32|10.00**011**|10.00|see below |2
+
+
+- 011 is less than half way so round down by truncating
+
+##### b.
+
+**Binary bit pattern**
+||||||||||||
+|---|---|---|---|---|---|---|---|---|---|---|
+|s|1|0|.|-1|-2|-3|-4|-5|binary position
+||2^1 (2) |2^0 (1) |.|2^-1 (1/2)|2^-2 (1/4)|2^-3 (1/8)|2^-4 (1/16)|2^-5 (1/32)|binary value
+|0|1 |0 |.  | 0|0|1|1|0||
+||^ |^ |.  | ^|^|Round to 4bits
+||  |  |   | |^ lsb rounding position
+
+
+||Fractional value|Binary representation|Rounded| Action | Rounded Value 
+|---|---|---|---|---|---|
+|[b.](#b)|2 3/16|10.00**110**|10.01| see below| 2 1/4
+
+- 110 is greater than half way so round up
+
+##### c.
+
+**Binary bit pattern**
+||||||||||||
+|---|---|---|---|---|---|---|---|---|---|---|
+|s|1|0|.|-1|-2|-3|-4|-5|binary position
+||2^1 (2) |2^0 (1) |.|2^-1 (1/2)|2^-2 (1/4)|2^-3 (1/8)|2^-4 (1/16)|2^-5 (1/32)|binary value
+|0|1 |0 |.  | 1|1|1|0|0||
+||^ |^ |.  | ^|^|Round to 4bits
+||  |  |   | |^ lsb rounding position
+
+||Fractional value|Binary representation|Rounded| Action | Rounded Value 
+|---|---|---|---|---|---|
+|[c.](#c)|2 7/8|10.11**100**|11.00| see below| 3
+
+- 100 is exactly half way but it is preceded by a 1 which is odd. So round to nearest even number by adding 1 to 10 which is 11.
+
+##### d.
+
+**Binary bit pattern**
+||||||||||||
+|---|---|---|---|---|---|---|---|---|---|---|
+|s|1|0|.|-1|-2|-3|-4|-5|binary position
+||2^1 (2) |2^0 (1) |.|2^-1 (1/2)|2^-2 (1/4)|2^-3 (1/8)|2^-4 (1/16)|2^-5 (1/32)|binary value
+|0|1 |0 |.  | 1|0|1|0|0||
+||^ |^ |.  | ^|^|Round to 4bits
+||  |  |   | |^ lsb rounding position
+
+||Fractional value|Binary representation|Rounded| Action | Rounded Value 
+|---|---|---|---|---|---|
+|[d.](#d)|2 5/8|10.10**100**|10.10| see below| 2 1/2
+
+- 100 is exactly half way but it is preceded by 0. As 0 bit is even we can truncate, this would result in an even number.
 
 **Binary bit pattern**
 ||||||||||||
@@ -323,9 +391,9 @@ e is the value to encode
 ||2|1|0|.|-1|-2|binary position
 ||Sign Bit|2^1 (2) |2^0 (1) |.|2^-1 (1/2)|2^-2 (1/4)|binary value
 a.|0 |1 |0 |.  | 0|0|
-b.|0 |0 |0 |.  | 0|1|
-[c.](#c)|0 |0 |0 |.  | 1|0|
-
+b.|0 |1 |0 |.  | 0|1|
+c.|0 |1 |0 |.  | 1|1|
+d.|0|1|0|.|1|0
 
 ### Two's complement (Section 2.2.3)
 
