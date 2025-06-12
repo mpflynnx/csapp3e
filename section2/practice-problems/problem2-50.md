@@ -115,9 +115,9 @@ Show how the following binary fractional values would be rounded to the nearest 
 
 ||Fractional value|Binary representation|Rounded| Action | Rounded Value 
 |---|---|---|---|---|---|
-|[c.](#c)|2 3/4|10.1**10**|10.1|see below |3
+|[c.](#c)|2 3/4|10.1**10**|11.0|see below |3
 
-- 10 is exactly half way but it is preceded by 1. As lsb of 1 is odd.So round up to nearest even number by adding 1 to exponent bit pattern 10 which results in 11 or 3 decimal
+- 10 is exactly half way but it is preceded by 1. As lsb of 1 is odd. So round up to nearest even number by adding 1 to the lsb. 1 + 1 is 10 so carry the 1 into the exponent bit field 10, which results in 1 + 0 which is 1 so exponent now 11 or 3 decimal
 
 ##### d
 
@@ -137,6 +137,6 @@ Show how the following binary fractional values would be rounded to the nearest 
 
 ||Fractional value|Binary representation|Rounded| Action | Rounded Value 
 |---|---|---|---|---|---|
-|[d.](#d)|3 1/8|11.0**01**|10.1|see below |3
+|[d.](#d)|3 1/8|11.0**01**|11.0|see below |3
 
 - 01 is less than half way so round down by truncating

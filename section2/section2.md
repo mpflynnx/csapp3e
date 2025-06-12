@@ -70,6 +70,7 @@
 - [Practice Problems 2.45 | Floating Point | Fractional Binary Numbers](./practice-problems/problem2-45.md)
 - [Practice Problems 2.47 | Floating Point | Fractional Binary Numbers](./practice-problems/problem2-47.md)
 - [Practice Problems 2.48 | Floating Point | Fractional Binary Numbers](./practice-problems/problem2-48.md)
+- [Practice Problems 2.50 | Floating Point | Rounding](./practice-problems/problem2-50.md)
 
 ### Chapter 2 Web Asides TOC
 - [Chapter2: Web Asides | Bit-level representation of two's complement negation](./webasides/data_tneg.md)
