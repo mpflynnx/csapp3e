@@ -120,7 +120,7 @@ Format A Value is:
     - so 60/8 simplified it 15/2 
 10. The value is 15/2 or 7 1/2 or 7.5 decimal
 
-Format B Value is:
+Format B binary representation is:
 
 1. Find binary representation of 15/2
     - One simple way to think about fractional binary representations is to represent a number as a fraction of the form x/2^k.
@@ -133,7 +133,7 @@ Format B Value is:
     - The number of positions the binary point is shifted determines the exponent.
     - 111.1 = 1.111 x 2^2
     - 2 shifts were needed here
-    - E 9actual exponent) is 2
+    - E (actual exponent) is 2
 3. Calculate e (exponent field value) normalized values:
     - k = 4
     - Bias = 2^(k-1) - 1 
@@ -154,7 +154,7 @@ Format B Value is:
 
 4. Calculate f:
     - The mantissa is the fractional part after the leading 1.111
-    - The fraction bits are 111, whicn fit exactly into the n=3 field, no rounding needed.
+    - The fraction bits are 111, which fit exactly into the n=3 field, no rounding needed.
     - 1/2 + 1/4 + 1/8
     - Find the prime factorization of each number. (Break each number down into a product of prime numbers).
         - 2 = 2^1
@@ -240,7 +240,7 @@ Format B Value is:
 
 Exponent not all 0's or all 1's. Use normalized form n: e - Bias
 
-Format A Value is:
+- Format A Value is:
 
 1. e (exponent field value)= 2^1 = 2
 2. Calculate E (actual exponent) normalized values:
@@ -286,22 +286,23 @@ Format A Value is:
     - To multiply fractions, multiply the numerators together and the denominators together:
     - (1×25)/(2×16) = 25/32
     - 2^E x M = 25/32
-7. The value is 25/32
+7. The value is 25/32 or 0.78125
 
-Format B Value is:
+- Format B binary representation is:
 
 1. Find binary representation of 25/32
     - One simple way to think about fractional binary representations is to represent a number as a fraction of the form x/2^k.
     - For improper fraction 25/32, we have decimal 25 which is in binary 11001
     - 1/32 is at the -5 binary position, so k is 5
     - We then put the binary point 5 positions from the right to get binary representation of 0.11001
-<!-- 2. Normalize the binary number to find E (actual exponent)
+2. Normalize the binary number to find E (actual exponent)
     - Normalize number, express the binary number in the form of 1.xxxxxx * 2^exponent.
     - shift the binary point until it is immediately after the leading '1'.
     - The number of positions the binary point is shifted determines the exponent.
-    - 11001.0 = 1.10010 x 2^4
-    - 4 shifts were needed here
-    - E (actual exponent) is 4
+    - As I need to shift right here
+    - 0.11001 = 1.1001 x 2^-1
+    - 1 negative shift was needed here
+    - E (actual exponent) is -1
 3. Calculate e (exponent field value) normalized values:
     - k = 4
     - Bias = 2^(k-1) - 1 
@@ -309,13 +310,57 @@ Format B Value is:
     - 8 - 1 = 7
     - bias is 7
     - e = E + bias
-    - e = 2 + 7 = 9
+    - e = -1 + 7 = 6 
     - e into binary k=4 bits
-    - 1001
+    - 0110
+4. Round to even
+    - Lets look at the bit pattern
+    - 0110 1001
+    - We need to round-to-even as 1001 will not fit into Form B frac 3bits
+
+**Format B binary bit pattern**
+|||||||||||
+|---|---|---|---|---|---|---|---|---|---|
+|3|2|1|0|.|-1|-2|-3|-4|binary position
+|2^3 (8)|2^2 (4)|2^1 (2) |2^0 (1) |.|2^-1 (1/2)|2^-2 (1/4)|2^-3 (1/8)|2^-4 (1/16)|binary value
+|0|1 |1 |0 |. | 1|0|0|**1**
+|||||.|^|^|^|Round to 7bits
+||||| | | |lsb|
+
+- Half way is when bits to the right of rounding position (lsb) is 1 followed by all 0's 
+- 1 at the 2^-4 position is exactly half way but it is preceded by 0. As 0 bit is even we can truncate (round down), this would result in an even number.
 
 **Format B binary bit pattern**
 |||||||||||
 |---|---|---|---|---|---|---|---|---|---|
 |3|2|1|0|.|-1|-2|-3|binary position
 |2^3 (8)|2^2 (4)|2^1 (2) |2^0 (1) |.|2^-1 (1/2)|2^-2 (1/4)|2^-3 (1/8)|binary value
-|1|0 |0 |1 |. | 1|1|1|15/2 -->
+|0|1 |1 |0|. | 1|0|0|
+
+- Find Format B value
+1. e (exponent field value)= 2^2 + 2^1 = 4 + 2 = 6
+2. Calculate E (actual exponent) normalized values:
+    - k = 4
+    - Bias = 2^(k-1) - 1 
+    - 2^(4-1) = 2^3 = 8
+    - 8 - 1 = 7
+    - bias is 7.
+    - E = e - bias = 6 - 7 = -1
+3. Calculate f:
+    - 1/2
+4. Calculate M for normalized values:
+    - M = 1 + f
+    - Fractional part is 1/2
+    - Convert 1 1/2 to improper fraction
+    - Multiple 1 by denominator 2 = 2
+    - Add numerators 1 + 2 = 3
+    - Place 3 over original denominator 2
+    - M = 3/2
+5. Calculate 2^E x M:
+    - E = -1
+    - M = 3/2
+    - 2^-1 = 1/2
+    - 1/2 x 3/2 
+    - To multiply fractions, you multiply the numerators together and the denominators together.
+    - 1/2 x 3/2 = (1 x 3)/(2 x 2)= 3/4
+6. Value of format B is 3/4 or 0.75
