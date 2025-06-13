@@ -126,9 +126,9 @@ If exponent not all 0's or all 1's. Use normalized form n: e - Bias
     - bias is 1.
     - E = e - bias = 1 - 1 = 0
 3. Calculate 2^E:
-    E = 0
-    2^0 = 1
-    2^E = 1
+    - E = 0
+    - 2^0 = 1
+    - 2^E = 1
 4. Calculate f:
     - f = 0/4
 5. Calculate M for normalized Values:

@@ -47,31 +47,30 @@ Format A Value is:
     - bias is 3.
     - E = e - bias = 5 - 3 = 2
 3. Calculate 2^E:
-    E = 2
-    2^2 = 4
-    2^E = 4
+    - E = 2
+    - 2^2 = 4
+    - 2^E = 4
 4. Calculate f:
     - 1/2 + 1/4 + 1/8 + 0/16
+    - 0/16 simplified to 0
+    - 1/2 + 1/4 + 1/8 + 0   
     - Find the prime factorization of each number. (Break each number down into a product of prime numbers).
+
         - 2 = 2^1
         - 4 = 2 x 2 = 2^2
         - 8 = 2 x 2 x 2 = 2^3
-        - 16 = 2 x 2 x 2 x 2 = 2^4
     - The only prime factor is 2
 
     - For each prime factor, identify the highest power (the most times it appears) in any of the factorizations.
-    - The highest is 2^4 = 16 this is the common denominator
-    - For 1/2: To change the denominator from 2 to 16, we multiply both the numerator and the denominator by 8:
-        - 1/2 = 1 x 8 / 2 x 8 = 8 / 16
-    - For 1/4: To change the denominator from 4 to 16, we multiply both by 4:
-        - 1/4 = 1 x 4 / 4 x 4 = 4 / 16
-    - For 1/8: To change the denominator from 8 to 16, we multiply both by 2:
-        - 1/8 = 1 x 2 / 8 x 2 = 2 / 16        
+    - The highest is 2^3 = 8 this is the common denominator
+    - For 1/2: To change the denominator from 2 to 8, we multiply both the numerator and the denominator by 8:
+        - 1/2 = 1 x 4 / 2 x 4 = 4 / 8
+    - For 1/4: To change the denominator from 4 to 8, we multiply both by 4:
+        - 1/4 = 1 x 2 / 4 x 2 = 2 / 8
+    - 1/8 remains as 1/8 
     - Now that all fractions have the same denominator, we can add their numerators:
-        - 8/16 + 4/16 + 2/16 + 0/16 = 14/16
-        - Therefore: f = 14/16
-        - Greatest common factor is 2 so
-        - Simplified to 7/8
+        - 4/8 + 2/8 + 1/8 = 7/8
+        - Therefore: f = 7/8
 5. Calculate M for normalized Values:
     - M = 1 + f
     - fractional part f is 7/8
@@ -134,7 +133,7 @@ Format B Value is:
     - The number of positions the binary point is shifted determines the exponent.
     - 111.1 = 1.111 x 2^2
     - 2 shifts were needed here
-    - E is 2
+    - E 9actual exponent) is 2
 3. Calculate e (exponent field value) normalized values:
     - k = 4
     - Bias = 2^(k-1) - 1 
@@ -154,6 +153,7 @@ Format B Value is:
 |1|0 |0 |1 |. | 1|1|1|
 
 4. Calculate f:
+    - The mantissa is the fractional part after the leading 1.111
     - The fraction bits are 111, whicn fit exactly into the n=3 field, no rounding needed.
     - 1/2 + 1/4 + 1/8
     - Find the prime factorization of each number. (Break each number down into a product of prime numbers).
@@ -229,3 +229,93 @@ Format B Value is:
 |2^3 (8)|2^2 (4)|2^1 (2) |2^0 (1) |.|2^-1 (1/2)|2^-2 (1/4)|2^-3 (1/8)|binary value
 |1|0 |0 |1 |. | 1|1|1|15/2
 
+##### b
+
+**Format A binary bit pattern**
+||||||||||
+|---|---|---|---|---|---|---|---|---|
+|2|1|0|.|-1|-2|-3|-4|binary position
+|2^2 (4)|2^1 (2) |2^0 (1) |.|2^-1 (1/2)|2^-2 (1/4)|2^-3 (1/8)|2^-4 (1/16)|binary value
+|0|1 |0 |.  | 1|0|0|1|||
+
+Exponent not all 0's or all 1's. Use normalized form n: e - Bias
+
+Format A Value is:
+
+1. e (exponent field value)= 2^1 = 2
+2. Calculate E (actual exponent) normalized values:
+    - k = 3
+    - Bias = 2^(k-1) - 1 
+    - 2^(3-1) = 2^2 = 4
+    - 4 - 1 = 3
+    - bias is 3.
+    - E = e - bias = 2 - 3 = -1
+3. Calculate 2^E:
+    - E = -1
+    - 2^-1 = 0.5
+    - 2^E = 0.5
+4. Calculate f:
+    - 1/2 + 1/16
+    - Find the prime factorization of each number. (Break each number down into a product of prime numbers).
+        - 2 = 2^1
+        - 16 = 2 x 2 x 2 x 2 = 2^4
+    - The only prime factor is 2
+    - For each prime factor, identify the highest power (the most times it appears) in any of the factorizations.
+    - The highest is 2^4 = 16 this is the common denominator
+    - For 1/2: To change the denominator from 2 to 16, we multiply both the numerator and the denominator by 8:
+        - 1/2 = 1 x 8 / 2 x 8 = 8 / 16
+    - 1/16 remains as 1/16 
+    - Now that all fractions have the same denominator, we can add their numerators:
+        - 8/16 + 1/16 = 9/16
+        - Therefore: f = 9/16
+5. Calculate M for normalized Values:
+    - M = 1 + f
+    - fractional part f is 9/16
+    - Convert 1 9/16 to improper fraction
+    - Multiple 1 by denominator 16
+    - 1 x 16 = 16
+    - Add to the numerator 9 + 16 = 25
+    - Place 25 over original denominator 16
+    - M = 25/16
+6. Calculate 2^E x M:
+    - E = -1
+    - M = 25/16
+    - 2^-1 = 0.5
+    - 0.5 = 1/2
+    - 1/2 x 25/16
+    - To multiply fractions, multiply the numerators together and the denominators together:
+    - (1×25)/(2×16) = 25/32
+    - 2^E x M = 25/32
+7. The value is 25/32
+
+Format B Value is:
+
+1. Find binary representation of 25/32
+    - One simple way to think about fractional binary representations is to represent a number as a fraction of the form x/2^k.
+    - For improper fraction 25/32, we have decimal 25 which is in binary 11001
+    - 1/32 is at the -5 binary position, so k is 5
+    - We then put the binary point 5 positions from the right to get binary representation of 0.11001
+<!-- 2. Normalize the binary number to find E (actual exponent)
+    - Normalize number, express the binary number in the form of 1.xxxxxx * 2^exponent.
+    - shift the binary point until it is immediately after the leading '1'.
+    - The number of positions the binary point is shifted determines the exponent.
+    - 11001.0 = 1.10010 x 2^4
+    - 4 shifts were needed here
+    - E (actual exponent) is 4
+3. Calculate e (exponent field value) normalized values:
+    - k = 4
+    - Bias = 2^(k-1) - 1 
+    - 2^(4-1) = 2^3 = 8
+    - 8 - 1 = 7
+    - bias is 7
+    - e = E + bias
+    - e = 2 + 7 = 9
+    - e into binary k=4 bits
+    - 1001
+
+**Format B binary bit pattern**
+|||||||||||
+|---|---|---|---|---|---|---|---|---|---|
+|3|2|1|0|.|-1|-2|-3|binary position
+|2^3 (8)|2^2 (4)|2^1 (2) |2^0 (1) |.|2^-1 (1/2)|2^-2 (1/4)|2^-3 (1/8)|binary value
+|1|0 |0 |1 |. | 1|1|1|15/2 -->
