@@ -17,6 +17,7 @@
 - [Video Lecture 02: Bits, Bytes, and Integers](https://scs.hosted.panopto.com/Panopto/Pages/Viewer.aspx?id=6ca8cdb4-6961-42d9-8fac-299e53759a17)
 - [Video Lecture 03: Bits, Bytes, and Integers (cont.)](https://scs.hosted.panopto.com/Panopto/Pages/Viewer.aspx?id=526e6341-aa53-4107-8fa1-d13c0e92342e)
 - [Video Lecture 04: Floating Point](https://scs.hosted.panopto.com/Panopto/Pages/Viewer.aspx?id=8dd08ed5-7688-4b34-937f-201b909f61c7)
+- [Alt. bad audio Video Lecture 04: Floating Point](https://www.youtube.com/watch?v=Q-JcxMNgrkU&t=19s)
 - [website | float.exposed](https://float.exposed/0x44bf9400)
 - [Section2 Errata (Hardback Edition)](./errata.txt)
 - [Hexadecimal to Decimal converter](https://www.rapidtables.com/convert/number/hex-to-decimal.html)

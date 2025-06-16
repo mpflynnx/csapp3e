@@ -394,6 +394,16 @@ d.|0|1|0|.|1|0
 - Round down by truncating
 - Round up by adding a 1 and propagate it 
 
+### Floating Point Multiplication
+
+4bit mantissa:
+
+- Calculate multiplication 
+- (1.010 x 2^2) x (1.110 x 2^3)
+- 
+Exact result : 10.0011x2^5
+- Fixing: 1.00011 x 2^6
+- Round to 4bits = 1.001 x 2^6
 
 ### Two's complement (Section 2.2.3)
 
