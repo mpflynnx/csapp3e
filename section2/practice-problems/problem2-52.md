@@ -26,7 +26,7 @@ Below, you are given some bit patterns in format A, and your task is to convert 
 
 #### Solution
 
-##### a
+#### a
 
 **Format A binary bit pattern**
 ||||||||||
@@ -229,7 +229,7 @@ Format B binary representation is:
 |2^3 (8)|2^2 (4)|2^1 (2) |2^0 (1) |.|2^-1 (1/2)|2^-2 (1/4)|2^-3 (1/8)|binary value
 |1|0 |0 |1 |. | 1|1|1|15/2
 
-##### b
+#### b
 
 **Format A binary bit pattern**
 ||||||||||
@@ -519,3 +519,47 @@ Format A value is:
     - 2^4 = 16
     - 16 x 1     
 6. Value of format B is 16, rounded up from 15.5
+
+#### d
+
+**Format A binary bit pattern**
+||||||||||
+|---|---|---|---|---|---|---|---|---|
+|2|1|0|.|-1|-2|-3|-4|binary position
+|2^2 (4)|2^1 (2) |2^0 (1) |.|2^-1 (1/2)|2^-2 (1/4)|2^-3 (1/8)|2^-4 (1/16)|binary value
+|0|0 |0 |.  | 0|0|0|1|||
+
+Exponent all 0's. Use denormalized form d: 1 - Bias
+
+Format A Value is:
+1. e (exponent field value)= 0
+2. Calculate E (actual exponent) denormalized values:
+    - k = 3
+    - Bias = 2^(k-1) - 1 
+    - 2^(3-1) = 2^2 = 4
+    - 4 - 1 = 3
+    - bias is 3.
+    - E = 1 - 3 = -2
+3. Calculate 2^E:
+    - E = -2
+    - 2^-2 = 1/4
+    - 2^E = 1/4
+4. Calculate f:
+    - 1/16
+5. Calculate M for denormalized Values:
+    - M = f
+    - fractional part f is 1/16
+    - M = 1/16
+6. Calculate 2^E x M:
+    - 2^E x M = 2^2 x 1/16
+    - E = -2
+    - M = 1/16
+    - 2^-2 = 1/4
+    - 1/4 x 1/16 = 1/64
+    - 2^E x M = 1/64
+7. Calculate V
+    - v = 1/64
+
+- Format B binary representation is:
+
+1. Find binary representation of 1/64
