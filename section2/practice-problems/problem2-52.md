@@ -563,3 +563,30 @@ Format A Value is:
 - Format B binary representation is:
 
 1. Find binary representation of 1/64
+    - One simple way to think about fractional binary representations is to represent a number as a fraction of the form x/2^k.
+    - For improper fraction 1/64, we have decimal 1 which is in binary 1 or 1.0
+    - 1/64 is at the -6 binary position, so k is 6
+    - 0.000001
+2. Normalize the binary number to find E (actual exponent)
+    - Normalize number, express the binary number in the form of 1.xxxxxx * 2^exponent.
+    - shift the binary point until it is immediately after the leading '1'.
+    - The number of positions the binary point is shifted determines the exponent.
+    - As I need to shift right here
+    - 1.0 x 2^-6
+    - 6 negative shifts were needed here
+    - E (actual exponent) is -6
+3. Calculate e (exponent field value) normalized values:
+    - k = 4
+    - Bias = 2^(k-1) - 1 
+    - 2^(4-1) = 2^3 = 8
+    - 8 - 1 = 7
+    - bias is 7
+    - e = E + bias
+    - e = -6 + 7 = 1 
+    - e into binary k=4 bits
+    - 0001
+4. Round to even
+    - Lets look at the bit pattern
+    - 0001 000
+    - f is 0 so fits into n=3
+    - This fits into k=4 bits so no rounding needed
