@@ -63,9 +63,9 @@ Format A Value is:
 
     - For each prime factor, identify the highest power (the most times it appears) in any of the factorizations.
     - The highest is 2^3 = 8 this is the common denominator
-    - For 1/2: To change the denominator from 2 to 8, we multiply both the numerator and the denominator by 8:
+    - For 1/2: To change the denominator from 2 to 8, we multiply both the numerator and the denominator by 4:
         - 1/2 = 1 x 4 / 2 x 4 = 4 / 8
-    - For 1/4: To change the denominator from 4 to 8, we multiply both by 4:
+    - For 1/4: To change the denominator from 4 to 8, we multiply both by 2:
         - 1/4 = 1 x 2 / 4 x 2 = 2 / 8
     - 1/8 remains as 1/8 
     - Now that all fractions have the same denominator, we can add their numerators:
@@ -364,3 +364,88 @@ Exponent not all 0's or all 1's. Use normalized form n: e - Bias
     - To multiply fractions, you multiply the numerators together and the denominators together.
     - 1/2 x 3/2 = (1 x 3)/(2 x 2)= 3/4
 6. Value of format B is 3/4 or 0.75
+
+#### c
+
+**Format A binary bit pattern**
+||||||||||
+|---|---|---|---|---|---|---|---|---|
+|2|1|0|.|-1|-2|-3|-4|binary position
+|2^2 (4)|2^1 (2) |2^0 (1) |.|2^-1 (1/2)|2^-2 (1/4)|2^-3 (1/8)|2^-4 (1/16)|binary value
+|1|1 |0 |.  | 1|1|1|1|||
+
+If exponent not all 0's or all 1's. Use normalized form n: e - Bias
+
+Format A value is:
+
+1. e (exponent field value)= 2^2 + 2^1 = 4 + 2 = 6
+2. Calculate E (actual exponent) normalized values:
+    - k = 3
+    - Bias = 2^(k-1) - 1 
+    - 2^(3-1) = 2^2 = 4
+    - 4 - 1 = 3
+    - bias is 3.
+    - E = e - bias = 6 - 3 = 3
+3. Calculate 2^E:
+    - E = 3
+    - 2^3 = 8
+    - 2^E = 8
+4. Calculate f:
+    - 1/2 + 1/4 + 1/8 + 1/16
+    - Find the prime factorization of each number. (Break each number down into a product of prime numbers).
+
+        - 2 = 2^1
+        - 4 = 2 x 2 = 2^2
+        - 8 = 2 x 2 x 2 = 2^3
+        - 16 = 2 x 2 x 2 x 2 = 2^4
+    - The only prime factor is 2
+    - For each prime factor, identify the highest power (the most times it appears) in any of the factorizations.
+    - The highest is 2^4 = 16 this is the common denominator
+    - For 1/2: To change the denominator from 2 to 16, we multiply both the numerator and the denominator by 8:
+        - 1/2 = 1 x 8 / 2 x 8 = 8 / 16
+   - For 1/4: To change the denominator from 4 to 16, we multiply both by 4:
+        - 1/4 = 1 x 4 / 4 x 4 = 4 / 16
+    - For 1/8: To change the denominator
+    from 8 to 16, we multiply both by 2:
+        - 1/8 = 1 x 2 / 2 x 8 = 2 / 16
+    - 1/16 remains 1/16
+    - Now that all fractions have the same denominator, we can add their numerators:
+        - 8/16 + 4/16 + 2/16 + 1/16 = 15/16
+        - Therefore: f = 15/16
+    5. Calculate M for normalized Values:
+    - M = 1 + f
+    - fractional part f is 15/16
+    - Convert 1 15/16 to improper fraction
+    - Multiple 1 by denominator 16
+    - 1 x 8 = 16
+    - Add to the numerator 15 + 16 = 31
+    - Place 31 over original denominator 16
+    - M = 31/16
+6. Calculate 2^E x M:
+    - 2^E x M = 2^8 x 31/16
+    - E = 3
+    - M = 31/16
+    - 2^3 = 8
+    - 8 x 31 = 248
+    - 2^E x M = 248/16
+7. Calculate V
+    - Can 248/16 be simplified? Yes
+8. Simplify the fraction part, by finding the common divisor of 248
+   - Use prime factorization (break each number down into a product of prime numbers).
+    - divide 248 by a prime number until a whole number is found
+        - 248 divided by prime 2 is 124
+        - first product is 2
+    - divide 124 by a prime number until a whole number is found
+        - 124 divided by prime 2 is 62
+        - second product is 2
+    - divide 62 by a prime number until a whole number is found
+        - 62 divided by prime 2 is 31
+        - third product is 2
+    - 31 is a prime number, so fourth  product is 31
+    - 2 x 2 x 2 x 31 = 248
+    - 2^3 x 31 = 248
+9. The greatest common factor is 2^3 = 8
+    - 248 divided by 8 = 31
+    - 16 divided by 8 = 2
+    - so 248/16 simplified it 31/2 
+10. The value is 31/2 or 15.5 decimal
