@@ -449,3 +449,73 @@ Format A value is:
     - 16 divided by 8 = 2
     - so 248/16 simplified it 31/2 
 10. The value is 31/2 or 15.5 decimal
+
+- Format B binary representation is:
+
+1. Find binary representation of 31/2
+    - One simple way to think about fractional binary representations is to represent a number as a fraction of the form x/2^k.
+    - For improper fraction 31/2, we have decimal 31 which is in binary 11111
+    - 1/2 is at the -1 binary position, so k is 1
+    - We then put the binary point 1 positions from the right to get binary representation of 1111.1
+2. Normalize the binary number to find E (actual exponent)
+    - Normalize number, express the binary number in the form of 1.xxxxxx * 2^exponent.
+    - shift the binary point until it is immediately after the leading '1'.
+    - The number of positions the binary point is shifted determines the exponent.
+    - As I need to shift right here
+    - 1111.1 = 1.1111 x 2^3
+    - 3 positive shifts were needed here
+    - E (actual exponent) is 3
+3. Calculate e (exponent field value) normalized values:
+    - k = 4
+    - Bias = 2^(k-1) - 1 
+    - 2^(4-1) = 2^3 = 8
+    - 8 - 1 = 7
+    - bias is 7
+    - e = E + bias
+    - e = 3 + 7 = 10 
+    - e into binary k=4 bits
+    - 1010
+4. Round to even
+    - Lets look at the bit pattern
+    - 1010 1111
+    - We need to round-to-even as 1111 will not fit into Form B frac 3bits
+
+**Format B binary bit pattern**
+|||||||||||
+|---|---|---|---|---|---|---|---|---|---|
+|3|2|1|0|.|-1|-2|-3|-4|binary position
+|2^3 (8)|2^2 (4)|2^1 (2) |2^0 (1) |.|2^-1 (1/2)|2^-2 (1/4)|2^-3 (1/8)|2^-4 (1/16)|binary value
+|1|0 |1 |0 |. | 1|1|1|**1**
+|||||.|^|^|^|Round to 7bits
+||||| | | |lsb|
+
+- 1 at 2^-4 is exactly half way but it is preceded by a 1 which is odd. So round up to nearest even number by adding 1 to exponent bit pattern 1010 which results in bit pattern 1011 or 11 decimal. Fraction field now 000
+
+
+**Format B binary bit pattern**
+|||||||||||
+|---|---|---|---|---|---|---|---|---|---|
+|3|2|1|0|.|-1|-2|-3|binary position
+|2^3 (8)|2^2 (4)|2^1 (2) |2^0 (1) |.|2^-1 (1/2)|2^-2 (1/4)|2^-3 (1/8)|binary value
+|1|0 |1 |1 |. | 0|0|0|?
+
+- Find Format B value
+1. e (exponent field value)= 2^3 + 2^1 + 2^0 = 8 + 2 + 1 = 11
+2. Calculate E (actual exponent) normalized values:
+    - k = 4
+    - Bias = 2^(k-1) - 1 
+    - 2^(4-1) = 2^3 = 8
+    - 8 - 1 = 7
+    - bias is 7.
+    - E = e - bias = 11 - 7 = 4
+3. Calculate f:
+    - f is 0
+4. Calculate M for normalized values:
+    - M = 1 + f
+    - M = 1 + 0 = 1
+5. Calculate 2^E x M:
+    - E = 4
+    - M = 1
+    - 2^4 = 16
+    - 16 x 1     
+6. Value of format B is 16, rounded up from 15.5
