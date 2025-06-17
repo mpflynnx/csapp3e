@@ -4,6 +4,19 @@
 - [Number representation](#number-representation)
 - [Floating point numbers](#floating-point-numbers)
 - [Floating Point Rounding](#rounding)
+- [Floating Point Multiplication Example](#floating-point-multiplication-example)
+- [Two's complement](#twos-complement)
+- [Negative numbers to binary](#negative-numbers-to-binary)
+- [Unsigned addition](#unsigned-addition)
+- [Two's complement arithmetic](#twos-complement-arithmetic)
+- [Two's complement addition examples](#twos-complement-addition-examples)
+- [Negative overflow examples](#negative-overflow-examples)
+- [Positive overflow examples](#positive-overflow-examples)
+- [Two's complement negation](#twos-complement-negation)
+- [Multiplication](#multiplication)
+- [Division](#unsigned-power-of-2-divide-with-shift)
+- [Power of 2 using left shift operator](#power-of-2-using-left-shift-operator)
+- [Integer C Puzzles](#integer-c-puzzles)
 
 ### Number representation
 
@@ -394,18 +407,133 @@ d.|0|1|0|.|1|0
 - Round down by truncating
 - Round up by adding a 1 and propagate it 
 
-### Floating Point Multiplication
+### Floating Point Multiplication Example
 
-4bit mantissa:
+- Given two floating point normalized numbers in form below:
+    - 1.010 x 2^2
+    - 1.110 x 2^3
 
-- Calculate multiplication 
-- (1.010 x 2^2) x (1.110 x 2^3)
-- 
-Exact result : 10.0011x2^5
-- Fixing: 1.00011 x 2^6
-- Round to 4bits = 1.001 x 2^6
+- Multiple, then round to 4bits.
 
-### Two's complement (Section 2.2.3)
+- Neither number has a sign bit, they can only represent nonnegative numbers.
+    - If the numbers have a sign bit then XOR the sign bits together to get the sign bit for the multiplication result.
+
+1. Calculate M (mantissas) by Multiply the significands (biggest chore):
+```
+    1.010
+x   1.110
+    -----
+    0000 (1.010 x 0)
+    1010 (1.010 x 1, shifted by 1 to the left)
+    1010 (1.010 x 1, shifted by 2 to the left)
++   1010 (1.010 x 1, shifted by 3 to the left)
+    ------
+    10.001100
+```
+2. Add Exponents: 
+    - 2 + 3 = 5
+3. Exact result:
+    - Drop trailing 0's
+    - 10.0011 x 2^5
+4. Normalize to 1.xxxxxx * 2^exponent 
+    - If M greater than or equal to 2, shift M right, increment E
+    - 1.00011 x 2^6
+    - If E out of range then this will overflow to infinity
+5. Find the value
+    - 1.00011 x 2^6
+    - shift binary point to the right 6 times
+    - 1.00011 = 1000110.0 (omit .0)
+    - 1000110 to decimal
+    - 2^6 + 2^2 + 2^1 = 64 + 4 + 2  = 70
+6. Round M to fit frac precision 3bits
+
+|||||||||
+|---|---|---|---|---|---|---|---|
+|s|0|.|-1|-2|-3|-4|-5
+|-|2^0 (1) |.|2^-1 (1/2)|2^-2 (1/4)|2^-3 (1/8)|2^-4 (1/16)|2^-5 (1/32)
+| 0|1 |.  | 0|0|0|1|1||
+||||||^ lsb rounding position |^|^
+
+- The bits to the right of rounding position -3 are 11.
+- 11 is greater than half way so round up by adding 1 to lsb
+- lsb = 0 + 1 = 1
+- 1.001 x 2^6
+7. Find the value
+    - 1.001 x 2^6
+    - shift binary point to the right 6 times
+    - 1.001 = 1001000.0 (omit .0)
+    - 1001000 to decimal
+    - 2^6 + 2^3 = 64 + 8 = 72
+
+### Floating Point Addition Example
+
+- Steps:
+    - Line up binary points
+    - Do the addition
+    - Normalize the number
+    - Round if needed
+
+- Given two floating point normalized numbers in form below:
+    - 1.010 x 2^2
+    - 1.110 x 2^3
+
+- Add the numbers, then round to 4bits.
+
+- Neither number has a sign bit, they can only represent nonnegative numbers.
+
+
+1. Calculate M (mantissas) by adding the significands:
+    - Align the binary points, by matching the highest exponent 2^3 of the two numbers.
+    - 1.010 x 2^2 becomes 0.1010 x 2^3
+    - 1.110 x 2^3 becomes 1.1100 x 2^3 (add trailing 0)
+
+|||||||||
+|---|---|---|---|---|---|---|---|
+|| 1|| | |  | | carries
+||0|. |1 |0 |1 | 0
+|+|1|. |1 |1 |0 | 0
+|1|0| .|0 |1 |1|0
+
+
+
+
+2. Exponent: 
+    - 2^3
+3. Exact result:
+    - 10.0110 x 2^3
+4. Normalize to 1.xxxxxx * 2^exponent 
+    - If M greater than or equal to 2, shift M right, increment E
+    - 1.00110 x 2^4
+    - If M less than 1, shift left k positions, decrement E by k
+    - If E out of range then this will overflow to infinity
+5. Find the value:
+    - 1.00110 x 2^4
+    - shift binary point to the right 4 times
+    - 1.00110 = 10011.0 (Omit .0)
+    - 10011 to decimal
+    - 2^4 + 2^1 + 2^0 = 16 + 2 + 1  = 19. 
+6. Round M to fit frac precision 3bits
+
+|||||||||
+|---|---|---|---|---|---|---|---|
+|s|0|.|-1|-2|-3|-4|
+|-|2^0 (1) |.|2^-1 (1/2)|2^-2 (1/4)|2^-3 (1/8)|2^-4 (1/16)|
+| 0|1 |.  | 0|0|1|1|||
+||||||^ lsb rounding position |^|
+
+- The bit to the right of rounding position -3 is 1.
+- 1 is exactly half way but it is preceded by 1. As lsb of 1 is odd. Round up to nearest even number by adding 1 to the lsb. 1 + 1 is 10
+- lsb = 1 + 1 = 10
+- 1.010 x 2^4
+7. Find the value
+    - 1.010 x 2^4
+    - shift binary point to the right 6 times
+    - 1.010 = 10100.0 (omit .0)
+    - 10100 to decimal
+    - 2^4 + 2^2 = 16 + 4 = 20.
+
+
+### Two's complement
 
 A sign bit is the most significant bit i.e 2^7, 2^15 or 2^31 it represents positive or negative 
 the remaining bits represent magnitude
