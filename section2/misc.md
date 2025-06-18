@@ -5,6 +5,8 @@
 - [Floating point numbers](#floating-point-numbers)
 - [Floating Point Rounding](#rounding)
 - [Floating Point Multiplication Example](#floating-point-multiplication-example)
+- [Floating Point in C](#floating-point-in-c)
+- [Floating Point Puzzles](#floating-point-puzzles)
 - [Two's complement](#twos-complement)
 - [Negative numbers to binary](#negative-numbers-to-binary)
 - [Unsigned addition](#unsigned-addition)
@@ -532,6 +534,98 @@ x   1.110
     - 10100 to decimal
     - 2^4 + 2^2 = 16 + 4 = 20.
 
+### Floating Point in C
+
+#### C types
+- type float - single precision
+- type double - double precision
+
+#### Conversions/Casting
+- Casting between int, float and double changes the bit representation
+
+- double/float to int
+    - Truncates fractional part
+    - Like rounding toward zero
+    - Not defined when out of range or NaN, generally sets to TMin in most cases
+- int to double
+    - number of int bits will fit in the frac field
+    - exact conversion, as long as int has less than or equal 53 bit word size
+- int to float
+    - more bits in a int than in the frac field of a float
+    - Will round according to rounding mode
+
+#### Floating Point Puzzles
+
+- For each of the following C expressions, either:
+    - Argue that it is true for all argument values
+    - Explain why not true
+    - Assume neither d nor f is NaN
+
+```c
+int x = ...;
+float f = ...;
+double d = ...;
+```
+
+##### a.
+- x == (int)(float) x
+- Cast a x `int` to a `float` then cast back to a `int`
+- is x == x ?
+- False, casting from `int` to `float` changes the bit representation by truncating
+- Casting from `float` to `int` keeps the truncated bit representation of the `float`
+
+##### b.
+- x == (int)(double) x
+- Cast a x `int` to a `double` then cast back to `int`
+- is x == x ?
+- True, as long as the int is less than 53 bits, the number of `int` bits will fit in the frac field of a `double`
+
+##### c.
+
+- f == (float)(double) f
+- Cast f `float` to a `double` then cast double back to a `float`
+- True, `float` frac bits fit into `double` frac bits
+
+##### d.
+
+- d == (float)(double) d
+- Cast d `double` to a `float` then cast back to `double`
+- False, double frac bits truncated to fit into float
+
+##### e.
+
+- f == -(-f);
+- Negate f, then negate again, will it equal f?
+- True, as only one bit is toggled
+
+##### f.
+- 2/3 == 2/3.0
+- False, 2/3 is integer division and gives 0, 2/3.0 is floating point division and returns a `float` not a `int`
+
+##### g.
+
+- d < 0.0 same as ((d*2) < 0.0)
+- is d double negative
+- is d*2 still negative
+- True, even if d*2 overflows negative infinity is is still less than 0, as sign bit not changed
+
+##### h.
+
+- d > f same as -f > -d
+- Is a negative float greater than an negative double?
+- True
+
+##### j.
+
+- d * d >= 0.0
+- If d is squared is it greater than or equal to 0.0 (i.e not negative)?
+- True squared numbers are always non negative
+
+##### k.
+
+- (d + f) -d == f
+- Add a float to a double, then subtract the double does it equal f
+- False, lack of associativity
 
 ### Two's complement
 
@@ -1052,4 +1146,5 @@ x = 1<<8; // 256
 - x & (x-1) masks off the value of x-1 from x
 - false if x = Tmin, as the result will be 0
 - true if x = Tmax
+
 
