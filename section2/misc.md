@@ -2,6 +2,7 @@
 
 ## Table of Contents
 - [Number representation](#number-representation)
+- [C Bitwise Operators](#c-bitwise-operators)
 - [Floating point numbers](#floating-point-numbers)
 - [Floating Point Rounding](#rounding)
 - [Floating Point Multiplication Example](#floating-point-multiplication-example)
@@ -76,8 +77,105 @@ Maximum values
 |---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|
 0|1|1|1|1|1|1|1| 1|1|1|1|1|1|1|1
 
-equivalent to 2^15 -1 
+equivalent to 2^15 -1
 
+### C Bitwise Operators
+
+- C bitwise operators are: 
+    - AND `&` written as `.`
+    - OR `|` written a `+`
+    - One's complement NOT (flip/inverter)`~` written as a line above a letter. 
+    - XOR `^`
+
+- Can be used on signed and unsigned integer types `int`, `short`, `long`, including `char`
+
+- Used for tasks that require bit manipulation, such as
+    - low-level device control
+    - error detection
+    - data compression
+    - optimization
+
+- Used to manipulate values for comparisons and calculations
+- Substantially faster than division, several times faster than multiplication and sometimes faster than addition
+
+### One's complement ~
+Set low order bit to 0
+
+- Set low order bit of `w1` to 0 (32bit int)
+```c
+w1 &= 0xFFFFFFFE;
+```
+- Independent of machine int size
+```c
+w1 &= ~1;
+```
+
+### Truth table
+| p| q | p&q | p\|q | p^q |
+|--|--|--|--|--|
+|0|0|0|0|0|
+|0|1|0|1|1|
+|1|1|1|1|0|
+|1|0|0|1|1|
+
+### XOR `^` operator
+
+- Think, one or the other but not both
+- Think of a light switch
+    - 1 means flip 
+    - 0 means do nothing
+    - 1 ^ 0 == 1
+    - 0 ^ 1 == 1
+    - 1 ^ 1 == 0
+    - 0 ^ 0 == 0
+
+`^` can be used to do inplace swaps as shown (i.e no temp variable needed).
+
+```c
+void inplace_swap(int *x, int *y){
+    *y ^= *x;
+    *x ^= *y;
+    *y ^= *x;
+}
+```
+
+- At a logic gate level, a NAND gate is constructed from NOT and AND gates.
+    - C implementation of a two input NAND gate below:
+    ```c
+    int a, b;
+    int nand = ~(a & b)
+    ```
+- At a logic gate level, a NOR gate is constructed from NOT and OR gates.
+    - C implementation of a two input NOR gate below:
+    ```c
+    int a, b;
+    int nor = ~(a | b)
+    ```
+- At a logic gate level, XOR gate can be constructed from fours NAND gates or five NOR gates.
+    - C implementation of a two input XOR gate using four NAND gates
+    ```c
+    int a, b;
+    
+    //XOR using four NAND gates made up of only & and ~
+    int c = ~(a & b);
+    int d = ~(a & c);
+    int e = ~(b & c);
+    int f = ~(d & e);
+  
+    int xor1 = f;
+
+
+    // one liner
+    int xor2 = ~(~(a & ~(a & b)) & ~(b & ~(a & b)));
+    ```
+    - Uses only `&` and `~` operators
+
+    - C implementation of XOR using `&`, `|` and `~` operators.
+    ```C
+    int a, b;
+    
+    int xor3 = = (a & ~b) | (~a & b);
+    ```
 
 ### Floating point numbers
 
