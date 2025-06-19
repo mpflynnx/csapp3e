@@ -7,6 +7,7 @@
 - [Floating Point Multiplication Example](#floating-point-multiplication-example)
 - [Floating Point in C](#floating-point-in-c)
 - [Floating Point Puzzles](#floating-point-puzzles)
+- [double precision defining positive infinity and negative infinity](#double-precision-defining-positive-infinity-and-negative-infinity)
 - [Two's complement](#twos-complement)
 - [Negative numbers to binary](#negative-numbers-to-binary)
 - [Unsigned addition](#unsigned-addition)
@@ -569,7 +570,7 @@ double d = ...;
 
 ##### a.
 - x == (int)(float) x
-- Cast a x `int` to a `float` then cast back to a `int`
+- Cast x `int` to a `float` then cast back to a `int`
 - is x == x ?
 - False, casting from `int` to `float` changes the bit representation by truncating
 - Casting from `float` to `int` keeps the truncated bit representation of the `float`
@@ -578,7 +579,7 @@ double d = ...;
 - x == (int)(double) x
 - Cast a x `int` to a `double` then cast back to `int`
 - is x == x ?
-- True, as long as the int is less than 53 bits, the number of `int` bits will fit in the frac field of a `double`
+- True, the number of `int` bits will fit in the frac field of a `double`
 
 ##### c.
 
@@ -596,7 +597,7 @@ double d = ...;
 
 - f == -(-f);
 - Negate f, then negate again, will it equal f?
-- True, as only one bit is toggled
+- True, as only sign bit is toggled
 
 ##### f.
 - 2/3 == 2/3.0
@@ -619,13 +620,47 @@ double d = ...;
 
 - d * d >= 0.0
 - If d is squared is it greater than or equal to 0.0 (i.e not negative)?
-- True squared numbers are always non negative
+- True squared numbers are always non negative. Although may overflow to positive infinity
 
 ##### k.
 
-- (d + f) -d == f
+- (f + d) -f == d
 - Add a float to a double, then subtract the double does it equal f
 - False, lack of associativity
+- if f was 1.0^20 and d was 1.0 the expression (f + d) will be rounded to 0.0, while the right hand side remains 1.0.
+
+##### m.
+
+- 1.0/2 == 1/2.0
+ True, 1.0/2 is floating point division, 1/2.0 is floating point division and returns a `float`
+
+ ##### n.
+
+- x == (int)(float) x
+- Cast a x `int` to a `float` then cast back to `int`
+- is x == x ?
+- False, when x is TMax
+
+##### double precision defining positive infinity and negative infinity
+
+- Largest finite number that can be represented with double precision is around 1.8 x 10^308 
+
+- GNU compiler gcc defines program constants INFINITY for positive infinity and NAN for NaN.
+- When the following appears in the source code.
+
+```c
+#define _GNU_SOURCE 1
+#include <math.h>
+```
+
+- Alternatively the code below, works on a variety of machines without the use if math.h, but using math.h is the best option.
+
+```c
+#define POS_INFINITY 1e400
+#define NEG_INFINITY (-POS_INFINITY)
+#define NEG_ZERO (-1.0/POS_INFINITY)
+```
+
 
 ### Two's complement
 
