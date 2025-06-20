@@ -22,6 +22,7 @@
 - [Section2 Errata (Hardback Edition)](./errata.txt)
 - [Hexadecimal to Decimal converter](https://www.rapidtables.com/convert/number/hex-to-decimal.html)
 - [Learning to Bit Twiddle and Optimize](https://wiredream.com/learning-to-bit-twiddle/)
+- [Dive into Systems | Bitwise Operators](https://diveintosystems.org/singlepage/#_bitwise_operators)
 
 ## Table of Contents
 - [Chapter 2 Practice problems TOC](#chapter-2-practice-problems-toc)

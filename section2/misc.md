@@ -81,6 +81,8 @@ equivalent to 2^15 -1
 
 ### C Bitwise Operators
 
+- [Dive into Systems | Bitwise Operators](https://diveintosystems.org/singlepage/#_bitwise_operators)
+
 - C bitwise operators are: 
     - AND `&` written as `.`
     - OR `|` written a `+`

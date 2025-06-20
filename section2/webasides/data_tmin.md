@@ -17,6 +17,36 @@
     - GNU gdb (GDB) 11.2
     - GNU Make 4.3
 
+### Understanding Tmin
+In two's complement representation, which is almost universally used for integers in computers:
+
+- Tmax (maximum integer value) is represented by 0 followed by all 1s. For a 32-bit integer, this is 0111...111 (31 ones).
+- Tmin (minimum integer value) is represented by 1 followed by all 0s. For a 32-bit integer, this is 1000...000 (31 zeros).
+
+This means that the most significant bit (MSB) of Tmin is 1, and all other bits are 0.
+
+#### How to achieve Tmin from 1 using bitwise operators
+You can achieve Tmin by left-shifting the most significant bit (which is initially 1 in Tmin) into its correct position.
+
+1. Start with 1: The number 1 in binary is 00...001.
+2. Left Shift: To get Tmin, you need to move this 1 to the most significant bit position. For a 32-bit integer, this means shifting it left by (sizeof(int) * 8 - 1) positions.
+
+Let's illustrate with an example assuming a 32-bit integer:
+
+- sizeof(int) is typically 4 bytes.
+- sizeof(int) * 8 is 32 bits.
+- sizeof(int) * 8 - 1 is 31.
+
+So, 1 << 31 would result in Tmin.
+
+#### C function to return Tmin
+- Using only one left shift operator.
+```c
+int tmin(void) {
+    int x = 1;
+    return x << 31;
+}
+```
 
 ### Page 3 example code
 - [main.c](./code/data_tmin/example/C90/main.c)
