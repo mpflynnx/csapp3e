@@ -11,9 +11,10 @@
 ### Resources
 - [Computer Systems: A Programmer's Perspective, 3/E (CS:APP3e)](https://csapp.cs.cmu.edu/3e/home.html)
 - [CS:APP3e Student Site](https://csapp.cs.cmu.edu/3e/students.html)
+- [Code Examples tarfile download](https://csapp.cs.cmu.edu/3e/code.html)
 - [CMU: 2015 Fall: 15-213 Introduction to Computer Systems Video Lectures](https://scs.hosted.panopto.com/Panopto/Pages/Sessions/List.aspx#folderID=%22b96d90ae-9871-4fae-91e2-b1627b43e25e%22)
 - [CMU: 15-213/15-513 Introduction to Computer Systems (ICS)](https://www.cs.cmu.edu/~./213/schedule.html)
 
 ### Table of Contents
 - [Chapter2: Representing and Manipulating Information](./section2/section2.md)
-
+- [Chapter3: Machine-Level Representation of Programs](./section3/section3.md)
