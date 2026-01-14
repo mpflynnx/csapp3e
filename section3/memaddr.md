@@ -4,7 +4,11 @@ Memory addressing example `movb 9(%rax, %rdx)`
 
 AT&T Addressing Mode for x86-64 memory operands. Represents a specific way to calculate a memory address using a base, an index, and an offset.
 
-The general formula for this notation is:$$\text{Address} = \text{Displacement} + \text{Base} + (\text{Index} \times \text{Scale})$$
+The general formula for this notation is:
+
+$$
+\text{Address} = \text{Displacement} + \text{Base} + (\text{Index} \times \text{Scale})
+$$
 
 **Breaking Down `9(%rax, %rdx)`**
 
