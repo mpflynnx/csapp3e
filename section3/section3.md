@@ -8,8 +8,19 @@
 - [Assemblers and Disassmblers](./ass_disass.md)
 - [objdump help page](./objdump.md)
 - [NASM (Netwide Assembler)](./nasm.md)
+- [3.4.2 Data Movement Instructions](datamov.md)
+- [x86-64 Integer registers](./integer_registers.md)
+- [x86-64 memory addressing](./memaddr.md)
 
 ### Chapter 3 Code Example
-- [sum.c](./code_examples/readme.md)
+- [C summing two numbers program](./code_examples/sum.c)
+- [Compilation instructions summing program](./code_examples/readme.md)
+- [Assembly code of summing program](./code_examples/sum.s)
+- [C mov instruction demonstration program](./code_examples/movq/main.c)
+- [Assembly code (AT&T) of mov demonstration program](./code_examples/movq/main-att.s)
+- [Assembly code (Intel) of mov demonstration program](./code_examples/movq/main-intel.s)
+
+### Chapter 3 Practice problems TOC
+- [Practice Problems 3.1 | Operand forms](./practice-problems/problem3-1.md)
 
 ### Chapter 3 Web Asides TOC

@@ -1,4 +1,4 @@
-## readme.md
+## Compilation instructions sum.c
 
 - Full sequence, C file .c -> assembly file .s -> object file .o -> executable binary
 ```bash

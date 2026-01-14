@@ -1,0 +1,32 @@
+--- /run/media/live/ntfs/youtube-learning/CarnegieMellonUniversity_CMU/15-213/github-repo/csapp3e/section3/code_examples/movq/main-intel.s	2026-01-12 15:15:15.000000000 +0000
++++ /run/media/live/ntfs/youtube-learning/CarnegieMellonUniversity_CMU/15-213/github-repo/csapp3e/section3/code_examples/movq/main-att.s	2026-01-12 15:18:44.000000000 +0000
+@@ -1,14 +1,13 @@
+ 	.file	"main.c"
+-	.intel_syntax noprefix
+ 	.text
+ 	.globl	movq_demo
+ 	.type	movq_demo, @function
+ movq_demo:
+ .LFB0:
+ 	.cfi_startproc
+-	mov	QWORD PTR global_val[rip], 22136
+-	mov	QWORD PTR global_val[rip], rdi
+-	mov	rax, QWORD PTR global_val[rip]
++	movq	$22136, global_val(%rip)
++	movq	%rdi, global_val(%rip)
++	movq	global_val(%rip), %rax
+ 	ret
+ 	.cfi_endproc
+ .LFE0:
+@@ -18,9 +17,9 @@
+ main:
+ .LFB1:
+ 	.cfi_startproc
+-	mov	edi, 10
++	movl	$10, %edi
+ 	call	movq_demo
+-	mov	eax, 0
++	movl	$0, %eax
+ 	ret
+ 	.cfi_endproc
+ .LFE1:

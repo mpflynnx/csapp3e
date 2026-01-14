@@ -1,0 +1,19 @@
+2c1
+< 	.intel_syntax noprefix
+---
+9,11c8,10
+< 	mov	QWORD PTR global_val[rip], 22136
+< 	mov	QWORD PTR global_val[rip], rdi
+< 	mov	rax, QWORD PTR global_val[rip]
+---
+> 	movq	$22136, global_val(%rip)
+> 	movq	%rdi, global_val(%rip)
+> 	movq	global_val(%rip), %rax
+21c20
+< 	mov	edi, 10
+---
+> 	movl	$10, %edi
+23c22
+< 	mov	eax, 0
+---
+> 	movl	$0, %eax
