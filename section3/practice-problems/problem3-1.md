@@ -39,14 +39,14 @@ Assume the following values are stored at the indicated memory address and regis
 
 Equates to:
 
-$\text{Value in } \%rax + \text{Value in } \%rdx + 9 = \text{Target Address} $
+Value in %rax + Value in %rdx + 9 = Target Address
 
 9 Decimal to Hexadecimal = 0x9
 
 Hex addition: 
 0x100 + 0x3 + 0x9 = Target Address = `0x10C`
 
-Value at $\text{Target Address}$ `0x10C` is `0x11`.
+Value at Target Address `0x10C` is `0x11`.
 
 ### g. Operand: 260(%rcx, %rdx)
 
@@ -58,14 +58,14 @@ Value at $\text{Target Address}$ `0x10C` is `0x11`.
 
 Equates to:
 
-$\text{Value in } \%rcx + \text{Value in } \%rdx + 260 = \text{Target Address} $
+Value in %rcx + Value in %rdx + 260 = Target Address
 
 Converting 260 Decimal to Hexadecimal = `0x104`
 
 Hex addition: 
 0x1 + 0x3 + 104 = Target Address = `0x108`
 
-Value at $\text{Target Address}$ `0x108` is `0x13`.
+Value at Target Address `0x108` is `0x13`.
 
 ### h. Operand: 0xFC(, %rcx, 4)
 
@@ -82,7 +82,7 @@ Converting displacement 0xFC from Hexadecimal to Decimal = `252`
 
 `252(, %rcx, 4)` Equates to:
 
-$\text{(0} + \text{Value in } \%rcx * 4) + 252 = \text{Target Address}$
+(0 + Value in %rcx * 4) + 252 = Target Address
 
 (0x1 * 4) = 0x4 or 4 decimal
 
@@ -92,7 +92,7 @@ Decimal addition:
 Target address (hexadecimal): 
 - Decimal 256 to hexadecimal = 0x100
 
-Value at $\text{Target Address}$ `0x100` is `0xFF`.
+Value at Target Address `0x100` is `0xFF`.
 
 #### Intel syntax
 
@@ -106,13 +106,13 @@ Value at $\text{Target Address}$ `0x100` is `0xFF`.
 - Displacement: + 0xFC (252 decimal)
 
 The calculation:
-$$(0x1 \times 4) + 0xFC = 0x4 + 0xFC = \mathbf{0x100}$$
+(0x1 * 4) + 0xFC = 0x4 + 0xFC = 0x100
 
-Value at $\text{Target Address}$ `0x100` is `0xFF`.
+Value at Target Address `0x100` is `0xFF`.
 
 ### k. Operand: (%rax,%rdx,4)
 
-In this problem. The deplacement before the parentheses is omitted. Therefore defaults to 0. 
+In this problem. The displacement before the parentheses is omitted. Therefore defaults to 0. 
 The third number `4` inside the parentheses is the scale multiplier for the value inside `%rdx`.
 
 |||||||
@@ -124,7 +124,7 @@ The third number `4` inside the parentheses is the scale multiplier for the valu
 
 `(%rax, %rdx, 4)` Equates to:
 
-$\text{Value in } \%rax + \text{(Value in } \%rdx * 4) = \text{Target Address}$
+Value in %rax + (Value in %rdx * 4) = Target Address
 
 0x3 = 3 decimal
 
@@ -132,7 +132,7 @@ $\text{Value in } \%rax + \text{(Value in } \%rdx * 4) = \text{Target Address}$
 
 Target address (hexadecimal): 0x10C
 
-Value at $\text{Target Address}$ `0x10C` is `0x11`.
+Value at Target Address `0x10C` is `0x11`.
 
 #### Intel syntax
 
@@ -146,6 +146,6 @@ Value at $\text{Target Address}$ `0x10C` is `0x11`.
 - Displacement: Omitted
 
 The calculation:
-$$0x100 + (3 (0x3) \times 4) = 0x100 + 12 (0xC) = \mathbf{0x10C}$$
+0x100 + (3 (0x3) * 4) = 0x100 + 12 (0xC) = 0x10C
 
-Value at $\text{Target Address}$ `0x10C` is `0x11`.
+Value at Target Address `0x10C` is `0x11`.
