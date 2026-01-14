@@ -24,9 +24,8 @@ Here is how the example maps to the formula:
 
 2. The Resulting Calculation when the CPU executes an instruction with this operand, it calculates the target address as:
 
-$$
-\text{Target Address} = \text{Value in } \%rax + \text{Value in } \%rdx + 9
-$$
+Target Address = Value in %rax + Value in %rdx + 9
+
 
 
 ||||
