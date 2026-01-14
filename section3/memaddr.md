@@ -22,7 +22,11 @@ Here is how the example maps to the formula:
 
 - `1` **(Scale)**: Since there is no third register or number inside the parentheses, the scale defaults to 1.
 
-2. The Resulting Calculation when the CPU executes an instruction with this operand, it calculates the target address as:$$\text{Target Address} = \text{Value in } \%rax + \text{Value in } \%rdx + 9$$
+2. The Resulting Calculation when the CPU executes an instruction with this operand, it calculates the target address as:
+
+$$
+\text{Target Address} = \text{Value in } \%rax + \text{Value in } \%rdx + 9
+$$
 
 ||||
 |---|---|---|
