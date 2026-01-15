@@ -22,7 +22,7 @@ Assume the following values are stored at the indicated memory address and regis
 |c|$0x108|0x108|0x108| Immediate, $ prefix is for constants
 |d|(%rax)|[rax]|0xFF| Parentheses or square brackets is used to indicate "the value at the address held in this register."
 |e|4(%rax)|[rax + 4]|0xAB|Displacement 4 + Parentheses is used to indicate "the value at the address held in this register." Address: 4 + 0x100 = 0x104 Value at 0x104 is 0xAB.
-|f|9(%rax, %rdx)|[rax + rdx + 9]|0x11|[See below for explanation](#f-9rax-rdx)
+|f|9(%rax, %rdx)|[rax + rdx + 9]|0x11|[See below for explanation](#f-operand-9rax-rdx)
 |g|260(%rcx, %rdx)|[rcx + rdx + 260]|0x13|[See below for explanation](#g-operand-260rcx-rdx)
 |h|0xFC(,%rcx,4)|[rcx*4 + 0xFC]|0xFF|[See below for explanation](#h-operand-0xfc-rcx-4)
 |k|(%rax,%rdx,4)|[rax + rdx*4]|0x11|[See below for explanation](#k-operand-raxrdx4)
@@ -35,7 +35,7 @@ Assume the following values are stored at the indicated memory address and regis
 |**Address**|**Value**|**Register**|**Value**|
 |0x100|0xFF|%rax|0x100|
 |0x108|0x13|%rdx|0x3|
-
+|0x10C|0x11|
 
 Equates to:
 
@@ -63,7 +63,7 @@ Value in %rcx + Value in %rdx + 260 = Target Address
 Converting 260 Decimal to Hexadecimal = `0x104`
 
 Hex addition: 
-0x1 + 0x3 + 104 = Target Address = `0x108`
+0x1 + 0x3 + 0x104 = Target Address = `0x108`
 
 Value at Target Address `0x108` is `0x13`.
 
