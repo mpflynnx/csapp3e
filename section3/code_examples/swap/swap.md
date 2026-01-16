@@ -4,6 +4,7 @@
 - [C code file main.c](./main.c)
 - [AT&T syntax assembly code file main.s](./main.s)
 - [Intel syntax assembly code file main.s](./main-intel.s)
+- [Video Lecture on swap() view from 57.41](https://scs.hosted.panopto.com/Panopto/Pages/Viewer.aspx?id=6e410255-3858-4e85-89c7-812c5845d197)
 
 ### The`swap` function 
 

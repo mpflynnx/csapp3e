@@ -4,6 +4,8 @@ Memory addressing example `movb 9(%rax, %rdx)`
 
 AT&T Addressing Mode for x86-64 memory operands. Represents a specific way to calculate a memory address using a base, an index, and an offset.
 
+Parentheses is used to indicate "the value at the address held in this register."
+
 The general formula for this notation is:
 ```
 Address = Displacement + Base + (Index * Scale)
@@ -54,7 +56,7 @@ Looks much like a maths equation `[rax + rdx + 9]`
 ||||||
 |---|---|---|---|---|
 ||**Expression**|**Address Computation**|**Address**|**Notes**
-|a|0x8(%rdx)|0xf000 + 0x8|0xf008
-|b|(%rdx, %rcx)||
-|c|(%rdx, %rxc,4)||
-|d|0x80(,%rdx,2)||
+|a|0x8(%rdx)|0xf000 + 0x8|0xf008| 8 + Value in %rdx
+|b|(%rdx, %rcx)|0 + 0xf000 + 0x0100|0xf100| Value in %rdx + Value in %rcx
+|c|(%rdx, %rxc,4)|0xf000 + (0x0100 * 4)|0xf400|Value in %rdx + (Value in %rcx * 4)
+|d|0x80(,%rdx,2)|0x80 + 0 + (0xf000 * 2)|0x1e080|0x80 + 0 + (Value in %rdx * 2)
