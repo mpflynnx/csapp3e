@@ -1,9 +1,6 @@
 ## Data Movement Instructions (hardback 3.4.2 page 182)
 
-- [C code example showing mov operand combinations](./code_examples/movq/main.c)
-- [AT&T syntax assembly](./code_examples/movq/main-att.s)
-- [Intel syntax assembly](./code_examples/movq/main-intel.s)
-
+- [C code example showing mov operand combinations](./code_examples/movq/move.md)
 - [C function copies a 64-bit value from one pointer's address to another](./code_examples/copy_val.c)
 - [ARMv8 assembly](https://godbolt.org/#g:!((g:!((g:!((h:codeEditor,i:(filename:'1',fontScale:14,fontUsePx:'0',j:1,lang:___c,selection:(endColumn:2,endLineNumber:3,positionColumn:2,positionLineNumber:3,selectionStartColumn:2,selectionStartLineNumber:3,startColumn:2,startLineNumber:3),source:'void+copy_val(long+*dest,+long+*src)+%7B%0A++++*dest+%3D+*src%3B%0A%7D'),l:'5',n:'0',o:'C+source+%231',t:'0')),k:45.246753246753244,l:'4',n:'0',o:'',s:0,t:'0'),(g:!((h:compiler,i:(compiler:armv8-cclang2110,filters:(b:'1',binary:'1',binaryObject:'1',commentOnly:'1',debugCalls:'1',demangle:'1',directives:'1',execute:'1',intel:'0',libraryCode:'1',trim:'1',verboseDemangling:'0'),flagsViewOpen:'1',fontScale:14,fontUsePx:'0',j:1,lang:___c,libs:!(),options:'-Og+-S',overrides:!(),selection:(endColumn:1,endLineNumber:1,positionColumn:1,positionLineNumber:1,selectionStartColumn:1,selectionStartLineNumber:1,startColumn:1,startLineNumber:1),source:1),l:'5',n:'0',o:'+armv8-a+clang+21.1.0+(Editor+%231)',t:'0')),k:54.753246753246756,l:'4',n:'0',o:'',s:0,t:'0')),l:'2',n:'0',o:'',t:'0')),version:4)
 
