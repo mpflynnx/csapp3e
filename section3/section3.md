@@ -16,11 +16,11 @@
 - [C summing two numbers program](./code_examples/sum.c)
 - [Compilation instructions summing program](./code_examples/readme.md)
 - [Assembly code of summing program](./code_examples/sum.s)
-- [C mov instruction demonstration program](./code_examples/movq/main.c)
-- [Assembly code (AT&T) of mov demonstration program](./code_examples/movq/main-att.s)
-- [Assembly code (Intel) of mov demonstration program](./code_examples/movq/main-intel.s)
+- [C code example to demonstrate all mov operands](./code_examples/movq/move.md)
+- [C code example using a swap function](./code_examples/swap/swap.md)
 
 ### Chapter 3 Practice problems TOC
 - [Practice Problems 3.1 | Operand forms](./practice-problems/problem3-1.md)
+- [Practice Problems 3.2 | mov suffix](./practice-problems/problem3-2.md)
 
 ### Chapter 3 Web Asides TOC
