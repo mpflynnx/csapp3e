@@ -17,15 +17,15 @@ Assume the following values are stored at the indicated memory address and regis
 ||||||
 |---|---|---|---|---|
 ||**AT&T**|**Intel**|**Value**|**Notes**
-|a|%rax|rax|0x100|Register
-|b|0x104|0x104|0xAB|Absolute address
-|c|$0x108|0x108|0x108| Immediate, $ prefix is for constants
-|d|(%rax)|[rax]|0xFF| Parentheses or square brackets is used to indicate "the value at the address held in this register."
-|e|4(%rax)|[rax + 4]|0xAB|Displacement 4 + Parentheses is used to indicate "the value at the address held in this register." Address: 4 + 0x100 = 0x104 Value at 0x104 is 0xAB.
-|f|9(%rax, %rdx)|[rax + rdx + 9]|0x11|[See below for explanation](#f-operand-9rax-rdx)
-|g|260(%rcx, %rdx)|[rcx + rdx + 260]|0x13|[See below for explanation](#g-operand-260rcx-rdx)
-|h|0xFC(,%rcx,4)|[rcx*4 + 0xFC]|0xFF|[See below for explanation](#h-operand-0xfc-rcx-4)
-|k|(%rax,%rdx,4)|[rax + rdx*4]|0x11|[See below for explanation](#k-operand-raxrdx4)
+|a.|%rax|rax|0x100|Register
+|b.|0x104|0x104|0xAB|Absolute address
+|c.|$0x108|0x108|0x108| Immediate, $ prefix is for constants
+|d.|(%rax)|[rax]|0xFF| Parentheses or square brackets is used to indicate "the value at the address held in this register."
+|e.|4(%rax)|[rax + 4]|0xAB|Displacement 4 + Parentheses is used to indicate "the value at the address held in this register." Address: 4 + 0x100 = 0x104 Value at 0x104 is 0xAB.
+|f.|9(%rax, %rdx)|[rax + rdx + 9]|0x11|[See below for explanation](#f-operand-9rax-rdx)
+|g.|260(%rcx, %rdx)|[rcx + rdx + 260]|0x13|[See below for explanation](#g-operand-260rcx-rdx)
+|h.|0xFC(,%rcx,4)|[rcx*4 + 0xFC]|0xFF|[See below for explanation](#h-operand-0xfc-rcx-4)
+|k.|(%rax,%rdx,4)|[rax + rdx*4]|0x11|[See below for explanation](#k-operand-raxrdx4)
 
 
 ### f. Operand 9(%rax, %rdx)

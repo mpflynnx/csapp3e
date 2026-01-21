@@ -16,7 +16,7 @@ The x86-64 Playground is an open-source, web-based platform designed for writing
 - Click `stepi` button to single step through each instruction.
 
 ### Compiling and linking assembly files to create an executable to work on x86-64 playground
-- x86-64 needs a statically linked elf.
+- x86-64 Playground needs a statically linked elf.
 - The pure assembly way (using no C Libraries)
 - If your assembly code defines its own entry point (usually _start) and uses direct system calls rather than `libc` functions, this is the cleanest method.
 
