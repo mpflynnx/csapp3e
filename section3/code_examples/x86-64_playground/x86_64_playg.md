@@ -8,7 +8,7 @@ The x86-64 Playground is an open-source, web-based platform designed for writing
 - [citation](https://gemini.google.com/app/65b2e5930539e43d)
 
 ### Using the x86-64 editor
-- Use must use the correct syntax for the selected compiler else the code will fail to compile.
+- You must use the correct syntax for the selected compiler else the code will fail to compile.
 - Select from the dropdown `GNU as`
 - Intel syntax assembly must contain `.intel_syntax noprefix` else AT&T syntax is assumed.
 - Assembly can be copied and pasted from files such as [gnu_syscall_mov](./gnu_syscall_mov.s)
