@@ -41,10 +41,11 @@ Target Address = Value in %rax + Value in %rdx + 9
 
 Looks much like a maths equation `[rax + rdx + 9]`
 
-### Address computation examples
+### Address computation examples AT&T syntax
 
 - [Video Lecture 05: Machine-Level Programming I: Basics](https://scs.hosted.panopto.com/Panopto/Pages/Viewer.aspx?id=6e410255-3858-4e85-89c7-812c5845d197)
 - Taken from Video Lecture 05 at time 1:04:41
+- **Remember:** Parentheses is used to indicate "the value held in this register."
 
 |||||
 ---|---|---|---|
