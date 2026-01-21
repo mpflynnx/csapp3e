@@ -64,9 +64,9 @@ SYMBOL TABLE:
 
 ### Debugging with GDB
 With these symbols, GDB will allow you to see your source code while you step through it:
-1. Start: gdb ./my_program
-1. Set breakpoint: break _start
-1. Run: run
+1. Start: gdb ./gnu_syscall_mov
+1. Set breakpoint: (gbb) break _start
+1. Run: (gdb) run
 1. View code: list or use layout tui mode with ctrl+x then a type: asm / layout regs for a better assembly view.
 
 
