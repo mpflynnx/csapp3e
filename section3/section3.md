@@ -3,7 +3,7 @@
 ### Related resources
 
 **Debugging**
-- [x86-64 Intel Syntax Playground | An online assembly editor and GDB-like debugger](https://x64.halb.it/)
+- [x86-64 Playground | An online assembly editor and GDB-like debugger](https://x64.halb.it/)
 - [pwndbg | GDB alternative with better defaults for Assembly debugging](https://pwndbg.re/stable/)
 
 **Video lectures**
@@ -31,6 +31,7 @@ COP4610: Operating Systems & Concurrent Programming | notes](https://www.cs.fsu.
 - [3.4.2 Data Movement Instructions](datamov.md)
 - [x86-64 Integer registers](./integer_registers.md)
 - [x86-64 memory addressing](./memaddr.md)
+- [x86-64 Playground usage](./code_examples/x86-64_playground/x86_64_playg.md)
 
 ### Chapter 3 Code Example
 - [C summing two numbers program](./code_examples/sum.c)
