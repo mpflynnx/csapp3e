@@ -3,7 +3,7 @@
 The x86-64 Playground is an open-source, web-based platform designed for writing, executing, and debugging x86-64 assembly code. It is specifically built as an educational tool to help students and developers understand low-level programming without the complexity of setting up a local development environment. It supports multiple assemblers. You can switch between popular assemblers including NASM, FASM, and GNU Assembler (gas).
 
 - [x86-64 playground](https://app.x64.halb.it/)
-- [`GNU as` and `Intel` syntax assembly file](gnu_syscall_mov.s)
+- [`GNU as` and `Intel` syntax assembly file example](./examples/gnu_syscall.s)
 - [citation](https://share.google/aimode/XpjFWa1XMZ2SkZbHL)
 - [citation](https://gemini.google.com/app/65b2e5930539e43d)
 
@@ -11,7 +11,9 @@ The x86-64 Playground is an open-source, web-based platform designed for writing
 - You must use the correct syntax for the selected compiler else the code will fail to compile.
 - Select from the dropdown `GNU as`
 - Intel syntax assembly must contain `.intel_syntax noprefix` else AT&T syntax is assumed.
-- Assembly can be copied and pasted from files such as [gnu_syscall_mov](./gnu_syscall_mov.s)
+- Assembly can be copied and pasted from files.
+- Copy the contents of a [template](./templates/gnu_blank.s) file into the editor is a good starting point for adding your own assembly.
+- It does not like assemble output of gcc from C source files.
 - Click `compile` button.
 - Click `stepi` button to single step through each instruction.
 
